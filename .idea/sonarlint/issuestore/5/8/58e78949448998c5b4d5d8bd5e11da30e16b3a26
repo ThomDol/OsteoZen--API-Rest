@@ -1,0 +1,11 @@
+
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8»’šˆ€2J$e357976a-7a6d-4b99-b238-ef3a19d82a25
+y
+java:S1128"7Remove this unused import 'jakarta.persistence.Column'.(Ó‰ÙE8Á’šˆ€2J$0878ad6f-a19a-43a2-be05-1467e6e4b339
+m
+java:S1128"*Remove this unused import 'lombok.Getter'.(ùÒµÙ8Á’šˆ€2J$7f13b82f-1522-45e9-9f63-c15b2f3ad799
+‚
+java:S1128"?Remove this unused import 'org.gestion_patient.entity.Patient'.(ÕÜŽû8¡µ²ˆ€2J$c683d781-6342-435e-822c-60f2addd9922
+x
+java:S1128
+"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ8Á’šˆ€2J$d8d909d0-70be-42a7-90a0-696ad04b2447

@@ -1,0 +1,26 @@
+
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸJ$e7efbc75-7708-4b5e-89d0-34e70dfb5e17
+L
+java:S1068"/Remove this unused "idPraticien" private field.(á”Œ©8­ÿ¡®2
+N
+java:S1068",Remove this unused "password" private field.(œãë­úÿÿÿÿ8®ÿ¡®2
+I
+java:S1068",Remove this unused "username" private field.(‘ó¹²8®ÿ¡®2
+M
+java:S1068"+Remove this unused "nomRole" private field.(§èŒŸÿÿÿÿÿ8®ÿ¡®2
+N
+java:S1068",Remove this unused "nomVille" private field.(ËÕ£şøÿÿÿÿ8®ÿ¡®2
+P
+java:S1068".Remove this unused "codePostal" private field.(™›˜êıÿÿÿÿ8¯ÿ¡®2
+I
+java:S1068",Remove this unused "numAdeli" private field.(ÍçÙ8¯ÿ¡®2
+N
+java:S1068",Remove this unused "numSiret" private field.(¥›Õºşÿÿÿÿ8¯ÿ¡®2
+U
+java:S1068"8Remove this unused "nomPraticienConnecte" private field.(ÔÄ¢Á8¯ÿ¡®2
+X
+java:S1068";Remove this unused "prenomPraticienConnecte" private field.(¸Šô8¯ÿ¡®2
+K
+java:S1068")Remove this unused "email" private field.(ª«Õìùÿÿÿÿ8¯ÿ¡®2
+D
+java:S1068"'Remove this unused "tel" private field.(°¡¥8¯ÿ¡®2

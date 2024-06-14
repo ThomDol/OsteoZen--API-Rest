@@ -1,0 +1,11 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8¦öÉØù1
+R
+java:S1128"0Remove this unused import 'jakarta.persistence'.(Î«Ô§úÿÿÿÿ8ªöÉØù1
+\
+java:S1128"?Remove this unused import 'org.gestion_patient.entity.Patient'.(ÕÜû8ªöÉØù1
+e
+java:S1128	"CRemove this unused import 'org.gestion_patient.entity.PratiquerId'.(Ì„çäıÿÿÿÿ8ªöÉØù1
+_
+java:S1128
+"=Remove this unused import 'org.gestion_patient.entity.Sport'.(‚•ÉÆøÿÿÿÿ8ªöÉØù1

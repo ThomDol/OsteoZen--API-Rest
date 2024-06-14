@@ -1,0 +1,30 @@
+
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8Šè—úû1J$be87aa59-439b-4a55-8956-68dd6ac7d556
+O
+java:S1068"-Remove this unused "idPatient" private field.(—ø…úÿÿÿÿ8¶‚¢®2
+S
+java:S1068"1Remove this unused "dateNaissance" private field.(±¸—üşÿÿÿÿ8¶‚¢®2
+N
+java:S1068",Remove this unused "nomVille" private field.(ËÕ£şøÿÿÿÿ8¶‚¢®2
+P
+java:S1068".Remove this unused "codePostal" private field.(™›˜êıÿÿÿÿ8·‚¢®2
+H
+java:S1068",Remove this unused "nomGenre" private field.(ú¿¨}8·‚¢®2
+S
+java:S1068"1Remove this unused "nomProfession" private field.(“å»õıÿÿÿÿ8·‚¢®2
+T
+java:S1068"2Remove this unused "nomTypePatient" private field.(°–ú¬üÿÿÿÿ8·‚¢®2
+X
+java:S1068"6Remove this unused "nomMedecinTraitant" private field.(¶Ã›‹ùÿÿÿÿ8¸‚¢®2
+[
+java:S1068"9Remove this unused "prenomMedecinTraitant" private field.(Í ¾”şÿÿÿÿ8¸‚¢®2
+Z
+java:S1068"8Remove this unused "villeMedecinTraitant" private field.(Ó®ŸŠıÿÿÿÿ8¸‚¢®2
+K
+java:S1068".Remove this unused "nomPatient" private field.(³ù8¸‚¢®2
+N
+java:S1068"1Remove this unused "prenomPatient" private field.(ˆò±‹8¸‚¢®2
+K
+java:S1068")Remove this unused "email" private field.(ª«Õìùÿÿÿÿ8¹‚¢®2
+D
+java:S1068 "'Remove this unused "tel" private field.(°¡¥8¹‚¢®2
