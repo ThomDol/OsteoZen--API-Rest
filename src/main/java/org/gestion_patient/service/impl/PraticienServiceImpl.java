@@ -6,7 +6,7 @@ import org.gestion_patient.entity.*;
 import org.gestion_patient.entityDto.PraticienDto;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.exception.RessourceAlreadyexistsException;
-import org.gestion_patient.mapper.PraticienConnecteMapper;
+import org.gestion_patient.mapper.PraticienMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.service.PraticienService;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class PraticienServiceImpl implements PraticienService {
         List<Praticien> praticiens=praticienRepository.findAll();
         return praticiens.stream().map(praticien-> {
             try {
-                return PraticienConnecteMapper.mapToPraticienConnecteDto(praticien);
+                return PraticienMapper.mapToPraticienConnecteDto(praticien);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -43,14 +43,14 @@ public class PraticienServiceImpl implements PraticienService {
     @Override
     public PraticienDto findById(int id) throws Exception {
         Praticien praticienconnecte=praticienRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Praticien not found with given id: " + id));
-        return PraticienConnecteMapper.mapToPraticienConnecteDto(praticienconnecte);
+        return PraticienMapper.mapToPraticienConnecteDto(praticienconnecte);
 
     }
 
     @Override
     public PraticienDto create(PraticienDto praticienDto) throws Exception {
         //Verification si personne déjà enregistrée (par son email), si oui leve une exception.(email saisi crypté avant vérification,car email crypté ds base de données)
-        Praticien praticienToSave = praticienRepository.findByIdentiteEmail(praticienDto.getUsername());
+        Praticien praticienToSave = praticienRepository.findByIdentiteEmail(praticienDto.getEmail());
         if(praticienToSave!=null) {
             throw new RessourceAlreadyexistsException ("Praticien already exist with this email");}
         else{
@@ -84,9 +84,9 @@ public class PraticienServiceImpl implements PraticienService {
                 //Role sera récupéré dans me front (radio box -> User ou admin)
                 Role role=roleRepository.findByNomRole(praticienDto.getNomRole());
                 //Persistence du nouveau praticien avec les infos ci dessus
-                praticienToSave = PraticienConnecteMapper.mapToPraticienConnecte(praticienDto,role,lieu,infosprofessionnellesToSave,personneIdNewPatient);
+                praticienToSave = PraticienMapper.mapToPraticienConnecte(praticienDto,role,lieu,infosprofessionnellesToSave,personneIdNewPatient);
 
-                return PraticienConnecteMapper.mapToPraticienConnecteDto(praticienRepository.save(praticienToSave));}}
+                return PraticienMapper.mapToPraticienConnecteDto(praticienRepository.save(praticienToSave));}}
     }
 
     @Override
@@ -129,7 +129,7 @@ public class PraticienServiceImpl implements PraticienService {
         }
 
         //Persisitence du praticien mis à jour
-        return PraticienConnecteMapper.mapToPraticienConnecteDto(praticienRepository.save(praticien));
+        return PraticienMapper.mapToPraticienConnecteDto(praticienRepository.save(praticien));
     }
 
 

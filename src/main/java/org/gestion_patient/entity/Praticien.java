@@ -21,10 +21,6 @@ public class Praticien {
     @Column(name = "password", nullable = false, length = 80)
     private String password;
 
-    @Column(name = "username",unique = true, nullable = false, length = 80)
-    private String username;
-
-
     @ManyToOne( optional = false)
     @JoinColumn(name = "id_role", nullable = false)
     private Role role;

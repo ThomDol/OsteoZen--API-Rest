@@ -13,7 +13,6 @@ public class PraticienDto {
 
     private int idPraticien;
     private String password;
-    private String username;
     private String nomRole;
     private String nomVille;
     private String codePostal;

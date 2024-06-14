@@ -5,14 +5,13 @@ import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.*;
 import org.gestion_patient.entityDto.PraticienDto;
 
-public class PraticienConnecteMapper {
+public class PraticienMapper {
     public static PraticienDto mapToPraticienConnecteDto (Praticien praticien) throws Exception {
 
 
         return new PraticienDto(
                 praticien.getIdPraticien(),
                 praticien.getPassword(),
-                praticien.getUsername(),
                 praticien.getRole().getNomRole(),
                 praticien.getVille().getNomVille(),
                 praticien.getVille().getCodePostal(),
@@ -30,7 +29,6 @@ public class PraticienConnecteMapper {
         Praticien praticienconnecte = new Praticien();
         praticienconnecte.setIdPraticien(praticienDto.getIdPraticien());
         praticienconnecte.setPassword(praticienDto.getPassword());
-        praticienconnecte.setUsername(praticienDto.getUsername());
         praticienconnecte.setRole(role);
         praticienconnecte.setVille(lieu);
         praticienconnecte.setInfosProfessionnelles(infosprofessionnelles);
