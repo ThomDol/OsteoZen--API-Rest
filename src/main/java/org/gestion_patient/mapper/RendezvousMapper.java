@@ -1,5 +1,6 @@
 package org.gestion_patient.mapper;
 
+import org.gestion_patient.Data.DataUtil;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.Patient;
 import org.gestion_patient.entity.Rendezvous;
@@ -10,10 +11,10 @@ public class RendezvousMapper {
         return new RendezvousDto(
                 rendezvous.getIdRendezVous(),
                 rendezvous.getDateRendeVous(),
-                Crypto.decryptService(rendezvous.getSyntheseRendezVous()),
-                rendezvous.getSchemaRendezVous(),
-                rendezvous.getNomFacture(),
-                rendezvous.getNomCourrier(),
+                DataUtil.displayStringDecrypt(rendezvous.getSyntheseRendezVous()),
+                DataUtil.displayString(rendezvous.getSchemaRendezVous()),
+                DataUtil.displayString(rendezvous.getNomFacture()),
+                DataUtil.displayString(rendezvous.getNomCourrier()),
                 rendezvous.getPatient().getIdPatient()
         );
     }
@@ -22,13 +23,14 @@ public class RendezvousMapper {
         Rendezvous rendezvous = new Rendezvous();
         rendezvous.setIdRendezVous(rendezvousDto.getIdRendezVous());
         rendezvous.setDateRendeVous(rendezvousDto.getDateRendeVous());
-        rendezvous.setSyntheseRendezVous(Crypto.cryptService(rendezvousDto.getSyntheseRendezVous()));
-        rendezvous.setSchemaRendezVous(rendezvousDto.getSchemaRendezVous());
-        rendezvous.setNomFacture(rendezvousDto.getNomFacture());
-        rendezvous.setNomCourrier(rendezvousDto.getNomCourrier());
+        if (rendezvousDto.getSyntheseRendezVous() != null) {
+            rendezvous.setSyntheseRendezVous(Crypto.cryptService(rendezvousDto.getSyntheseRendezVous()));}
+        if (rendezvousDto.getSchemaRendezVous() != null) {rendezvous.setSchemaRendezVous(rendezvousDto.getSchemaRendezVous());}
+        if (rendezvousDto.getNomFacture() != null) {rendezvous.setNomFacture(rendezvousDto.getNomFacture());}
+        if (rendezvousDto.getNomCourrier() != null) {
+            rendezvous.setNomCourrier(rendezvousDto.getNomCourrier());}
         rendezvous.setPatient(patient);
         return rendezvous;
     }
 
 }
-

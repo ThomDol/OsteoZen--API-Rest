@@ -89,8 +89,6 @@ k
 ;src/main/java/org/gestion_patient/mapper/PatientMapper.java,7\0\70349c5890b4312df3632bd294907d26f7afcc41
 s
 Csrc/main/java/org/gestion_patient/mapper/MedecinTraitantMapper.java,8\0\80860d5149b4e7c0e39ad07f04d094ca61ac18c8
-u
-Esrc/main/java/org/gestion_patient/mapper/PraticienConnecteMapper.java,2\2\227978dd405c36982f26a9b2c938b21a27f42eb5
 p
 @src/main/java/org/gestion_patient/mapper/AccouchementMapper.java,8\3\83701f3895f520895698dfcb55b52470e97e20b4
 n
