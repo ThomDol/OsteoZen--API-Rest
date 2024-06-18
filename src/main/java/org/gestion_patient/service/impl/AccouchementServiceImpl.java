@@ -93,7 +93,7 @@ public class AccouchementServiceImpl implements AccouchementService {
 
     @Override
     public AccouchementDto getByIdAccouchement(int id) {
-        Accouchement accouchement = accouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found with given id " + id));
+        Accouchement accouchement = accouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Accouchement not found with given id " + id));
 
         return AccouchementMapper.mapToAccouchementDto(accouchement);
     }

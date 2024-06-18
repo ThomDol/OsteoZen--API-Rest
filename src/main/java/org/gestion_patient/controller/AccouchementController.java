@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/accouchement")
 public class AccouchementController {
