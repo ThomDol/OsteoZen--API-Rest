@@ -17,6 +17,7 @@ public interface PatientService {
     PatientDto updatePatient(int id, PatientDto upadtedPatientDto) throws Exception;
 
     List<PatientDto> getAllPatient();
+    PatientDto getByIdAndIdPraticien(int id,int idPraticien) throws Exception;
 
 
 }

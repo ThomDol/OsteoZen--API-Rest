@@ -75,7 +75,7 @@ public class PatientServiceImpl implements PatientService {
             else{profession =null;}
             //Medecin traitant récupéré ds le front si saisi, et enregistré en bdd si pas déjà dedans, avant soumission de cette requete
             Medecintraitant medecintraitant;
-            if(patientDto.getNomMedecinTraitant()!=null && patientDto.getPrenomMedecinTraitant()!=null){medecintraitant = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(patientDto.getNomMedecinTraitant()), Crypto.cryptService(patientDto.getPrenomMedecinTraitant()),patientDto.getNomVille());}
+            if(patientDto.getNomMedecinTraitant()!=null && patientDto.getPrenomMedecinTraitant()!=null){medecintraitant = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(patientDto.getNomMedecinTraitant()), Crypto.cryptService(patientDto.getPrenomMedecinTraitant()),patientDto.getVilleMedecinTraitant());}
             else{medecintraitant=null;}
             //Persisitence du patient ds la base de données
             Praticien praticienconnecte = praticienconnecteRepository.findById(idPraticienConnecte).orElseThrow(() -> new ResourceNotFoundException("Praticien not found with given Id" + idPraticienConnecte));
@@ -103,6 +103,14 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found with given Id"+id));
         return PatientMapper.mapToPatientDto(patient);
     }
+
+    @Override
+    public PatientDto getByIdAndIdPraticien(int id,int idPraticien) throws Exception {
+        Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id,idPraticien);
+        if(patient!=null){
+        return PatientMapper.mapToPatientDto(patient);}
+    return null;}
+
 
     @Override
     public void deletePatient(int id) {

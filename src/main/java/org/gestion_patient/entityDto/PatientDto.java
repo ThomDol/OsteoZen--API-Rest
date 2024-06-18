@@ -30,5 +30,6 @@ public class PatientDto {
     private String prenomPatient ;
     private String email;
     private String tel;
+    private int idPraticien;
 
 }
