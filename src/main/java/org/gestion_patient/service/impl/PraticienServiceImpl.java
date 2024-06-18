@@ -50,7 +50,7 @@ public class PraticienServiceImpl implements PraticienService {
     @Override
     public PraticienDto create(PraticienDto praticienDto) throws Exception {
         //Verification si personne déjà enregistrée (par son email), si oui leve une exception.(email saisi crypté avant vérification,car email crypté ds base de données)
-        Praticien praticienToSave = praticienRepository.findByIdentiteEmail(praticienDto.getEmail());
+        Praticien praticienToSave = praticienRepository.findByIdentiteEmail(Crypto.cryptService(praticienDto.getEmail()));
         if(praticienToSave!=null) {
             throw new RessourceAlreadyexistsException ("Praticien already exist with this email");}
         else{
