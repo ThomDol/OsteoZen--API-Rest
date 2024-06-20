@@ -3,8 +3,9 @@ package org.gestion_patient.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.gestion_patient.crypto.Crypto;
+import org.gestion_patient.entity.AntecedentClassique;
 import org.gestion_patient.entity.Patient;
-import org.gestion_patient.entityDto.AntecedentClassique;
+import org.gestion_patient.entityDto.AntecedentClassiqueDto;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.mapper.AntecedentClassiqueMapper;
 import org.gestion_patient.repository.AntecedentClassiqueRepository;
@@ -15,44 +16,74 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueService {
-    private AntecedentClassiqueRepository antecedentAdulteEnfantRepository;
+    private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private PatientRepository patientRepository;
 
     @Override
-    public AntecedentClassique create(AntecedentClassique antecedentAdulteEnfantDto, int idPatient) throws Exception {
-        Patient patient = patientRepository.findById(idPatient).orElseThrow(()->new ResourceNotFoundException("Patient with id"+idPatient+" doesn't exist"));
-        org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfant = AntecedentClassiqueMapper.mapToAntecedentAdulteEnfant(antecedentAdulteEnfantDto,patient);
-        return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfantRepository.save(antecedentAdulteEnfant));
+    public AntecedentClassiqueDto create(AntecedentClassiqueDto antecedentClassiqueDto, int idPatient) throws Exception {
+        Patient patient = patientRepository.findById(idPatient).orElseThrow(()->new ResourceNotFoundException("Patient doesn't exist"));
+        AntecedentClassique antecedentClassque = AntecedentClassiqueMapper.mapToAntecedentAdulteEnfant(antecedentClassiqueDto,patient);
+        return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentClassiqueRepository.save(antecedentClassque));
     }
 
     @Override
-    public AntecedentClassique update(int idToUpdate, AntecedentClassique antecedentAdulteEnfantDtoUpdated) throws Exception {
-        org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfantToUpdate = antecedentAdulteEnfantRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("AntecedentAdulteEnfant with id"+idToUpdate+" doesn't exist"));
-        antecedentAdulteEnfantToUpdate.setDateUpdate(antecedentAdulteEnfantToUpdate.getDateUpdate());
-        if(antecedentAdulteEnfantDtoUpdated.getGrossesse()!=null){antecedentAdulteEnfantToUpdate.setGrossesse(antecedentAdulteEnfantDtoUpdated.getGrossesse());}
-        if(antecedentAdulteEnfantDtoUpdated.getFumeur()!=null){antecedentAdulteEnfantToUpdate.setFumeur(antecedentAdulteEnfantDtoUpdated.getFumeur());}
-        if(antecedentAdulteEnfantDtoUpdated.getAllergie()!=null){antecedentAdulteEnfantToUpdate.setAllergie(antecedentAdulteEnfantDtoUpdated.getAllergie());}
-        if(antecedentAdulteEnfantDtoUpdated.getTraitement()!=null){antecedentAdulteEnfantToUpdate.setTraitement(antecedentAdulteEnfantDtoUpdated.getTraitement());}
-        if(antecedentAdulteEnfantDtoUpdated.getAntTraumatique()!=null){antecedentAdulteEnfantToUpdate.setAntTraumatique(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntTraumatique()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntChirurgicaux()!=null){antecedentAdulteEnfantToUpdate.setAntChirurgicaux(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntChirurgicaux()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntFamilliaux()!=null){antecedentAdulteEnfantToUpdate.setAntFamilliaux(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntFamilliaux()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntOrl()!=null){antecedentAdulteEnfantToUpdate.setAntOrl(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntOrl()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntVisceral()!=null){antecedentAdulteEnfantToUpdate.setAntVisceral(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntVisceral()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntCardioPulmonaire()!=null){antecedentAdulteEnfantToUpdate.setAntCardioPulmonaire(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntCardioPulmonaire()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntUroGynecaux()!=null){antecedentAdulteEnfantToUpdate.setAntUroGynecaux(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntUroGynecaux()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntPsy()!=null){antecedentAdulteEnfantToUpdate.setAntPsy(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntPsy()));}
-        if(antecedentAdulteEnfantDtoUpdated.getAntNotesDiverses()!=null){antecedentAdulteEnfantToUpdate.setAntNotesDiverses(Crypto.cryptService(antecedentAdulteEnfantDtoUpdated.getAntNotesDiverses()));}
+    public AntecedentClassiqueDto update(int idToUpdate, int idPatient, AntecedentClassiqueDto antecedentClassiqueDtoUpdated) throws Exception {
+        AntecedentClassique antecedentClassiqueToUpdate = antecedentClassiqueRepository.findByIdAntecedentClassiqueAndPatientIdPatient(idToUpdate, idPatient);
+            if (antecedentClassiqueToUpdate != null) {
+                antecedentClassiqueToUpdate.setDateUpdate(antecedentClassiqueDtoUpdated.getDateUpdate());
+            if (antecedentClassiqueDtoUpdated.getGrossesse() != null) {
+                antecedentClassiqueToUpdate.setGrossesse(antecedentClassiqueDtoUpdated.getGrossesse());
+            }
+            if (antecedentClassiqueDtoUpdated.getFumeur() != null) {
+                antecedentClassiqueToUpdate.setFumeur(antecedentClassiqueDtoUpdated.getFumeur());
+            }
+            if (antecedentClassiqueDtoUpdated.getAllergie() != null) {
+                antecedentClassiqueToUpdate.setAllergie(antecedentClassiqueDtoUpdated.getAllergie());
+            }
+            if (antecedentClassiqueDtoUpdated.getTraitement() != null) {
+                antecedentClassiqueToUpdate.setTraitement(antecedentClassiqueDtoUpdated.getTraitement());
+            }
+            if (antecedentClassiqueDtoUpdated.getAntTraumatique() != null) {
+                antecedentClassiqueToUpdate.setAntTraumatique(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntTraumatique()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntChirurgicaux() != null) {
+                antecedentClassiqueToUpdate.setAntChirurgicaux(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntChirurgicaux()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntFamilliaux() != null) {
+                antecedentClassiqueToUpdate.setAntFamilliaux(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntFamilliaux()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntOrl() != null) {
+                antecedentClassiqueToUpdate.setAntOrl(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntOrl()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntVisceral() != null) {
+                antecedentClassiqueToUpdate.setAntVisceral(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntVisceral()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntCardioPulmonaire() != null) {
+                antecedentClassiqueToUpdate.setAntCardioPulmonaire(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntCardioPulmonaire()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntUroGynecaux() != null) {
+                antecedentClassiqueToUpdate.setAntUroGynecaux(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntUroGynecaux()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntPsy() != null) {
+                antecedentClassiqueToUpdate.setAntPsy(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntPsy()));
+            }
+            if (antecedentClassiqueDtoUpdated.getAntNotesDiverses() != null) {
+                antecedentClassiqueToUpdate.setAntNotesDiverses(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntNotesDiverses()));
+            }
 
-        org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfantUpdated = antecedentAdulteEnfantRepository.save(antecedentAdulteEnfantToUpdate);
-        return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfantUpdated);
+            org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfantUpdated = antecedentClassiqueRepository.save(antecedentClassiqueToUpdate);
+            return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfantUpdated);
+        } else {
+                throw new ResourceNotFoundException("AntecedentClassique doesn't exist");
+        }
     }
 
     @Override
-    public AntecedentClassique getByidPatient(int id) throws Exception {
-        org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfant = antecedentAdulteEnfantRepository.findByPatientIdPatient(id);
+    public AntecedentClassiqueDto getByIdAndIdPatient(int id,int idPatient) throws Exception {
+        AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByIdAntecedentClassiqueAndPatientIdPatient(id,idPatient);
         if(antecedentAdulteEnfant!=null){
             return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfant);
         }
-        else{return null;}
+        else{throw new ResourceNotFoundException("AntecedentClassique doesn't exist");}
     }
 }

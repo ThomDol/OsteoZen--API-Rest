@@ -15,7 +15,7 @@ public class AntecedentClassique {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_antecedents", nullable = false)
-    private int idAntecedentAdulteEnfant;
+    private int idAntecedentClassique;
 
     @Column(name = "date_creation", nullable = false,length=10)
     private String dateCreation;

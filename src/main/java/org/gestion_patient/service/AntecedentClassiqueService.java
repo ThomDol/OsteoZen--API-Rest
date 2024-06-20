@@ -1,12 +1,12 @@
 package org.gestion_patient.service;
 
 
-import org.gestion_patient.entityDto.AntecedentClassique;
+import org.gestion_patient.entityDto.AntecedentClassiqueDto;
 
 
 public interface AntecedentClassiqueService {
-    AntecedentClassique create(AntecedentClassique antecedentAdulteEnfantDto, int idPatient) throws Exception;
-    AntecedentClassique update(int id, AntecedentClassique antecedentAdulteEnfantDtoUpdated) throws Exception;
-    AntecedentClassique getByidPatient(int id) throws Exception;
+    AntecedentClassiqueDto create(AntecedentClassiqueDto antecedentAdulteEnfantDto, int idPatient) throws Exception;
+    AntecedentClassiqueDto update(int id,int idPatient, AntecedentClassiqueDto antecedentAdulteEnfantDtoUpdated) throws Exception;
+    AntecedentClassiqueDto getByIdAndIdPatient(int id,int idPatient) throws Exception;
 
 }

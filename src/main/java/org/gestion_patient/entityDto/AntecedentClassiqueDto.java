@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AntecedentClassique {
+public class AntecedentClassiqueDto {
 
     private int idAntecedentAdulteEnfant;
     private String dateCreation;

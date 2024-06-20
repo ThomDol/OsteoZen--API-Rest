@@ -1,7 +1,5 @@
 
-™
-java:S3776""QRefactor this method to reduce its Cognitive Complexity from 16 to the 2 allowed.(±Ê£Áşÿÿÿÿ8ûó€2J$5d018b04-0991-4a4f-9220-2786b33e9ccd
-
-java:S1128"HRemove this unused import 'org.gestion_patient.entity.PostAccouchement'.(£”ô’øÿÿÿÿ8Å»Š€2J$8a3904fb-5424-4db8-a881-d986436b84c7
-€
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8»¢Š€2J$b2d4445a-0601-4f4a-9c2e-6c27a8602fa3
+Ÿ
+java:S1192W"WDefine a constant instead of duplicating this literal "Accouchement not found" 3 times.(úÛúÿÿÿÿ8õ÷²ƒ2J$2e0df5a2-99e8-4450-9807-3a917dc76c5b
+”
+java:S3776""QRefactor this method to reduce its Cognitive Complexity from 34 to the 2 allowed.(ÉÛÂÙ8÷²ƒ2J$4a801bfb-0a96-43cf-8c6d-e8029b0271e3

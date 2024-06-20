@@ -12,7 +12,7 @@ public interface PatientService {
 
     PatientDto getById(int id) throws Exception;
 
-    void deletePatient(int id);
+    void deletePatientByPraticien(int id,int idPraticien);
 
     PatientDto updatePatient(int id, PatientDto upadtedPatientDto,int idPraticien) throws Exception;
 

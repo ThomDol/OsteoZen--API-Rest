@@ -40,9 +40,9 @@ public class PatientController {
         PatientDto patientDto=patientService.getByIdAndIdPraticien(id,idPraticien);
         return new ResponseEntity<>(patientDto,HttpStatus.OK);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient (@PathVariable int id ){
-        patientService.deletePatient(id);
+    @DeleteMapping("/{idPraticien}/{id}")
+    public ResponseEntity<String> deletePatient (@PathVariable int id ,@PathVariable int idPraticien) throws Exception {
+        patientService.deletePatientByPraticien(id,idPraticien);
         return  new ResponseEntity<>("patient deleted with success" , HttpStatus.OK);
 
     }

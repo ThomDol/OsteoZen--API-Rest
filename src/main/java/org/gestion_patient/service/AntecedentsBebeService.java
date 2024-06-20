@@ -5,6 +5,6 @@ import org.gestion_patient.entityDto.AntecedentsBebeDto;
 
 public interface AntecedentsBebeService {
     AntecedentsBebeDto create(AntecedentsBebeDto antecedentBebeDto, int idPatient) throws Exception;
-    AntecedentsBebeDto update(int id, AntecedentsBebeDto antecedentBebeDtoUpdated) throws Exception;
-    AntecedentsBebeDto getByidPatient(int id) throws Exception;
+    AntecedentsBebeDto update(int id,int idPatient, AntecedentsBebeDto antecedentBebeDtoUpdated) throws Exception;
+    AntecedentsBebeDto getByIdAndIdPatient(int id,int idPatient) throws Exception;
 }

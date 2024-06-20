@@ -2,13 +2,13 @@ package org.gestion_patient.mapper;
 
 import org.gestion_patient.Data.DataUtil;
 import org.gestion_patient.entity.Patient;
-import org.gestion_patient.entityDto.AntecedentClassique;
+import org.gestion_patient.entityDto.AntecedentClassiqueDto;
 
 
 public class AntecedentClassiqueMapper {
-    public static AntecedentClassique mapToAntecedentAdulteEnfantDto (org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfant) throws Exception {
-        return new AntecedentClassique(
-                antecedentAdulteEnfant.getIdAntecedentAdulteEnfant(),
+    public static AntecedentClassiqueDto mapToAntecedentAdulteEnfantDto (org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfant) throws Exception {
+        return new AntecedentClassiqueDto(
+                antecedentAdulteEnfant.getIdAntecedentClassique(),
                 antecedentAdulteEnfant.getDateCreation(),
                 antecedentAdulteEnfant.getDateUpdate()!=null?antecedentAdulteEnfant.getDateUpdate():null,
                 DataUtil.displayInt(antecedentAdulteEnfant.getGrossesse()),
@@ -28,7 +28,7 @@ public class AntecedentClassiqueMapper {
         );
     }
 
-    public static org.gestion_patient.entity.AntecedentClassique mapToAntecedentAdulteEnfant (AntecedentClassique antecedentAdulteEnfantDto, Patient patient) throws Exception {
+    public static org.gestion_patient.entity.AntecedentClassique mapToAntecedentAdulteEnfant (AntecedentClassiqueDto antecedentAdulteEnfantDto, Patient patient) throws Exception {
         return new org.gestion_patient.entity.AntecedentClassique(
                 antecedentAdulteEnfantDto.getIdAntecedentAdulteEnfant(),
                 antecedentAdulteEnfantDto.getDateCreation(),

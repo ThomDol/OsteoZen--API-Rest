@@ -24,9 +24,9 @@ public class AccouchementController {
         AccouchementDto createAccouchement = accouchementService.create(accouchementDto,idPatient);
         return new ResponseEntity<>(createAccouchement, HttpStatus.CREATED);
     }
-    @GetMapping("{idAccouchement}")
-    public ResponseEntity<AccouchementDto> getAccouchementById(@PathVariable int idAccouchement) {
-        AccouchementDto accouchements = accouchementService.getByIdAccouchement(idAccouchement);
+    @GetMapping("/{idPatient}/{idAccouchement}")
+    public ResponseEntity<AccouchementDto> getAccouchementById(@PathVariable int idAccouchement,@PathVariable int idPatient) {
+        AccouchementDto accouchements = accouchementService.getByIdAccouchementAndIdPatient(idAccouchement,idPatient);
         return new ResponseEntity<>(accouchements, HttpStatus.OK);
     }
     @GetMapping("patient/{idPatient}")
@@ -35,14 +35,14 @@ public class AccouchementController {
         return new ResponseEntity<>(listAccouchement, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateAccouchement (@PathVariable int id,@RequestBody AccouchementDto accouchementDto){
-        accouchementService.update(id,accouchementDto);
+    @PutMapping("/{idPatient}/{id}")
+    public ResponseEntity<String> updateAccouchement (@PathVariable int id,@PathVariable int idPatient,@RequestBody AccouchementDto accouchementDto){
+        accouchementService.update(id,idPatient,accouchementDto);
         return new ResponseEntity<>("Accouchement updated with success",HttpStatus.OK);
     }
 
-    public ResponseEntity<String> delete (@PathVariable int id){
-        accouchementService.deleteAccouchement(id);
+    public ResponseEntity<String> delete (@PathVariable int id,@PathVariable int idPatient){
+        accouchementService.deleteAccouchement(id, idPatient);
         return new ResponseEntity<>("Deletion successfull",HttpStatus.OK);
     }
 
