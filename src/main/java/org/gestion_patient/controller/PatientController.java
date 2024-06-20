@@ -35,9 +35,9 @@ public class PatientController {
       return new ResponseEntity<>(patients,HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PatientDto> getPatientById (@PathVariable int id) throws Exception {
-        PatientDto patientDto=patientService.getById(id);
+    @GetMapping("/{idPraticien}/{id}")
+    public ResponseEntity<PatientDto> getPatientById (@PathVariable int id,@PathVariable int idPraticien) throws Exception {
+        PatientDto patientDto=patientService.getByIdAndIdPraticien(id,idPraticien);
         return new ResponseEntity<>(patientDto,HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
@@ -47,9 +47,9 @@ public class PatientController {
 
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PatientDto> updatePatient(@PathVariable int id,@RequestBody PatientDto patientDto) throws Exception {
-       PatientDto patientDtoUpdated = patientService.updatePatient(id,patientDto);
+    @PutMapping("{idPraticien}/{id}")
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable int idPraticien,@PathVariable int id,@RequestBody PatientDto patientDto) throws Exception {
+       PatientDto patientDtoUpdated = patientService.updatePatient(id,patientDto,idPraticien);
        return new ResponseEntity<>(patientDtoUpdated , HttpStatus.OK);
     }
 }

@@ -119,8 +119,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto updatePatient(int id, PatientDto upadtedPatientDto) throws Exception {
-        Patient patientToUpdate = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found with given Id"+id));
+    public PatientDto updatePatient(int id, PatientDto upadtedPatientDto, int idPraticien) throws Exception {
+        Patient patientToUpdate = patientRepository.findByIdPatientAndPraticienIdPraticien(id,idPraticien);
         //Set seulement des infos dont les données ont été remplies ds le formulaire
         if(upadtedPatientDto.getDateNaissance()!=null){patientToUpdate.setDateNaissance(Crypto.cryptService(upadtedPatientDto.getDateNaissance()));}
         //Récupération de l'identité actuellement sauvegardée, avant modification par les données du formulaire
