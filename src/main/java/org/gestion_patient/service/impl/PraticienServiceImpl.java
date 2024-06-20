@@ -60,8 +60,8 @@ public class PraticienServiceImpl implements PraticienService {
             else{
                 //Si pas d'exception, creation des infos professionnelles et de la personne (Cryptage des données avant persistence, car pas de mapper
                 Personne personneIdNewPraticien = new Personne();
-                personneIdNewPraticien.setNom(Crypto.cryptService(praticienDto.getNomPraticienConnecte()));
-                personneIdNewPraticien.setPrenom(Crypto.cryptService(praticienDto.getPrenomPraticienConnecte()));
+                personneIdNewPraticien.setNom(Crypto.cryptService(praticienDto.getNomPraticienConnecte().toUpperCase()));
+                personneIdNewPraticien.setPrenom(Crypto.cryptService(praticienDto.getPrenomPraticienConnecte().toUpperCase()));
                 personneIdNewPraticien.setEmail(Crypto.cryptService(praticienDto.getEmail()));
                 personneIdNewPraticien.setTel(Crypto.cryptService(praticienDto.getTel()));
                     personneRepository.save(personneIdNewPraticien);
@@ -73,7 +73,7 @@ public class PraticienServiceImpl implements PraticienService {
 
 
                 //Lieu sera récupéré dans le front  si non, sera créé
-                Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille(),praticienDto.getCodePostal());
+                Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille().toUpperCase(),praticienDto.getCodePostal());
                 if(lieu==null){
                     lieu = new Lieu();
                     lieu.setNomVille(praticienDto.getNomVille().toUpperCase());
@@ -95,7 +95,7 @@ public class PraticienServiceImpl implements PraticienService {
         //Nouvelle ville mise à jour si besoin. Si pas ds base, sera créee
         Lieu lieu;
         if(praticienDto.getCodePostal()!=null && praticienDto.getNomVille()!=null){
-            lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille(),praticienDto.getCodePostal());
+            lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille().toUpperCase(),praticienDto.getCodePostal());
             if(lieu==null){
                 lieu = new Lieu();
                 lieu.setNomVille(praticienDto.getNomVille().toUpperCase());
