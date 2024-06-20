@@ -43,7 +43,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDto createPatient(PatientDto patientDto,int idPraticienConnecte) throws Exception {
         //Verification si Patient existe déjà avec ce praticien (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
-        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),idPraticienConnecte);
+        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndIdentiteTelAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),Crypto.cryptService(patientDto.getTel()),idPraticienConnecte);
         if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date");}
         else{
             //Verification si identité de la personne déjà enregistrée, si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
