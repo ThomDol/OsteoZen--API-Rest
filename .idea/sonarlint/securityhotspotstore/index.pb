@@ -239,8 +239,6 @@ w
 Gsrc/main/java/org/gestion_patient/mapper/AntecedentClassiqueMapper.java,8\a\8a349725f4e508532d980eb2b229f9b4b2a2178e
 m
 =src/main/java/org/gestion_patient/mapper/PraticienMapper.java,0\9\093347d8f0b8b8d49586d9fe84dd61e03f7d3d82
-t
-Dsrc/main/java/org/gestion_patient/entityDto/AntecedentClassique.java,b\7\b7488a636571719ea5ac9cbab19dcf92d2af940e
 s
 Csrc/main/java/org/gestion_patient/entityDto/AntecedentsBebeDto.java,2\9\297fc09b319cecdbf6a2d9392bd4f936aef2ba42
 y

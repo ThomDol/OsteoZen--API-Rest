@@ -28,30 +28,69 @@ public class GrossesseServiceImpl implements GrossesseService {
     }
 
     @Override
-    public GrossesseDto update(int idToUpdate, GrossesseDto grossesseDto) {
-        Grossesse grossesseToUpdate = grossesseRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("Grossesse with id"+idToUpdate+" doesn't exist"));
-        if(grossesseDto.getMaternite()!=null){grossesseToUpdate.setMaternite(grossesseDto.getMaternite());}
-        if(grossesseDto.getGrossesseMultiple()!=null){grossesseToUpdate.setGrossesseMultiple(grossesseDto.getGrossesseMultiple());}
-        if(grossesseDto.getDouleursPendantGrossesse()!=null){grossesseToUpdate.setDouleursPendantGrossesse(grossesseDto.getDouleursPendantGrossesse());}
-        if(grossesseDto.getEtatPsychoEmotionnel()!=null){grossesseToUpdate.setEtatPsychoEmotionnel(grossesseDto.getEtatPsychoEmotionnel());}
-        if(grossesseDto.getTraitementLieGrossesse()!=null){grossesseToUpdate.setTraitementLieGrossesse(grossesseDto.getTraitementLieGrossesse());}
-        if(grossesseDto.getMouvementsBebe()!=null){grossesseToUpdate.setMouvementsBebe(grossesseDto.getMouvementsBebe());}
-        if(grossesseDto.getCesariennePrevue()!=null){grossesseToUpdate.setCesariennePrevue(grossesseDto.getCesariennePrevue());}
-        if(grossesseDto.getProjetPeridurale()!=null){grossesseToUpdate.setProjetPeridurale(grossesseDto.getProjetPeridurale());}
-        if(grossesseDto.getProjetAllaitement()!=null){grossesseToUpdate.setProjetAllaitement(grossesseDto.getProjetAllaitement());}
-        if(grossesseDto.getNausees()!=null){grossesseToUpdate.setNausees(grossesseDto.getNausees());}
-        if(grossesseDto.getConstipation()!=null){grossesseToUpdate.setConstipation(grossesseDto.getConstipation());}
-        if(grossesseDto.getDiarrhees()!=null){grossesseToUpdate.setDiarrhees(grossesseDto.getDiarrhees());}
-        if(grossesseDto.getAigreursEstomac()!=null){grossesseToUpdate.setAigreursEstomac(grossesseDto.getAigreursEstomac());}
-        if(grossesseDto.getOedemesMembresInferieurs()!=null){grossesseToUpdate.setOedemesMembresInferieurs(grossesseDto.getOedemesMembresInferieurs());}
-        if(grossesseDto.getPesanteurPelvienne()!=null){grossesseToUpdate.setPesanteurPelvienne(grossesseDto.getPesanteurPelvienne());}
-        if(grossesseDto.getIncontinence()!=null){grossesseToUpdate.setIncontinence(grossesseDto.getIncontinence());}
-        if(grossesseDto.getTensionMammaire()!=null){grossesseToUpdate.setTensionMammaire(grossesseDto.getTensionMammaire());}
-        if(grossesseDto.getMastose()!=null){grossesseToUpdate.setMastose(grossesseDto.getMastose());}
+    public GrossesseDto update(int idToUpdate,int idPatient, GrossesseDto grossesseDto) {
+        Grossesse grossesseToUpdate = grossesseRepository.findByIdGrossesseAndPatientIdPatient(idToUpdate, idPatient);
+        if (grossesseToUpdate != null) {
+            if (grossesseDto.getMaternite() != null) {
+                grossesseToUpdate.setMaternite(grossesseDto.getMaternite());
+            }
+            if (grossesseDto.getGrossesseMultiple() != null) {
+                grossesseToUpdate.setGrossesseMultiple(grossesseDto.getGrossesseMultiple());
+            }
+            if (grossesseDto.getDouleursPendantGrossesse() != null) {
+                grossesseToUpdate.setDouleursPendantGrossesse(grossesseDto.getDouleursPendantGrossesse());
+            }
+            if (grossesseDto.getEtatPsychoEmotionnel() != null) {
+                grossesseToUpdate.setEtatPsychoEmotionnel(grossesseDto.getEtatPsychoEmotionnel());
+            }
+            if (grossesseDto.getTraitementLieGrossesse() != null) {
+                grossesseToUpdate.setTraitementLieGrossesse(grossesseDto.getTraitementLieGrossesse());
+            }
+            if (grossesseDto.getMouvementsBebe() != null) {
+                grossesseToUpdate.setMouvementsBebe(grossesseDto.getMouvementsBebe());
+            }
+            if (grossesseDto.getCesariennePrevue() != null) {
+                grossesseToUpdate.setCesariennePrevue(grossesseDto.getCesariennePrevue());
+            }
+            if (grossesseDto.getProjetPeridurale() != null) {
+                grossesseToUpdate.setProjetPeridurale(grossesseDto.getProjetPeridurale());
+            }
+            if (grossesseDto.getProjetAllaitement() != null) {
+                grossesseToUpdate.setProjetAllaitement(grossesseDto.getProjetAllaitement());
+            }
+            if (grossesseDto.getNausees() != null) {
+                grossesseToUpdate.setNausees(grossesseDto.getNausees());
+            }
+            if (grossesseDto.getConstipation() != null) {
+                grossesseToUpdate.setConstipation(grossesseDto.getConstipation());
+            }
+            if (grossesseDto.getDiarrhees() != null) {
+                grossesseToUpdate.setDiarrhees(grossesseDto.getDiarrhees());
+            }
+            if (grossesseDto.getAigreursEstomac() != null) {
+                grossesseToUpdate.setAigreursEstomac(grossesseDto.getAigreursEstomac());
+            }
+            if (grossesseDto.getOedemesMembresInferieurs() != null) {
+                grossesseToUpdate.setOedemesMembresInferieurs(grossesseDto.getOedemesMembresInferieurs());
+            }
+            if (grossesseDto.getPesanteurPelvienne() != null) {
+                grossesseToUpdate.setPesanteurPelvienne(grossesseDto.getPesanteurPelvienne());
+            }
+            if (grossesseDto.getIncontinence() != null) {
+                grossesseToUpdate.setIncontinence(grossesseDto.getIncontinence());
+            }
+            if (grossesseDto.getTensionMammaire() != null) {
+                grossesseToUpdate.setTensionMammaire(grossesseDto.getTensionMammaire());
+            }
+            if (grossesseDto.getMastose() != null) {
+                grossesseToUpdate.setMastose(grossesseDto.getMastose());
+            }
 
-        Grossesse grossesseUpdated = grossesseRepository.save(grossesseToUpdate);
-        return GrossesseMapper.mapToGrossesseDto(grossesseUpdated);
-
+            Grossesse grossesseUpdated = grossesseRepository.save(grossesseToUpdate);
+            return GrossesseMapper.mapToGrossesseDto(grossesseUpdated);
+        } else {
+            throw new ResourceNotFoundException("Grossesse doesn't exist");
+        }
     }
 
     @Override
@@ -61,10 +100,16 @@ public class GrossesseServiceImpl implements GrossesseService {
     }
 
     @Override
-    public GrossesseDto getById(int id) {
-        Grossesse grossesse = grossesseRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Grossesse with id"+id+" doesn't exist"));
-        return GrossesseMapper.mapToGrossesseDto(grossesse);
+    public GrossesseDto getByIdAndIdPatient(int id,int idPatient) {
+        Grossesse grossesse = grossesseRepository.findByIdGrossesseAndPatientIdPatient(id, idPatient);
+        if (grossesse != null) {
+            return GrossesseMapper.mapToGrossesseDto(grossesse);
+        } else {
+            throw new ResourceNotFoundException("Grossesse doesn't exist");
+        }
+    }
+
     }
 
 
-}
+

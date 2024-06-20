@@ -34,9 +34,13 @@ public class RendezvousServiceImpl implements RendezvousService {
     }
 
     @Override
-    public RendezvousDto findById(int id) throws Exception {
-        Rendezvous rendezvous = rendezvousRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Rendezvous not found with given id!" + id));
-        return RendezvousMapper.mapToRendezvousDto(rendezvous);
+    public RendezvousDto findByIdAndIdPraticien(int id,int idPraticien) throws Exception {
+        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id, idPraticien);
+        if (rendezvous != null) {
+            return RendezvousMapper.mapToRendezvousDto(rendezvous);
+        } else {
+            throw new ResourceNotFoundException("Rendezvous not found");
+        }
     }
 
     @Override
@@ -48,18 +52,23 @@ public class RendezvousServiceImpl implements RendezvousService {
     }
 
     @Override
-    public void deleteRendezvous(int id) {
-        if (!rendezvousRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Rendezvous not found with given id!" + id);
+    public void deleteRendezvous(int id,int idPraticien) {
+        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id, idPraticien);
+        if (rendezvous != null) {
+            rendezvousRepository.deleteById(id);}
+        else{
+            throw new ResourceNotFoundException("Rendezvous not found");
         }
-        rendezvousRepository.deleteById(id);
+
     }
 
     @Override
-    public RendezvousDto update(int id, RendezvousDto rendezvousDto) throws Exception {
-        Rendezvous rendezvous = rendezvousRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Rendezvous not found with given id: " + id));
+    public RendezvousDto update(int id,int idPraticien, RendezvousDto rendezvousDto) throws Exception {
+        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id,idPraticien);
+        if (rendezvous != null) {
         rendezvous.setSyntheseRendezVous(Crypto.cryptService(rendezvousDto.getSyntheseRendezVous()));
-        return RendezvousMapper.mapToRendezvousDto(rendezvousRepository.save(rendezvous));
+        return RendezvousMapper.mapToRendezvousDto(rendezvousRepository.save(rendezvous));}
+        else{ throw new ResourceNotFoundException("Rendezvous not found");}
 
 
     }

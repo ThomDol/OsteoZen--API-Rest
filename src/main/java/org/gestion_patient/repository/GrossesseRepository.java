@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GrossesseRepository extends JpaRepository<Grossesse,Integer> {
     List<Grossesse> findByPatientIdPatient (int id);
+    Grossesse findByIdGrossesseAndPatientIdPatient(int idGrossesse, int idPatient);
 }

@@ -11,7 +11,7 @@ public class PostAccouchementMapper {
 
     public static PostAccouchementDto mapToPostAccouchementDto(PostAccouchement postAccouchement) {
         return new PostAccouchementDto(
-                postAccouchement.getIdGrossessePostPartum(),
+                postAccouchement.getIdPostAccouchement(),
                 postAccouchement.getDateCreation(),
                 postAccouchement.getDateUpdate(),
                 DataUtil.displayString(postAccouchement.getQualiteSommeil()),

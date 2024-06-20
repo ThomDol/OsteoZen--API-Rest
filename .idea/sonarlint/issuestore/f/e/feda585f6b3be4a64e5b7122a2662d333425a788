@@ -3,3 +3,7 @@
 java:S1192W"WDefine a constant instead of duplicating this literal "Accouchement not found" 3 times.(úÛúÿÿÿÿ8õ÷²ƒ2J$2e0df5a2-99e8-4450-9807-3a917dc76c5b
 ”
 java:S3776""QRefactor this method to reduce its Cognitive Complexity from 34 to the 2 allowed.(ÉÛÂÙ8÷²ƒ2J$4a801bfb-0a96-43cf-8c6d-e8029b0271e3
+j
+java:S1128"HRemove this unused import 'org.gestion_patient.entity.PostAccouchement'.(£”ô’øÿÿÿÿ8ø–…´ƒ2
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8ø–…´ƒ2

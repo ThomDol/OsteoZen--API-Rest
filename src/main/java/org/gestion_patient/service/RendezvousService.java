@@ -8,10 +8,10 @@ import java.util.List;
 @Service
 public interface RendezvousService {
      List<RendezvousDto> findAllByPatientAndPraticien(int idPatient,int idPraticien);
-     RendezvousDto findById(int id) throws Exception;
+     RendezvousDto findByIdAndIdPraticien(int id,int idPraticien) throws Exception;
     RendezvousDto createRendezVousByPatient(RendezvousDto rendezvousDto,int idPatient) throws Exception;
-    void deleteRendezvous(int id);
-   RendezvousDto  update(int id, RendezvousDto rendezvousDto) throws Exception;
+    void deleteRendezvous(int id,int idPatient);
+   RendezvousDto  update(int id,int idPatient, RendezvousDto rendezvousDto) throws Exception;
 
 
 }

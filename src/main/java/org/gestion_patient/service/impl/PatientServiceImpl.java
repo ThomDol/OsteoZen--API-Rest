@@ -43,22 +43,22 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDto createPatient(PatientDto patientDto,int idPraticienConnecte) throws Exception {
         //Verification si Patient existe déjà avec ce praticien (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
-        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient()),Crypto.cryptService(patientDto.getPrenomPatient()),Crypto.cryptService(patientDto.getDateNaissance()),idPraticienConnecte);
-        if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date, or by email");}
+        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),idPraticienConnecte);
+        if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date");}
         else{
             //Verification si identité de la personne déjà enregistrée, si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
-            Personne personneIdNewPatient = personneRepository.findByNomAndPrenom(Crypto.cryptService(patientDto.getNomPatient()),Crypto.cryptService(patientDto.getPrenomPatient()));
+            Personne personneIdNewPatient = personneRepository.findByNomAndPrenomAndTel(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getTel()));
             if (personneIdNewPatient==null){
-                Personne personneToSave = new Personne();
-                personneToSave.setNom(Crypto.cryptService(patientDto.getNomPatient()));
-                personneToSave.setPrenom(Crypto.cryptService(patientDto.getPrenomPatient()));
-                if(patientDto.getEmail()!=null){personneToSave.setEmail(Crypto.cryptService(patientDto.getEmail()));}
-                if(patientDto.getTel()!=null){personneToSave.setTel(Crypto.cryptService(patientDto.getTel()));}
-                personneIdNewPatient= personneRepository.save(personneToSave);}
+                personneIdNewPatient = new Personne();
+                personneIdNewPatient.setNom(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()));
+                personneIdNewPatient.setPrenom(Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()));
+                if(patientDto.getEmail()!=null){personneIdNewPatient.setEmail(Crypto.cryptService(patientDto.getEmail()));}
+                personneIdNewPatient.setTel(Crypto.cryptService(patientDto.getTel()));
+              personneRepository.save(personneIdNewPatient);}
             //genre, typePatient, seront récupérés dans le front
             Genre genre = genreRepository.findByNomGenre(patientDto.getNomGenre());
-            TypePatient typePatient = typePatientRepository.findTypePatientByNomTypePatient(patientDto.getNomTypePatient());
-            //Lieu recupéré si saisi ds le front via API BAN, et enregistré ds la bdd si pas encore fait
+            TypePatient typePatient = typePatientRepository.findByNomTypePatient(patientDto.getNomTypePatient());
+            //Lieu recupéré ds le front et enregistré ds la bdd si pas encore dedans
             Lieu lieu;
             if(patientDto.getNomVille()!=null && patientDto.getCodePostal()!=null){
                 lieu = lieuRepository.findByNomVilleAndCodePostal(patientDto.getNomVille(),patientDto.getCodePostal());
@@ -69,9 +69,16 @@ public class PatientServiceImpl implements PatientService {
                     lieuRepository.save(lieu);}
             }
             else{lieu = null;}
-            //Profession recupéré via le front si saisie
+            //Profession recupérée et enregistrée ds la bdd si pas encore dedans
             Profession profession;
-            if(patientDto.getNomProfession()!=null){profession = professionRepository.findByLibelleProfession(patientDto.getNomProfession());}
+            if(patientDto.getNomProfession()!=null){
+                profession = professionRepository.findByLibelleProfession(patientDto.getNomProfession());
+                if (profession==null){
+                    profession = new Profession();
+                    profession.setLibelleProfession(patientDto.getNomProfession().toUpperCase());
+                    professionRepository.save(profession);}
+
+            }
             else{profession =null;}
             //Medecin traitant récupéré ds le front si saisi, et enregistré en bdd si pas déjà dedans, avant soumission de cette requete
             Medecintraitant medecintraitant;
@@ -120,63 +127,71 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto updatePatient(int id, PatientDto upadtedPatientDto, int idPraticien) throws Exception {
+    public PatientDto updatePatient(int id, PatientDto updatedPatientDto, int idPraticien) throws Exception {
         Patient patientToUpdate = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
         if (patientToUpdate != null) {
             //Set seulement des infos dont les données ont été remplies ds le formulaire
-            if (upadtedPatientDto.getDateNaissance() != null) {
-                patientToUpdate.setDateNaissance(Crypto.cryptService(upadtedPatientDto.getDateNaissance()));
+            if (updatedPatientDto.getDateNaissance() != null) {
+                patientToUpdate.setDateNaissance(Crypto.cryptService(updatedPatientDto.getDateNaissance()));
             }
             //Récupération de l'identité actuellement sauvegardée, avant modification par les données du formulaire
             Personne personneToUpdate = patientToUpdate.getIdentite();
             //Modification si besoin
-            if (upadtedPatientDto.getNomPatient() != null) {
-                personneToUpdate.setNom(Crypto.cryptService(upadtedPatientDto.getNomPatient()));
+            if (updatedPatientDto.getNomPatient() != null) {
+                personneToUpdate.setNom(Crypto.cryptService(updatedPatientDto.getNomPatient().toUpperCase()));
             }
-            if (upadtedPatientDto.getPrenomPatient() != null) {
-                personneToUpdate.setPrenom(Crypto.cryptService(upadtedPatientDto.getPrenomPatient()));
+            if (updatedPatientDto.getPrenomPatient() != null) {
+                personneToUpdate.setPrenom(Crypto.cryptService(updatedPatientDto.getPrenomPatient().toUpperCase()));
             }
-            if (upadtedPatientDto.getTel() != null) {
-                personneToUpdate.setTel(Crypto.cryptService(upadtedPatientDto.getTel()));
+            if (updatedPatientDto.getTel() != null) {
+                personneToUpdate.setTel(Crypto.cryptService(updatedPatientDto.getTel()));
             }
-            if (upadtedPatientDto.getEmail() != null) {
-                personneToUpdate.setEmail(Crypto.cryptService(upadtedPatientDto.getEmail()));
+            if (updatedPatientDto.getEmail() != null) {
+                personneToUpdate.setEmail(Crypto.cryptService(updatedPatientDto.getEmail()));
             }
             patientToUpdate.setIdentite(personneRepository.save(personneToUpdate));
 
             //Mofif Genre si besoin
-            if (upadtedPatientDto.getNomGenre() != null) {
-                Genre genreToUpdate = genreRepository.findByNomGenre(upadtedPatientDto.getNomGenre());
+            if (updatedPatientDto.getNomGenre() != null) {
+                Genre genreToUpdate = genreRepository.findByNomGenre(updatedPatientDto.getNomGenre());
                 patientToUpdate.setGenre(genreToUpdate);
             }
             //Modif TypePatient
-            if (upadtedPatientDto.getNomTypePatient() != null) {
-                TypePatient type = typePatientRepository.findTypePatientByNomTypePatient(upadtedPatientDto.getNomTypePatient());
+            if (updatedPatientDto.getNomTypePatient() != null) {
+                TypePatient type = typePatientRepository.findByNomTypePatient(updatedPatientDto.getNomTypePatient());
                 patientToUpdate.setTypePatient(type);
             }
 
             //Mise à jour du lieu si besoin
             Lieu lieu;
-            if (upadtedPatientDto.getCodePostal() != null && upadtedPatientDto.getNomVille() != null) {
-                lieu = lieuRepository.findByNomVilleAndCodePostal(upadtedPatientDto.getNomVille(), upadtedPatientDto.getCodePostal());
+            if (updatedPatientDto.getCodePostal() != null && updatedPatientDto.getNomVille() != null) {
+                lieu = lieuRepository.findByNomVilleAndCodePostal(updatedPatientDto.getNomVille(), updatedPatientDto.getCodePostal());
                 if (lieu == null) {
                     lieu = new Lieu();
-                    lieu.setNomVille(upadtedPatientDto.getNomVille());
-                    lieu.setCodePostal(upadtedPatientDto.getCodePostal());
+                    lieu.setNomVille(updatedPatientDto.getNomVille());
+                    lieu.setCodePostal(updatedPatientDto.getCodePostal());
                     lieuRepository.save(lieu);
                 }
                 patientToUpdate.setVille(lieu);
             }
-            if (upadtedPatientDto.getNomProfession() != null) {
-                patientToUpdate.setProfession(professionRepository.findByLibelleProfession(upadtedPatientDto.getNomProfession()));
-            }
-            if (upadtedPatientDto.getNomMedecinTraitant() != null && upadtedPatientDto.getPrenomMedecinTraitant() != null && upadtedPatientDto.getVilleMedecinTraitant() != null) {
-                patientToUpdate.setMedecinTraitant(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(upadtedPatientDto.getNomMedecinTraitant()), Crypto.cryptService(upadtedPatientDto.getPrenomMedecinTraitant()), upadtedPatientDto.getVilleMedecinTraitant()));
+
+            //Mise à jour profession si saisie
+            if (updatedPatientDto.getNomProfession() != null) {
+                Profession profession = professionRepository.findByLibelleProfession(updatedPatientDto.getNomProfession().toUpperCase());
+                if (profession == null) {
+                    profession = new Profession();
+                    profession.setLibelleProfession(updatedPatientDto.getNomProfession().toUpperCase());
+                professionRepository.save(profession);}
+                patientToUpdate.setProfession(profession);
+                }
+
+            if (updatedPatientDto.getNomMedecinTraitant() != null && updatedPatientDto.getPrenomMedecinTraitant() != null && updatedPatientDto.getVilleMedecinTraitant() != null) {
+                patientToUpdate.setMedecinTraitant(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(updatedPatientDto.getNomMedecinTraitant()), Crypto.cryptService(updatedPatientDto.getPrenomMedecinTraitant()), updatedPatientDto.getVilleMedecinTraitant()));
             }
 
             return PatientMapper.mapToPatientDto(patientRepository.save(patientToUpdate));
         } else {
-            throw new ResourceNotFoundException("Patient not found with given Id" + id);
+            throw new ResourceNotFoundException("Patient not found");
         }
     }
 

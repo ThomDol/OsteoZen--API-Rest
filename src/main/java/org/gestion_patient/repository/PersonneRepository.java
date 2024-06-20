@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface PersonneRepository extends JpaRepository<Personne,Integer> {
 
     Personne findByNomAndPrenom(String nom ,String prenom);
+    Personne findByNomAndPrenomAndTel(String nom ,String prenom,String tel);
 
 
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface RendezvousRepository extends JpaRepository<Rendezvous,Integer> {
     List<Rendezvous> findAllByPatientIdPatient(int idPatient);
     List<Rendezvous> findAllByPatientIdPatientAndPatientPraticienIdPraticien(int idPatient,int idPraticien);
-
+    Rendezvous findByIdRendezVousAndPatientPraticienIdPraticien (int id,int idPraticien);
+    Rendezvous findByIdRendezVousAndPatientIdPatient (int idRendezVous,int idPatient);
 }

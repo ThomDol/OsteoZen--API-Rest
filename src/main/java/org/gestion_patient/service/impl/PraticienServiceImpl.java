@@ -58,15 +58,13 @@ public class PraticienServiceImpl implements PraticienService {
             Infosprofessionnelles infos = infosprofessionnelleRepository.findByNumAdeliAndNumSiret(Crypto.cryptService(praticienDto.getNumAdeli()),Crypto.cryptService(praticienDto.getNumSiret()));
             if(infos!=null){ throw new RessourceAlreadyexistsException ("Info Pro already exist");}
             else{
-                //Si pas d'exception, creation des infos professionnelles et de la personne (Cryptage des données avant persistence, car pas de passage par le mapper
-                Personne personneIdNewPatient = personneRepository.findByNomAndPrenom(Crypto.cryptService(praticienDto.getNomPraticienConnecte()),Crypto.cryptService(praticienDto.getPrenomPraticienConnecte()));
-                if (personneIdNewPatient==null){
-                    personneIdNewPatient = new Personne();
-                    personneIdNewPatient.setNom(Crypto.cryptService(praticienDto.getNomPraticienConnecte()));
-                    personneIdNewPatient.setPrenom(Crypto.cryptService(praticienDto.getPrenomPraticienConnecte()));
-                    personneIdNewPatient.setEmail(Crypto.cryptService(praticienDto.getEmail()));
-                    personneIdNewPatient.setTel(Crypto.cryptService(praticienDto.getTel()));
-                    personneRepository.save(personneIdNewPatient);}
+                //Si pas d'exception, creation des infos professionnelles et de la personne (Cryptage des données avant persistence, car pas de mapper
+                Personne personneIdNewPraticien = new Personne();
+                personneIdNewPraticien.setNom(Crypto.cryptService(praticienDto.getNomPraticienConnecte()));
+                personneIdNewPraticien.setPrenom(Crypto.cryptService(praticienDto.getPrenomPraticienConnecte()));
+                personneIdNewPraticien.setEmail(Crypto.cryptService(praticienDto.getEmail()));
+                personneIdNewPraticien.setTel(Crypto.cryptService(praticienDto.getTel()));
+                    personneRepository.save(personneIdNewPraticien);
 
                 Infosprofessionnelles infosprofessionnelles = new Infosprofessionnelles();
                 infosprofessionnelles.setNumAdeli(Crypto.cryptService(praticienDto.getNumAdeli()));
@@ -74,17 +72,17 @@ public class PraticienServiceImpl implements PraticienService {
                 Infosprofessionnelles infosprofessionnellesToSave = infosprofessionnelleRepository.save(infosprofessionnelles);
 
 
-                //Lieu sera récupéré dans le front et crée si pas enregistré, avant soumission de la requete create Patient
+                //Lieu sera récupéré dans le front  si non, sera créé
                 Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille(),praticienDto.getCodePostal());
                 if(lieu==null){
                     lieu = new Lieu();
-                    lieu.setNomVille(praticienDto.getNomVille());
+                    lieu.setNomVille(praticienDto.getNomVille().toUpperCase());
                     lieu.setCodePostal(praticienDto.getCodePostal());
                     lieuRepository.save(lieu);}
                 //Role sera récupéré dans me front (radio box -> User ou admin)
                 Role role=roleRepository.findByNomRole(praticienDto.getNomRole());
                 //Persistence du nouveau praticien avec les infos ci dessus
-                praticienToSave = PraticienMapper.mapToPraticienConnecte(praticienDto,role,lieu,infosprofessionnellesToSave,personneIdNewPatient);
+                praticienToSave = PraticienMapper.mapToPraticienConnecte(praticienDto,role,lieu,infosprofessionnellesToSave,personneIdNewPraticien);
 
                 return PraticienMapper.mapToPraticienConnecteDto(praticienRepository.save(praticienToSave));}}
     }
@@ -94,18 +92,18 @@ public class PraticienServiceImpl implements PraticienService {
         Praticien praticien = praticienRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Praticien not found with given id: " + id));
         //Nouveau Password mis à jour si modifié
         if(praticienDto.getPassword()!=null){praticien.setPassword(praticienDto.getPassword());}
-        //Nouvelle ville mise à jour si besoin. Si pas ds base, sera créee avant soumission
+        //Nouvelle ville mise à jour si besoin. Si pas ds base, sera créee
         Lieu lieu;
         if(praticienDto.getCodePostal()!=null && praticienDto.getNomVille()!=null){
             lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille(),praticienDto.getCodePostal());
             if(lieu==null){
                 lieu = new Lieu();
-                lieu.setNomVille(praticienDto.getNomVille());
+                lieu.setNomVille(praticienDto.getNomVille().toUpperCase());
                 lieu.setCodePostal(praticienDto.getCodePostal());
                 lieuRepository.save(lieu);}
             praticien.setVille(lieu);}
 
-        //Recuperation des infos Personnes, et mise à jour du nom si besoin
+        //Recuperation des infos Personnes, et mise à jour si besoin
         Personne personne= praticien.getIdentite();
         if(praticienDto.getNomPraticienConnecte()!=null){
             personne.setNom(Crypto.cryptService(praticienDto.getNomPraticienConnecte()));}
@@ -116,16 +114,17 @@ public class PraticienServiceImpl implements PraticienService {
         personneRepository.save(personne);
         praticien.setIdentite(personne);
 
-        //Recuperation des informations professionnelles, et mise à jour du nom et email si besoin
+        //Recuperation des informations professionnelles, et mise à jour si besoin
+        Infosprofessionnelles infoPraticien = praticien.getInfosProfessionnelles();
         if(praticienDto.getNumAdeli()!=null && praticienDto.getNumSiret()!=null){
             Infosprofessionnelles infostoUpdate=infosprofessionnelleRepository.findByNumAdeliAndNumSiret(praticienDto.getNumAdeli(),praticienDto.getNumSiret());
             if(infostoUpdate!=null){throw new RessourceAlreadyexistsException("infos déjà existente");}
             else{
-                infostoUpdate = new Infosprofessionnelles();
-                infostoUpdate.setNumAdeli(Crypto.cryptService(praticienDto.getNumAdeli()));
-                infostoUpdate.setNumSiret(Crypto.cryptService(praticienDto.getNumSiret()));
-                infosprofessionnelleRepository.save(infostoUpdate);
-                praticien.setInfosProfessionnelles(infostoUpdate);}
+
+                infoPraticien.setNumAdeli(Crypto.cryptService(praticienDto.getNumAdeli()));
+                infoPraticien.setNumSiret(Crypto.cryptService(praticienDto.getNumSiret()));
+                infosprofessionnelleRepository.save(infoPraticien);
+                praticien.setInfosProfessionnelles(infoPraticien);}
         }
 
         //Persisitence du praticien mis à jour

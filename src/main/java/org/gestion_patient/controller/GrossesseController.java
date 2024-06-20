@@ -21,9 +21,9 @@ public class GrossesseController {
         GrossesseDto createAccouchement = grossesseService.create(grossesseDto,idPatient);
         return new ResponseEntity<>(createAccouchement, HttpStatus.CREATED);
     }
-    @GetMapping("{idGrossesse}")
-    public ResponseEntity<GrossesseDto> getGrossesseById(@PathVariable int idGrossesse) {
-        GrossesseDto grossesseDto = grossesseService.getById(idGrossesse);
+    @GetMapping("/{idPatient}/{idGrossesse}")
+    public ResponseEntity<GrossesseDto> getGrossesseById(@PathVariable int idGrossesse,@PathVariable int idPatient) {
+        GrossesseDto grossesseDto = grossesseService.getByIdAndIdPatient(idGrossesse,idPatient);
         return new ResponseEntity<>(grossesseDto, HttpStatus.OK);
     }
     @GetMapping("patient/{idPatient}")
@@ -32,9 +32,9 @@ public class GrossesseController {
         return new ResponseEntity<>(grossesseDtoList, HttpStatus.OK);
     }
 
-    @PutMapping("/{idGrossesse}")
-    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable int idGrossesse,@RequestBody GrossesseDto grossesseDto){
-        GrossesseDto grossesseDtoUpdated = grossesseService.update(idGrossesse,grossesseDto);
+    @PutMapping("/{idPatient}/{idGrossesse}")
+    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable int idGrossesse,@PathVariable int idPatient, @RequestBody GrossesseDto grossesseDto){
+        GrossesseDto grossesseDtoUpdated = grossesseService.update(idGrossesse,idPatient,grossesseDto);
         return new ResponseEntity<>(grossesseDtoUpdated,HttpStatus.OK);
     }
 

@@ -16,7 +16,7 @@ public class PostAccouchement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_grossesse_postpartum", nullable = false)
-    private int idGrossessePostPartum;
+    private int idPostAccouchement;
 
     @Column(name = "date_creation", nullable = false, length = 10)
     private String dateCreation;
