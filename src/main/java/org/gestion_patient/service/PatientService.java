@@ -10,7 +10,6 @@ public interface PatientService {
 
     List<PatientDto> getAllPatientByPraticien(int idPraticien);
 
-    PatientDto getById(int id) throws Exception;
 
     void deletePatientByPraticien(int id,int idPraticien);
 

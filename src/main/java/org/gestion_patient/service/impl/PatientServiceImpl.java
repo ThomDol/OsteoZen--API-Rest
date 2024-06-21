@@ -105,25 +105,22 @@ public class PatientServiceImpl implements PatientService {
         }).toList();
     }
 
-    @Override
-    public PatientDto getById(int id) throws Exception {
-        Patient patient = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found with given Id"+id));
-        return PatientMapper.mapToPatientDto(patient);
-    }
 
     @Override
     public PatientDto getByIdAndIdPraticien(int id,int idPraticien) throws Exception {
-        Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id,idPraticien);
-        if(patient!=null){
-        return PatientMapper.mapToPatientDto(patient);}
-    return null;}
-
+        Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
+        if (patient != null) {
+            return PatientMapper.mapToPatientDto(patient);
+        } else {
+            throw new ResourceNotFoundException("Patient not found");
+        }
+    }
 
     @Override
     public void deletePatientByPraticien(int id,int idPraticien) {
         Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id,idPraticien);
         if(patient!=null){patientRepository.delete(patient);}
-        else {throw new ResourceNotFoundException("Patient not found with given Id"+id);}
+        else {throw new ResourceNotFoundException("Patient not found");}
     }
 
     @Override
