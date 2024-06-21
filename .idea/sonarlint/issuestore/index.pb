@@ -253,3 +253,5 @@ z
 Jsrc/main/java/org/gestion_patient/repository/AntecedentBebeRepository.java,1\1\117704779bda7c86705ee077aec09461829391f0
 u
 Esrc/main/java/org/gestion_patient/service/AntecedentsBebeService.java,5\4\54ca405a7b056fe72fcb1dfbdbe37d6932dc46ab
+w
+Gsrc/main/java/org/gestion_patient/entityDto/AntecedentClassiqueDto.java,1\6\16a6c20278c47fa3d71d4b7af1b0366252b59557

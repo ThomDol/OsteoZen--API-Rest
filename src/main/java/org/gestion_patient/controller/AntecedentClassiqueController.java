@@ -27,9 +27,9 @@ public class AntecedentClassiqueController {
         return new ResponseEntity<>(antecedentAdulteEnfantDtoUpdated,HttpStatus.OK);
     }
 
-    @GetMapping("/{idPatient}/{id}")
-    public ResponseEntity<AntecedentClassiqueDto> getAntecedentssanteByIdPatient (@PathVariable int idPatient,@PathVariable int id) throws Exception {
-        AntecedentClassiqueDto antecedentAdulteEnfantDto = antecedentAdulteEnfantServiceService.getByIdAndIdPatient(id,idPatient);
+    @GetMapping("/{idPatient}")
+    public ResponseEntity<AntecedentClassiqueDto> getAntecedentssanteByIdPatient (@PathVariable int idPatient) throws Exception {
+        AntecedentClassiqueDto antecedentAdulteEnfantDto = antecedentAdulteEnfantServiceService.getByIdPatient(idPatient);
         return new ResponseEntity<>(antecedentAdulteEnfantDto,HttpStatus.OK);
     }
 

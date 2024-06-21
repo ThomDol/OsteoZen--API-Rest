@@ -79,11 +79,11 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
     }
 
     @Override
-    public AntecedentClassiqueDto getByIdAndIdPatient(int id,int idPatient) throws Exception {
-        AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByIdAntecedentClassiqueAndPatientIdPatient(id,idPatient);
+    public AntecedentClassiqueDto getByIdPatient(int idPatient) throws Exception {
+        AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
         if(antecedentAdulteEnfant!=null){
             return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfant);
         }
-        else{throw new ResourceNotFoundException("AntecedentClassique doesn't exist");}
+        else{return null;}
     }
 }

@@ -30,7 +30,7 @@ public class AntecedentClassiqueMapper {
 
     public static org.gestion_patient.entity.AntecedentClassique mapToAntecedentAdulteEnfant (AntecedentClassiqueDto antecedentAdulteEnfantDto, Patient patient) throws Exception {
         return new org.gestion_patient.entity.AntecedentClassique(
-                antecedentAdulteEnfantDto.getIdAntecedentAdulteEnfant(),
+                antecedentAdulteEnfantDto.getIdAntecedentClassique(),
                 antecedentAdulteEnfantDto.getDateCreation(),
                 DataUtil.displayString(antecedentAdulteEnfantDto.getDateUpdate()),
                 DataUtil.displayInt(antecedentAdulteEnfantDto.getGrossesse()),

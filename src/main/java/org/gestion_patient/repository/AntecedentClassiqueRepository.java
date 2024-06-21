@@ -4,5 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AntecedentClassiqueRepository extends JpaRepository<AntecedentClassique,Integer> {
 
-    AntecedentClassique findByIdAntecedentClassiqueAndPatientIdPatient (int id, int patientId);
+    AntecedentClassique findByPatientIdPatient (int patientId);
+    AntecedentClassique findByIdAntecedentClassiqueAndPatientIdPatient(int idToUpdate, int idPatient);
 }

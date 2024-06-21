@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class AntecedentClassiqueDto {
 
-    private int idAntecedentAdulteEnfant;
+    private int idAntecedentClassique;
     private String dateCreation;
     private String dateUpdate;
     private Integer grossesse;
