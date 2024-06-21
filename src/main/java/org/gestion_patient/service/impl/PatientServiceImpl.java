@@ -64,7 +64,7 @@ public class PatientServiceImpl implements PatientService {
                 lieu = lieuRepository.findByNomVilleAndCodePostal(patientDto.getNomVille(),patientDto.getCodePostal());
                 if(lieu==null){
                     lieu = new Lieu();
-                    lieu.setNomVille(patientDto.getNomVille());
+                    lieu.setNomVille(patientDto.getNomVille().toUpperCase());
                     lieu.setCodePostal(patientDto.getCodePostal());
                     lieuRepository.save(lieu);}
             }
@@ -168,7 +168,7 @@ public class PatientServiceImpl implements PatientService {
                 lieu = lieuRepository.findByNomVilleAndCodePostal(updatedPatientDto.getNomVille(), updatedPatientDto.getCodePostal());
                 if (lieu == null) {
                     lieu = new Lieu();
-                    lieu.setNomVille(updatedPatientDto.getNomVille());
+                    lieu.setNomVille(updatedPatientDto.getNomVille().toUpperCase());
                     lieu.setCodePostal(updatedPatientDto.getCodePostal());
                     lieuRepository.save(lieu);
                 }
