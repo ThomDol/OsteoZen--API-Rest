@@ -20,15 +20,15 @@ public class AntecedentBebeController {
         return new ResponseEntity<>(antecedentBebeDtoSaved, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{idPatient}/{idAntecedetnBebe}")
-    public ResponseEntity<AntecedentsBebeDto> updateAntecedentBebe (@PathVariable int idAntecedetnBebe,@PathVariable int idPatient, @RequestBody AntecedentsBebeDto antecedentBebeDto ) throws Exception {
-        AntecedentsBebeDto antecedentBebeDtoUpdated = antecedentBebeService.update(idAntecedetnBebe,idPatient,antecedentBebeDto);
+    @PutMapping("/{idAntecedetnBebe}")
+    public ResponseEntity<AntecedentsBebeDto> updateAntecedentBebe (@PathVariable int idAntecedetnBebe, @RequestBody AntecedentsBebeDto antecedentBebeDto ) throws Exception {
+        AntecedentsBebeDto antecedentBebeDtoUpdated = antecedentBebeService.update(idAntecedetnBebe,antecedentBebeDto);
         return new ResponseEntity<>(antecedentBebeDtoUpdated,HttpStatus.OK);
     }
 
-    @GetMapping("/{idPatient}/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<AntecedentsBebeDto> getAntecedentBebeByIdPatient (@PathVariable int idPatient,@PathVariable int id) throws Exception {
-        AntecedentsBebeDto antecedentBebeDto = antecedentBebeService.getByIdAndIdPatient(id,idPatient);
+        AntecedentsBebeDto antecedentBebeDto = antecedentBebeService.getByIdPatient(idPatient);
         return new ResponseEntity<>(antecedentBebeDto,HttpStatus.OK);
     }
 

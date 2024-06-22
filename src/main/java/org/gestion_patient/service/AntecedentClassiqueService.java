@@ -6,7 +6,7 @@ import org.gestion_patient.entityDto.AntecedentClassiqueDto;
 
 public interface AntecedentClassiqueService {
     AntecedentClassiqueDto create(AntecedentClassiqueDto antecedentAdulteEnfantDto, int idPatient) throws Exception;
-    AntecedentClassiqueDto update(int id,int idPatient, AntecedentClassiqueDto antecedentAdulteEnfantDtoUpdated) throws Exception;
+    AntecedentClassiqueDto update(int id, AntecedentClassiqueDto antecedentAdulteEnfantDtoUpdated) throws Exception;
     AntecedentClassiqueDto getByIdPatient(int idPatient) throws Exception;
 
 }

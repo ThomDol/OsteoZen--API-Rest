@@ -27,9 +27,8 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
     }
 
     @Override
-    public AntecedentClassiqueDto update(int idToUpdate, int idPatient, AntecedentClassiqueDto antecedentClassiqueDtoUpdated) throws Exception {
-        AntecedentClassique antecedentClassiqueToUpdate = antecedentClassiqueRepository.findByIdAntecedentClassiqueAndPatientIdPatient(idToUpdate, idPatient);
-            if (antecedentClassiqueToUpdate != null) {
+    public AntecedentClassiqueDto update(int idToUpdate,  AntecedentClassiqueDto antecedentClassiqueDtoUpdated) throws Exception {
+        AntecedentClassique antecedentClassiqueToUpdate = antecedentClassiqueRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("AntecedentClassique doesn't exist"));
                 antecedentClassiqueToUpdate.setDateUpdate(antecedentClassiqueDtoUpdated.getDateUpdate());
             if (antecedentClassiqueDtoUpdated.getGrossesse() != null) {
                 antecedentClassiqueToUpdate.setGrossesse(antecedentClassiqueDtoUpdated.getGrossesse());
@@ -70,12 +69,9 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
             if (antecedentClassiqueDtoUpdated.getAntNotesDiverses() != null) {
                 antecedentClassiqueToUpdate.setAntNotesDiverses(Crypto.cryptService(antecedentClassiqueDtoUpdated.getAntNotesDiverses()));
             }
-
             org.gestion_patient.entity.AntecedentClassique antecedentAdulteEnfantUpdated = antecedentClassiqueRepository.save(antecedentClassiqueToUpdate);
             return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfantUpdated);
-        } else {
-                throw new ResourceNotFoundException("AntecedentClassique doesn't exist");
-        }
+
     }
 
     @Override

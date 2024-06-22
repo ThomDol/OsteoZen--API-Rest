@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/antecedent")
 public class AntecedentClassiqueController {
-    private AntecedentClassiqueService antecedentAdulteEnfantServiceService;
+    private AntecedentClassiqueService antecedentClassiqueService;
 
     @PostMapping("/{idPatient}")
     public ResponseEntity<AntecedentClassiqueDto> createAntecedent (@RequestBody AntecedentClassiqueDto antecedentAdulteEnfantDto, @PathVariable int idPatient) throws Exception {
-        AntecedentClassiqueDto antecedentAdulteEnfantDtoSaved = antecedentAdulteEnfantServiceService.create(antecedentAdulteEnfantDto,idPatient);
+        AntecedentClassiqueDto antecedentAdulteEnfantDtoSaved = antecedentClassiqueService.create(antecedentAdulteEnfantDto,idPatient);
         return new ResponseEntity<>(antecedentAdulteEnfantDtoSaved, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{idPatient}/{idAntecedent}")
-    public ResponseEntity<AntecedentClassiqueDto> updateAntecedent (@PathVariable int idAntecedent,@PathVariable int idPatient, @RequestBody AntecedentClassiqueDto antecedentAdulteEnfantDto ) throws Exception {
-        AntecedentClassiqueDto antecedentAdulteEnfantDtoUpdated = antecedentAdulteEnfantServiceService.update(idAntecedent,idPatient,antecedentAdulteEnfantDto);
+    @PutMapping("/{idAntecedent}")
+    public ResponseEntity<AntecedentClassiqueDto> updateAntecedent (@PathVariable int idAntecedent, @RequestBody AntecedentClassiqueDto antecedentAdulteEnfantDto ) throws Exception {
+        AntecedentClassiqueDto antecedentAdulteEnfantDtoUpdated = antecedentClassiqueService.update(idAntecedent,antecedentAdulteEnfantDto);
         return new ResponseEntity<>(antecedentAdulteEnfantDtoUpdated,HttpStatus.OK);
     }
 
     @GetMapping("/{idPatient}")
     public ResponseEntity<AntecedentClassiqueDto> getAntecedentssanteByIdPatient (@PathVariable int idPatient) throws Exception {
-        AntecedentClassiqueDto antecedentAdulteEnfantDto = antecedentAdulteEnfantServiceService.getByIdPatient(idPatient);
+        AntecedentClassiqueDto antecedentAdulteEnfantDto = antecedentClassiqueService.getByIdPatient(idPatient);
         return new ResponseEntity<>(antecedentAdulteEnfantDto,HttpStatus.OK);
     }
 

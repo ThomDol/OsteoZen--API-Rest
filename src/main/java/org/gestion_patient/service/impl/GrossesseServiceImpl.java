@@ -28,9 +28,8 @@ public class GrossesseServiceImpl implements GrossesseService {
     }
 
     @Override
-    public GrossesseDto update(int idToUpdate,int idPatient, GrossesseDto grossesseDto) {
-        Grossesse grossesseToUpdate = grossesseRepository.findByIdGrossesseAndPatientIdPatient(idToUpdate, idPatient);
-        if (grossesseToUpdate != null) {
+    public GrossesseDto update(int idToUpdate, GrossesseDto grossesseDto) {
+        Grossesse grossesseToUpdate = grossesseRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("Grossesse doesn't exist"));
             if (grossesseDto.getMaternite() != null) {
                 grossesseToUpdate.setMaternite(grossesseDto.getMaternite());
             }
@@ -88,9 +87,6 @@ public class GrossesseServiceImpl implements GrossesseService {
 
             Grossesse grossesseUpdated = grossesseRepository.save(grossesseToUpdate);
             return GrossesseMapper.mapToGrossesseDto(grossesseUpdated);
-        } else {
-            throw new ResourceNotFoundException("Grossesse doesn't exist");
-        }
     }
 
     @Override
@@ -100,13 +96,9 @@ public class GrossesseServiceImpl implements GrossesseService {
     }
 
     @Override
-    public GrossesseDto getByIdAndIdPatient(int id,int idPatient) {
-        Grossesse grossesse = grossesseRepository.findByIdGrossesseAndPatientIdPatient(id, idPatient);
-        if (grossesse != null) {
+    public GrossesseDto getById(int id) {
+        Grossesse grossesse = grossesseRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Grossesse doesn't exist"));
             return GrossesseMapper.mapToGrossesseDto(grossesse);
-        } else {
-            throw new ResourceNotFoundException("Grossesse doesn't exist");
-        }
     }
 
     }

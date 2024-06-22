@@ -31,9 +31,8 @@ public class AccouchementServiceImpl implements AccouchementService {
 
     //Les champs n'étant à remplir obligatoirement, test de presence avant chaque set
     @Override
-    public AccouchementDto update(int id, int idPatient, AccouchementDto accouchementDto) {
-        Accouchement accouchementToUpdate = accouchementRepository.findByIdAccouchementAndPatientIdPatient(id, idPatient);
-        if (accouchementToUpdate != null) {
+    public AccouchementDto update(int id, AccouchementDto accouchementDto) {
+        Accouchement accouchementToUpdate = accouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Accouchement not found"));
             if (accouchementDto.getDateAccouchement() != null) {
                 accouchementToUpdate.setDateAccouchement(accouchementDto.getDateAccouchement());
             }
@@ -83,9 +82,7 @@ public class AccouchementServiceImpl implements AccouchementService {
                 accouchementToUpdate.setAgeDateAccouchement(accouchementDto.getAgeDateAccouchement());
             }
             return AccouchementMapper.mapToAccouchementDto(accouchementRepository.save(accouchementToUpdate));
-        } else {
-            throw new ResourceNotFoundException("Accouchement not found");
-        }
+
     }
 
     @Override
@@ -96,23 +93,15 @@ public class AccouchementServiceImpl implements AccouchementService {
 
 
     @Override
-    public AccouchementDto getByIdAccouchementAndIdPatient(int id, int idPatient) {
-        Accouchement accouchement = accouchementRepository.findByIdAccouchementAndPatientIdPatient(id, idPatient);
-        if (accouchement != null) {
-            return AccouchementMapper.mapToAccouchementDto(accouchement);
-        } else {
-            throw new ResourceNotFoundException("Accouchement not found");
-        }
+    public AccouchementDto getByIdAccouchement(int id) {
+        Accouchement accouchement = accouchementRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Accouchement not found"));
+        return AccouchementMapper.mapToAccouchementDto(accouchement);
     }
 
     @Override
-    public void deleteAccouchement(int id, int idPatient) {
-        Accouchement accouchement = accouchementRepository.findByIdAccouchementAndPatientIdPatient(id, idPatient);
-        if (accouchement != null) {
-            accouchementRepository.delete(accouchement);
-        } else {
-            throw new ResourceNotFoundException("Accouchement not found");
-        }
+    public void deleteAccouchement(int id) {
+        Accouchement accouchement = accouchementRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Accouchement not found"));
+        accouchementRepository.delete(accouchement);
     }
 
 }

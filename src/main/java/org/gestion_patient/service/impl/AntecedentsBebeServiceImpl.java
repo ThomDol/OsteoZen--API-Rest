@@ -25,9 +25,8 @@ public class AntecedentsBebeServiceImpl implements AntecedentsBebeService {
     }
 
     @Override
-    public AntecedentsBebeDto update(int idToUpdate,int idPatient, AntecedentsBebeDto antecedentBebeDtoUpdated) throws Exception {
-        AntecedentsBebe antecedentBebeToUpdate = antecedentBebeRepository.findByIdAntecedentBebeAndPatientIdPatient(idToUpdate, idPatient);
-        if (antecedentBebeToUpdate != null) {
+    public AntecedentsBebeDto update(int idToUpdate, AntecedentsBebeDto antecedentBebeDtoUpdated) throws Exception {
+        AntecedentsBebe antecedentBebeToUpdate = antecedentBebeRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("AntecedentBebe doesn't exist"));
             if (antecedentBebeDtoUpdated.getMaternite() != null) {
                 antecedentBebeToUpdate.setMaternite(antecedentBebeDtoUpdated.getMaternite());
             }
@@ -100,14 +99,11 @@ public class AntecedentsBebeServiceImpl implements AntecedentsBebeService {
 
             AntecedentsBebe antecedentBebeUpdated = antecedentBebeRepository.save(antecedentBebeToUpdate);
             return AntecedentsBebeMapper.mapToAntecedentssanteBebeDto(antecedentBebeUpdated);
-        } else {
-            throw new ResourceNotFoundException("AntecedentBebe doesn't exist");
-        }
     }
 
     @Override
-    public AntecedentsBebeDto getByIdAndIdPatient(int id,int idPatient) throws Exception {
-        AntecedentsBebe antecedentBebe = antecedentBebeRepository.findByIdAntecedentBebeAndPatientIdPatient(id,idPatient);
+    public AntecedentsBebeDto getByIdPatient(int idPatient) throws Exception {
+        AntecedentsBebe antecedentBebe = antecedentBebeRepository.findByPatientIdPatient(idPatient);
         if(antecedentBebe!=null){
             return AntecedentsBebeMapper.mapToAntecedentssanteBebeDto(antecedentBebe);
         }

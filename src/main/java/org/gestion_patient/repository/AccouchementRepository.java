@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface AccouchementRepository extends JpaRepository<Accouchement,Integer> {
     List<Accouchement> findByPatientIdPatient(int idPatient);
-    Accouchement findByIdAccouchementAndPatientIdPatient(int idAccouchement,int idPatient);
+
 }
