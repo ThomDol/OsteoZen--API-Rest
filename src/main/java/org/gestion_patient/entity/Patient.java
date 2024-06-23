@@ -44,7 +44,7 @@ public class Patient {
     @JoinColumn(name = "id_medecin_traitant", nullable = true)
     private Medecintraitant medecinTraitant;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "id_identite", nullable = false)
     private Personne identite;
 

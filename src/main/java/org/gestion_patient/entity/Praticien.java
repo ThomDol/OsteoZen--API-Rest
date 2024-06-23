@@ -33,7 +33,7 @@ public class Praticien {
     @JoinColumn(name = "id_infos_professionnelles", nullable = false)
     private Infosprofessionnelles infosProfessionnelles;
 
-    @ManyToOne( optional = false)
+    @OneToOne( optional = false)
     @JoinColumn(name = "id_identite", nullable = false)
     private Personne identite;
 

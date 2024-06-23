@@ -18,7 +18,7 @@ public class Medecintraitant {
     @Column(name = "id_medecin_traitant", nullable = false)
     private int idMedecinTraitant;
 
-    @ManyToOne( optional = false)
+    @OneToOne( optional = false)
     @JoinColumn(name = "id_identite", nullable = false)
     private Personne identiteDoc;
 
