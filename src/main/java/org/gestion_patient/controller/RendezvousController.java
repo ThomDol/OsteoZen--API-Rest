@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/rendezvous")
+@RequestMapping("api/rendezvous")
 public class RendezvousController {
 
     private RendezvousService rendezvousService;
@@ -31,7 +31,7 @@ public class RendezvousController {
     }
 
 
-    @GetMapping("/patient/{idPatient}/{idPraticien}")
+    @GetMapping("/all/{idPatient}/{idPraticien}")
     public ResponseEntity<List<RendezvousDto>> getAllRendezVousByPatientAndPraticien(@PathVariable int idPatient,@PathVariable int idPraticien){
     List<RendezvousDto> listRendezVous = rendezvousService.findAllByPatientAndPraticien(idPatient,idPraticien);
     return new ResponseEntity<>(listRendezVous, HttpStatus.OK );

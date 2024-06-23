@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @AllArgsConstructor
-@RequestMapping("/lieu")
+@RequestMapping("api/lieu")
 public class LieuController {
     private LieuService lieuService;
 
@@ -22,7 +22,7 @@ public class LieuController {
        LieuDto lieu = lieuService.createLieu(lieuDto);
        return new ResponseEntity<>(lieu , HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<LieuDto>> getAllLieu(){
         List<LieuDto> lieux = lieuService.findAll();
         return new ResponseEntity<>(lieux,HttpStatus.OK);
@@ -35,12 +35,12 @@ public class LieuController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<LieuDto> getLieuxById(@PathVariable int id) {
-        LieuDto Lieux = lieuService.getLieuById(id);
-        return new ResponseEntity<>(Lieux , HttpStatus.OK);
+    public ResponseEntity<LieuDto> getLieuById(@PathVariable int id) {
+        LieuDto Lieu = lieuService.getLieuById(id);
+        return new ResponseEntity<>(Lieu , HttpStatus.OK);
     }
     @DeleteMapping ("{id}")
-    public ResponseEntity<String> deleteLieux(@PathVariable int id) {
+    public ResponseEntity<String> deleteLieu(@PathVariable int id) {
         lieuService.deleteLieu(id);
         return new ResponseEntity<>("localisation deleted successfully", HttpStatus.OK);
     }

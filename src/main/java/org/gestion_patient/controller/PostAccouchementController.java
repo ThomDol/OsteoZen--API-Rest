@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/postaccouchement")
+@RequestMapping("api/postaccouchement")
 public class PostAccouchementController {
     private PostAccouchementService postAccouchementService;
 

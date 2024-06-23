@@ -1,8 +1,8 @@
 
-“	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÊðñ8®ú©Îû1J$f2a9c070-cad8-4cab-94aa-28174f4917d7
+˜	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü–Ô§ÿÿÿÿÿ8®ú©Îû1J$1cd9c533-e132-43a7-a754-28203e5910f5
 
-java:S1854!"<Remove this useless assignment to local variable "lieuDto1".(‚ÖÆó8·ú©Îû1J$9a2cb1f7-c6d3-4283-bd9f-a05901cab615
+java:S1854!"<Remove this useless assignment to local variable "lieuDto1".(‚ÖÆó8·ú©Îû1J$84cfe498-5c6e-471d-8a07-d2b1bdb22843
 p
-java:S1481!"-Remove this unused "lieuDto1" local variable.(‚ÖÆó8¹ú©Îû1J$503dd2e5-9e51-4e7c-848e-3feea773480b
-
-java:S1128"<Remove this unused import 'org.gestion_patient.entity.Lieu'.(¨Âìú8Ê·›ðû1J$a1d7a7fa-5030-4292-b050-13f98152bc5b
+java:S1481!"-Remove this unused "lieuDto1" local variable.(‚ÖÆó8¹ú©Îû1J$960a51f5-680d-403b-8a76-8a81e0a479c0
+Y
+java:S1128"<Remove this unused import 'org.gestion_patient.entity.Lieu'.(¨Âìú8—Ù»®„2

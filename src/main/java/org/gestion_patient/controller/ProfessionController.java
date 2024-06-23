@@ -12,11 +12,11 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @AllArgsConstructor
-@RequestMapping("/profession")
+@RequestMapping("api/profession")
 public class ProfessionController {
     private ProfessionService professionService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<ProfessionDto>> getAllProfession (){
         List<ProfessionDto> professionDtos = professionService.findAll();
         return new ResponseEntity<>(professionDtos, HttpStatus.OK);

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/antecedentbebe")
+@RequestMapping("api/antecedentbebe")
 public class AntecedentBebeController {
     private AntecedentsBebeService antecedentBebeService;
 

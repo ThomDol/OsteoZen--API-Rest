@@ -20,7 +20,7 @@ public class SportController {
         SportDto savedSportDto = sportService.create(sportDto);
         return new ResponseEntity<>(savedSportDto,HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<SportDto>> getAllSports(){
         List<SportDto> sports = sportService.findAll();
         return new ResponseEntity<>(sports, HttpStatus.CREATED);

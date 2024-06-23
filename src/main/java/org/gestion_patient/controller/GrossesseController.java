@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/grossesse")
+@RequestMapping("api/grossesse")
 public class GrossesseController {
     private GrossesseService grossesseService;
 
@@ -26,7 +26,7 @@ public class GrossesseController {
         GrossesseDto grossesseDto = grossesseService.getById(idGrossesse);
         return new ResponseEntity<>(grossesseDto, HttpStatus.OK);
     }
-    @GetMapping("patient/{idPatient}")
+    @GetMapping("all/{idPatient}")
     public ResponseEntity<List<GrossesseDto>> getAllGrossesseByPatientId(@PathVariable int idPatient)  {
         List<GrossesseDto> grossesseDtoList = grossesseService.getAllByidPatient(idPatient);
         return new ResponseEntity<>(grossesseDtoList, HttpStatus.OK);

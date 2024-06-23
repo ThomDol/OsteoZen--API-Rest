@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @AllArgsConstructor
-@RequestMapping("/patient")
+@RequestMapping("api/patient")
 public class PatientController {
     private PatientService patientService;
     private PraticienRepository praticienconnecteRepository;

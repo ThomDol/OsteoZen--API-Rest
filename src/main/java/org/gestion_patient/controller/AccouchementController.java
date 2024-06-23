@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/accouchement")
+@RequestMapping("api/accouchement")
 public class AccouchementController {
     private AccouchementService accouchementService;
 
@@ -29,7 +29,7 @@ public class AccouchementController {
         AccouchementDto accouchements = accouchementService.getByIdAccouchement(idAccouchement);
         return new ResponseEntity<>(accouchements, HttpStatus.OK);
     }
-    @GetMapping("patient/{idPatient}")
+    @GetMapping("/all/{idPatient}")
     public ResponseEntity<List<AccouchementDto>> getAllAccouchementByPatientId(@PathVariable int idPatient)  {
         List<AccouchementDto> listAccouchement = accouchementService.getAllByIdPatient(idPatient);
         return new ResponseEntity<>(listAccouchement, HttpStatus.OK);

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("*")
 @AllArgsConstructor
-@RequestMapping("/antecedent")
+@RequestMapping("api/antecedent")
 public class AntecedentClassiqueController {
     private AntecedentClassiqueService antecedentClassiqueService;
 
