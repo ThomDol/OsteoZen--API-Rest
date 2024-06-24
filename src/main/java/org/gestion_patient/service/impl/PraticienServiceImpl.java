@@ -31,6 +31,7 @@ public class PraticienServiceImpl implements PraticienService {
 
 
 
+
     @Override
     public List<PraticienDto> findAll() {
         List<Praticien> praticiens=praticienRepository.findAll();
@@ -75,6 +76,8 @@ public class PraticienServiceImpl implements PraticienService {
                 infosprofessionnelles.setNumSiret(Crypto.cryptService(praticienDto.getNumSiret()));
                 Infosprofessionnelles infosprofessionnellesToSave = infosprofessionnelleRepository.save(infosprofessionnelles);
 
+                //Hashage du Mot de passe
+                praticienToSave.setPassword(passwordEncoder.encode(praticienDto.getPassword()));
 
                 //Lieu sera récupéré dans le front  si non, sera créé
                 Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille().toUpperCase(),praticienDto.getCodePostal());

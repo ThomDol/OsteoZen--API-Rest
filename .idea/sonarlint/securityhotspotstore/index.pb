@@ -265,3 +265,5 @@ w
 Gsrc/main/java/org/gestion_patient/security/JwtAuthenticationFilter.java,1\9\19c8eb61b1603a6e57cd0d88c2f71ffa17af7e13
 v
 Fsrc/main/java/org/gestion_patient/security/JwtAuthorizationFilter.java,5\3\5323311d7745b7c020c2834413dc768b54ee7b85
+j
+:src/main/java/org/gestion_patient/security/CorsConfig.java,2\3\23d1b419188c2b3db5a2e249605856e787afbab2

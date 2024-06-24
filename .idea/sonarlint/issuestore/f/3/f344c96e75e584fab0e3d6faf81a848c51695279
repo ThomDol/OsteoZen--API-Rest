@@ -1,6 +1,8 @@
 
-	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8şªÁÚ‚2J$e923443d-f5fe-4221-8b67-c299c56f6124
+	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÉÃöÓ„2J$808d2847-2a6d-4579-ab96-272d6767395f
+
+java:S2259P"MA "NullPointerException" could be thrown; "praticienToSave" is nullable here.(êÄ¤´8æÔ÷Ó„2J$da12739b-b256-4494-8c3d-4cfc1a1b60d8
 “
-java:S37767"PRefactor this method to reduce its Cognitive Complexity from 8 to the 2 allowed.(ãÕ±8â«ÁÚ‚2J$3d87edd7-af6f-478a-afac-f5f573243575
+java:S37768"PRefactor this method to reduce its Cognitive Complexity from 8 to the 2 allowed.(ãÕ±8¨ÄöÓ„2J$56042f64-c197-4b45-ac19-05b7c4a5e28a
 ™
-java:S3776_"QRefactor this method to reduce its Cognitive Complexity from 13 to the 2 allowed.(ŸÓ¿áüÿÿÿÿ8Ì²²Ëƒ2J$18379531-4c8d-464c-81aa-aa27843d5f2d
+java:S3776b"QRefactor this method to reduce its Cognitive Complexity from 13 to the 2 allowed.(ŸÓ¿áüÿÿÿÿ8®ÄöÓ„2J$944c2263-25dc-4a4c-b504-9ea580dfcb49
