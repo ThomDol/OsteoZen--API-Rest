@@ -24,7 +24,7 @@ public class PraticienController {
         return new ResponseEntity<>(praticienDtoSaved, HttpStatus.CREATED);
     }
 
-    @GetMapping("/praticien")
+    @GetMapping("/praticien/all")
     public ResponseEntity<List<PraticienDto>> getAllPraticien(){
         List<PraticienDto> praticiens = praticienService.findAll();
         return new ResponseEntity<>(praticiens,HttpStatus.OK);

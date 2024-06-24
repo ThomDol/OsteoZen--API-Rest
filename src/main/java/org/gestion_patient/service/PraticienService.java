@@ -10,5 +10,6 @@ public interface PraticienService {
     PraticienDto findById(int id) throws Exception;
     PraticienDto create(PraticienDto praticienDto) throws Exception;
     PraticienDto update(int id, PraticienDto praticienDto) throws Exception;
+    PraticienDto loadByEmail(String email) throws Exception;
 
 }

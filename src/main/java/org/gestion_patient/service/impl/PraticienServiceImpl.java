@@ -9,7 +9,9 @@ import org.gestion_patient.exception.RessourceAlreadyexistsException;
 import org.gestion_patient.mapper.PraticienMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.service.PraticienService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -23,6 +25,8 @@ public class PraticienServiceImpl implements PraticienService {
     private LieuRepository lieuRepository;
     private InfosprofessionnelleRepository infosprofessionnelleRepository;
     private PersonneRepository personneRepository;
+    private PasswordEncoder passwordEncoder;
+
 
 
 
@@ -91,7 +95,7 @@ public class PraticienServiceImpl implements PraticienService {
     public PraticienDto update(int id, PraticienDto praticienDto) throws Exception {
         Praticien praticien = praticienRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Praticien not found with given id: " + id));
         //Nouveau Password mis à jour si modifié
-        if(praticienDto.getPassword()!=null){praticien.setPassword(praticienDto.getPassword());}
+        if(praticienDto.getPassword()!=null){praticien.setPassword(passwordEncoder.encode(praticienDto.getPassword()));}
         //Nouvelle ville mise à jour si besoin. Si pas ds base, sera créee
         Lieu lieu;
         if(praticienDto.getCodePostal()!=null && praticienDto.getNomVille()!=null){
@@ -130,6 +134,16 @@ public class PraticienServiceImpl implements PraticienService {
         //Persisitence du praticien mis à jour
         return PraticienMapper.mapToPraticienConnecteDto(praticienRepository.save(praticien));
     }
+
+    @Override
+    @Transactional
+    //Pour éviter le problème de LazyInitializationException.indique que vous essayez d'accéder à une propriété ou une collection d'une entité qui est chargée de manière paresseuse (lazy-loaded), mais que la session Hibernate n'est plus ouverte pour effectuer le chargement. Cette exception se produit souvent dans les applications qui utilisent la couche de persistance Hibernate/JPA et peut être particulièrement courante lors de l'utilisation de transactions ou de l'accès à des entités en dehors de leur contexte de session.
+    public PraticienDto loadByEmail(String email) throws Exception {
+        Praticien praticien =  praticienRepository.findByIdentiteEmail(Crypto.cryptService(email));
+        if(praticien!=null){return PraticienMapper.mapToPraticienConnecteDto(praticien);}
+        else {throw new ResourceNotFoundException("not found with this email "+email);}
+    }
+
 
 
 

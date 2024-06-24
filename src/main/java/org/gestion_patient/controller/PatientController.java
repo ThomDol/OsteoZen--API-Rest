@@ -24,11 +24,12 @@ public class PatientController {
         return new ResponseEntity<>(patientSaved, HttpStatus.CREATED);
     }
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity<List<PatientDto>> getAllPatient (){
         List<PatientDto> patients = patientService.getAllPatient();
         return new ResponseEntity<>(patients,HttpStatus.OK);
-    }
+    }*/
+
     @GetMapping("/all/{idPraticienConnecte}")
     public ResponseEntity<List<PatientDto>>getAllPatientByIdPraticien (@PathVariable int idPraticienConnecte){
       List<PatientDto> patients = patientService.getAllPatientByPraticien(idPraticienConnecte);

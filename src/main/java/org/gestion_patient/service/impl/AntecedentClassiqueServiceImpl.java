@@ -5,11 +5,14 @@ import lombok.AllArgsConstructor;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.AntecedentClassique;
 import org.gestion_patient.entity.Patient;
+import org.gestion_patient.entity.Praticien;
 import org.gestion_patient.entityDto.AntecedentClassiqueDto;
+import org.gestion_patient.exception.ForbiddenAccessException;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.mapper.AntecedentClassiqueMapper;
 import org.gestion_patient.repository.AntecedentClassiqueRepository;
 import org.gestion_patient.repository.PatientRepository;
+import org.gestion_patient.repository.PraticienRepository;
 import org.gestion_patient.service.AntecedentClassiqueService;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueService {
     private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private PatientRepository patientRepository;
+    private PraticienRepository praticienRepository;
 
     @Override
     public AntecedentClassiqueDto create(AntecedentClassiqueDto antecedentClassiqueDto, int idPatient) throws Exception {
@@ -75,11 +79,16 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
     }
 
     @Override
-    public AntecedentClassiqueDto getByIdPatient(int idPatient) throws Exception {
-        AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
+    public AntecedentClassiqueDto getByIdPatientAndIdPraticien(int idPatient,int idPraticien) throws Exception {
+        Patient patient = patientRepository.findById(idPatient).orElseThrow(()->new ResourceNotFoundException("Patient doesn't exist"));
+        Praticien praticien=praticienRepository.findById(patient.getPraticien().getIdPraticien()).orElseThrow(()->new ResourceNotFoundException("Praticien doesn't exist"));
+
+        if(praticien.getIdPraticien()==idPraticien){ AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
         if(antecedentAdulteEnfant!=null){
             return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfant);
         }
-        else{return null;}
+        else{return null;}}
+        else{throw new ForbiddenAccessException("Not allowed");
+        }
     }
 }
