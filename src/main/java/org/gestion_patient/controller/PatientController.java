@@ -30,26 +30,26 @@ public class PatientController {
         return new ResponseEntity<>(patients,HttpStatus.OK);
     }*/
 
-    @GetMapping("/all/{idPraticienConnecte}")
-    public ResponseEntity<List<PatientDto>>getAllPatientByIdPraticien (@PathVariable int idPraticienConnecte){
-      List<PatientDto> patients = patientService.getAllPatientByPraticien(idPraticienConnecte);
+    @GetMapping("/all/{idPraticien}")
+    public ResponseEntity<List<PatientDto>>getAllPatientByIdPraticien (@PathVariable ("idPraticien") int idPraticien){
+      List<PatientDto> patients = patientService.getAllPatientByPraticien(idPraticien);
       return new ResponseEntity<>(patients,HttpStatus.OK);
     }
 
     @GetMapping("/{idPraticien}/{id}")
-    public ResponseEntity<PatientDto> getPatientById (@PathVariable int id,@PathVariable int idPraticien) throws Exception {
+    public ResponseEntity<PatientDto> getPatientById (@PathVariable ("id")int id,@PathVariable ("idPraticien") int idPraticien) throws Exception {
         PatientDto patientDto=patientService.getByIdAndIdPraticien(id,idPraticien);
         return new ResponseEntity<>(patientDto,HttpStatus.OK);
     }
     @DeleteMapping("/{idPraticien}/{id}")
-    public ResponseEntity<String> deletePatient (@PathVariable int id ,@PathVariable int idPraticien) throws Exception {
+    public ResponseEntity<String> deletePatient (@PathVariable ("id")int id ,@PathVariable ("idPraticien")int idPraticien) throws Exception {
         patientService.deletePatientByPraticien(id,idPraticien);
         return  new ResponseEntity<>("patient deleted with success" , HttpStatus.OK);
 
     }
 
     @PutMapping("{idPraticien}/{id}")
-    public ResponseEntity<PatientDto> updatePatient(@PathVariable int idPraticien,@PathVariable int id,@RequestBody PatientDto patientDto) throws Exception {
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable ("idPraticien")int idPraticien,@PathVariable ("id")int id,@RequestBody PatientDto patientDto) throws Exception {
        PatientDto patientDtoUpdated = patientService.updatePatient(id,patientDto,idPraticien);
        return new ResponseEntity<>(patientDtoUpdated , HttpStatus.OK);
     }

@@ -42,7 +42,7 @@ public class PraticienController {
     }
 
     @PutMapping("/praticien/{id}")
-    public ResponseEntity<PraticienDto> updatePraticien(@PathVariable int id, @RequestBody PraticienDto praticienconnecteDto) throws Exception {
+    public ResponseEntity<PraticienDto> updatePraticien(@PathVariable ("id") int id, @RequestBody PraticienDto praticienconnecteDto) throws Exception {
         PraticienDto updatedPraticien = praticienService.update(id,praticienconnecteDto);
         return new ResponseEntity<>(updatedPraticien,HttpStatus.OK);
     }
