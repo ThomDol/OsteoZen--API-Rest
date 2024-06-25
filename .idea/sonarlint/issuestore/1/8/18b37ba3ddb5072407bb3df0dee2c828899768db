@@ -1,5 +1,6 @@
 
-	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(è¨Æ²úÿÿÿÿ8÷î¢ø„2J$39f20e50-6d59-40b5-94ab-757870bbbd4a
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(Ìöéßşÿÿÿÿ8€ï¢ø„2J$5ce7ee8d-5bc8-4093-b479-95b6ab2e3ad0
+	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(è¨Æ²úÿÿÿÿ8ø”¤ù„2J$4e2d19c1-13af-445d-8c39-30e96b579f33
 ´
-java:S1130-"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(è¨Æ²úÿÿÿÿ8ï¢ø„2J$296df64f-99c5-4202-a93a-14377c9aa496
+java:S1130("lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(è¨Æ²úÿÿÿÿ8‰•¤ù„2J$68312b9e-f7dc-4fb2-b884-83d7ea487d93
+—
+java:S1128"ORemove this unused import 'org.gestion_patient.repository.PraticienRepository'.(¼İƒÊûÿÿÿÿ8ÀĞªù„2J$53ba5c20-ad79-44e2-af02-b25ba7ced259
