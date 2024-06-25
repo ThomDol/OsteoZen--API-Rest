@@ -81,12 +81,9 @@ public class LieuControllerTest {
 
         LieuDto lieuDto = new LieuDto();
         lieuDto.setIdVille(id);
-        lieuDto.setNomville("Arras");
-        lieuDto.setCodePostal("62000");
+        lieuDto.setNomville("Beauvais");
+        lieuDto.setCodePostal("60000");
 
-        LieuDto lieuDtoUpadted = new LieuDto();
-        lieuDtoUpadted.setNomville("Arras");
-        lieuDtoUpadted.setCodePostal("62000");
 
         // Simuler la réponse de la méthode create du service
         LieuDto updatedLieuDto = new LieuDto();
@@ -94,7 +91,7 @@ public class LieuControllerTest {
         updatedLieuDto.setNomville("Arras");
         updatedLieuDto.setCodePostal("62000");
 
-        when(lieuService.updateLieu(eq(id), any(LieuDto.class))).thenReturn(updatedLieuDto);
+        when(lieuService.updateLieu(eq(id),any(LieuDto.class))).thenReturn(updatedLieuDto);
 
 
         mockMvc.perform(put("/api/lieu/{id}",id)
