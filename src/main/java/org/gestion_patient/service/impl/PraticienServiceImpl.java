@@ -77,7 +77,7 @@ public class PraticienServiceImpl implements PraticienService {
                 Infosprofessionnelles infosprofessionnellesToSave = infosprofessionnelleRepository.save(infosprofessionnelles);
 
                 //Hashage du Mot de passe
-                praticienToSave.setPassword(passwordEncoder.encode(praticienDto.getPassword()));
+                praticienDto.setPassword(passwordEncoder.encode(praticienDto.getPassword()));
 
                 //Lieu sera récupéré dans le front  si non, sera créé
                 Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(praticienDto.getNomVille().toUpperCase(),praticienDto.getCodePostal());

@@ -51,11 +51,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,FilterChain chain, Authentication authResult) throws IOException, ServletException {
         System.out.println("successfulAuthentification");
-        User user = (User) authResult.getPrincipal();
+        PraticienDetails user = (PraticienDetails) authResult.getPrincipal();
         Algorithm algorithm =  Algorithm.HMAC256(DataUtil.TokenKey);
+
+
+
         String jwtAccessToken = JWT.create().withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+60*60*1000))
                 .withIssuer(request.getRequestURL().toString())
+                .withClaim("id",user.getId())
                 .withClaim("roles",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
                 .sign(algorithm);
 

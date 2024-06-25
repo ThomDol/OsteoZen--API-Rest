@@ -271,3 +271,5 @@ f
 6src/main/java/org/gestion_patient/cors/CorsConfig.java,7\a\7a71264b29bd8c5d05e8383b298730edb21a51d3
 m
 =src/main/java/org/gestion_patient/cors/CorsConfiguration.java,c\a\ca90e48a6389b68b3166af154a4dc57f7966c8b2
+p
+@src/main/java/org/gestion_patient/security/PraticienDetails.java,7\0\70036cc4df3ff63c890e5e1860e46a4bdb18dce1

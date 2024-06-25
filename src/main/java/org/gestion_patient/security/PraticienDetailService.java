@@ -26,16 +26,22 @@ public class PraticienDetailService implements UserDetailsService {
 
         try {
             //Charger l'utilisateur lié à cet email
-            PraticienDto praticienconnecteDto = praticienService.loadByEmail(email);
-            if (praticienconnecteDto == null) {
+            PraticienDto praticienDto = praticienService.loadByEmail(email);
+            if (praticienDto == null) {
                 throw new ResourceNotFoundException("no praticien found with "+email);
             }
-            String decryptedEmail = praticienconnecteDto.getEmail();
-            String password = praticienconnecteDto.getPassword();
+            String decryptedEmail = praticienDto.getEmail();
+            String password = praticienDto.getPassword();
+            int id = praticienDto.getIdPraticien();
 
             Collection<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(praticienconnecteDto.getNomRole()));
-            return new User(decryptedEmail, password, authorities);
+            authorities.add(new SimpleGrantedAuthority(praticienDto.getNomRole()));
+            return new PraticienDetails(
+                    id,
+                    decryptedEmail,
+                    password,
+                    authorities
+            );
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
