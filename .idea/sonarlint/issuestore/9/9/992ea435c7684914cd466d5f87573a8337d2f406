@@ -1,13 +1,13 @@
 
-a
-java:S57863"Remove this 'public' modifier.(úÂ¸À8ñÓ×õ„2J$dae4c73b-28fe-4b9f-aa2f-ab69dc4c856c
-a
-java:S5786N"Remove this 'public' modifier.(ùÁÀ¤8òÓ×õ„2J$038f00f6-16a9-4bb7-ac75-18d338087acc
-a
-java:S5786q"Remove this 'public' modifier.(š®‹–8òÓ×õ„2J$23c7eb6b-cd0b-4ee2-8f5a-e11aedb8547e
-b
-java:S5786Œ"Remove this 'public' modifier.(ƒãÍ8òÓ×õ„2J$1024d8d8-483d-4ecf-96b3-fd074355327c
-a
-java:S5786$"Remove this 'public' modifier.(Ü¾ÀÇ8ÛÕúõ„2J$4da57a05-6631-4bc9-851b-91984a020cc1
-‹
-java:S6068"CRemove this useless "eq(...)" invocation; pass the values directly.(§üÊêúÿÿÿÿ8ôÓ×õ„2J$5e5501f1-af2b-4c46-ae78-2138d6b16128
+;
+java:S57863"Remove this 'public' modifier.(úÂ¸À8Ú‚øŠ…2
+;
+java:S5786N"Remove this 'public' modifier.(ùÁÀ¤8Ú‚øŠ…2
+;
+java:S5786n"Remove this 'public' modifier.(š®‹–8Ú‚øŠ…2
+<
+java:S5786‰"Remove this 'public' modifier.(ƒãÍ8Ú‚øŠ…2
+;
+java:S5786$"Remove this 'public' modifier.(Ü¾ÀÇ8Ú‚øŠ…2
+e
+java:S6068|"CRemove this useless "eq(...)" invocation; pass the values directly.(§üÊêúÿÿÿÿ8á‚øŠ…2

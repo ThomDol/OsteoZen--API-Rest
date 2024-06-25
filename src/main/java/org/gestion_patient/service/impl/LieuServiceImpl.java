@@ -33,8 +33,8 @@ public class LieuServiceImpl implements LieuService {
     @Override
     public LieuDto updateLieu(int id, LieuDto lieuDto) {
         Lieu lieu = lieuRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("This localisation not found with given id " + id ));
-        lieu.setNomVille(lieuDto.getNomville());
-        lieu.setCodePostal(lieuDto.getCodePostal());
+        if(lieuDto.getNomville()!=null){lieu.setNomVille(lieuDto.getNomville());}
+        if(lieuDto.getCodePostal()!=null){lieu.setCodePostal(lieuDto.getCodePostal());}
         lieuRepository.save(lieu);
         return LieuMapper.mapToLieuDto(lieuRepository.save(lieu));
     }

@@ -267,9 +267,11 @@ v
 Fsrc/main/java/org/gestion_patient/security/JwtAuthorizationFilter.java,5\3\5323311d7745b7c020c2834413dc768b54ee7b85
 j
 :src/main/java/org/gestion_patient/security/CorsConfig.java,2\3\23d1b419188c2b3db5a2e249605856e787afbab2
-f
-6src/main/java/org/gestion_patient/cors/CorsConfig.java,7\a\7a71264b29bd8c5d05e8383b298730edb21a51d3
-m
-=src/main/java/org/gestion_patient/cors/CorsConfiguration.java,c\a\ca90e48a6389b68b3166af154a4dc57f7966c8b2
 p
 @src/main/java/org/gestion_patient/security/PraticienDetails.java,7\0\70036cc4df3ff63c890e5e1860e46a4bdb18dce1
+t
+Dsrc/test/java/org/gestion_patient/controller/LieuControllerTest.java,9\9\992ea435c7684914cd466d5f87573a8337d2f406
+{
+Ksrc/test/java/org/gestion_patient/controller/MedecinTraitantController.java,4\8\481a740bb0ad3fce1493a0484d20bb3aef5ce1da
+
+Osrc/test/java/org/gestion_patient/controller/MedecinTraitantControllerTest.java,5\4\546f1a559cb9ebfebb6254974c6f5260bdc91d46

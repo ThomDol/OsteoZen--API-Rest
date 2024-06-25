@@ -28,13 +28,13 @@ public class LieuController {
         return new ResponseEntity<>(lieux,HttpStatus.OK);
     }
 
-    @PutMapping (("{id}"))
-    public ResponseEntity<String> updateLieu(@RequestBody LieuDto lieuDto ,@PathVariable int id ) {
+    @PutMapping (("/{id}"))
+    public ResponseEntity<LieuDto> updateLieu(@RequestBody LieuDto lieuDto ,@PathVariable("id") int id ) {
         LieuDto lieuDto1 = lieuService.updateLieu(id, lieuDto);
-        return new ResponseEntity<>("localisation updated successfully", HttpStatus.OK);
+        return new ResponseEntity<>(lieuDto1, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<LieuDto> getLieuById(@PathVariable int id) {
         LieuDto Lieu = lieuService.getLieuById(id);
         return new ResponseEntity<>(Lieu , HttpStatus.OK);
