@@ -1,9 +1,11 @@
 
 i
-java:S1659$"&Declare "password" on a separate line.(û‚¼õ8 É×Î„2J$7caa3eea-8794-4017-bf4e-ef5f8ab8ef53
-l	java:S106#"+Replace this use of System.out by a logger.(ª‡¹}8¢É×Î„2J$93f107bd-c4a2-434b-9253-196091b99f2f
-r	java:S106)"+Replace this use of System.out by a logger.(î¸ıÿÿÿÿ8³É×Î„2J$d204f578-520d-4948-9cb5-aa74f6fe6a8f
-m	java:S106*"+Replace this use of System.out by a logger.(Éáğè8³É×Î„2J$2511932e-46ce-4d5b-b20d-cbaae8b213f5
-m	java:S1065"+Replace this use of System.out by a logger.(÷çÆê8¶É×Î„2J$2ffa4065-1d48-420c-8dcb-af1056841d74
+java:S1659$"&Declare "password" on a separate line.(û‚¼õ8 É×Î„2J$0e04cecc-7fbe-4394-8a43-4558c732ab30
+l	java:S106#"+Replace this use of System.out by a logger.(ª‡¹}8¢É×Î„2J$6bd163bd-effe-4f9b-aa98-548056e895f2
+r	java:S106)"+Replace this use of System.out by a logger.(î¸ıÿÿÿÿ8³É×Î„2J$964ebaa6-4596-4a40-88ba-ee64198028e8
+m	java:S106*"+Replace this use of System.out by a logger.(Éáğè8³É×Î„2J$01340f12-6f61-40af-8874-79afa5ac9c2e
+m	java:S1065"+Replace this use of System.out by a logger.(÷çÆê8¶É×Î„2J$95ab86ba-9bf6-4c3e-b3db-1c4f41db6d1e
+~
+java:S64377"6Revoke and change this password, as it is compromised.(ìâ¦ûÿÿÿÿ8ª¶£û„2J$4d75d16d-a2a6-4d2c-a669-e73fabb8ed2b
 Â
-java:S6204;"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(šê€Çûÿÿÿÿ8»É×Î„2J$8349ee4f-8155-4fb1-9ba2-7654187344c2
+java:S6204;"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(šê€Çûÿÿÿÿ8»É×Î„2J$bc4a7d4e-5808-4944-aa49-61857015e552

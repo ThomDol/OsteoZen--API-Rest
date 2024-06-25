@@ -1,6 +1,6 @@
 
-	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(è¨Æ²úÿÿÿÿ8ø”¤ù„2J$4e2d19c1-13af-445d-8c39-30e96b579f33
-´
-java:S1130("lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(è¨Æ²úÿÿÿÿ8‰•¤ù„2J$68312b9e-f7dc-4fb2-b884-83d7ea487d93
-—
-java:S1128"ORemove this unused import 'org.gestion_patient.repository.PraticienRepository'.(¼İƒÊûÿÿÿÿ8ÀĞªù„2J$53ba5c20-ad79-44e2-af02-b25ba7ced259
+g	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(è¨Æ²úÿÿÿÿ8äÇ£û„2
+
+java:S1130("lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(è¨Æ²úÿÿÿÿ8È£û„2
+q
+java:S1128"ORemove this unused import 'org.gestion_patient.repository.PraticienRepository'.(¼İƒÊûÿÿÿÿ8’È£û„2
