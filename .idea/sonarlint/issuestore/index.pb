@@ -271,7 +271,5 @@ p
 @src/main/java/org/gestion_patient/security/PraticienDetails.java,7\0\70036cc4df3ff63c890e5e1860e46a4bdb18dce1
 t
 Dsrc/test/java/org/gestion_patient/controller/LieuControllerTest.java,9\9\992ea435c7684914cd466d5f87573a8337d2f406
-{
-Ksrc/test/java/org/gestion_patient/controller/MedecinTraitantController.java,4\8\481a740bb0ad3fce1493a0484d20bb3aef5ce1da
 
 Osrc/test/java/org/gestion_patient/controller/MedecinTraitantControllerTest.java,5\4\546f1a559cb9ebfebb6254974c6f5260bdc91d46

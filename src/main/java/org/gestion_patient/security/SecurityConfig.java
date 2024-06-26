@@ -44,9 +44,9 @@ public class SecurityConfig {
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(frameOptions->frameOptions.disable())
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST,"/login").permitAll())
-                .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
-                //.addFilter(new JwtAuthenticationFilter(authenticationManager(authConfiguration)))
-                //.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(authConfiguration)))
+                .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();

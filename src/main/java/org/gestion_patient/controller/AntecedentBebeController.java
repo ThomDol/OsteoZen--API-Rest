@@ -26,8 +26,8 @@ public class AntecedentBebeController {
         return new ResponseEntity<>(antecedentBebeDtoUpdated,HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AntecedentsBebeDto> getAntecedentBebeByIdPatient (@PathVariable int idPatient,@PathVariable int id) throws Exception {
+    @GetMapping("/{idPatient}")
+    public ResponseEntity<AntecedentsBebeDto> getAntecedentBebeByIdPatient (@PathVariable int idPatient) throws Exception {
         AntecedentsBebeDto antecedentBebeDto = antecedentBebeService.getByIdPatient(idPatient);
         return new ResponseEntity<>(antecedentBebeDto,HttpStatus.OK);
     }

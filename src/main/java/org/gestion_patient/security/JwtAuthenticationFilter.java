@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.gestion_patient.Data.DataUtil;
+import org.gestion_patient.crypto.Crypto;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -65,11 +66,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 
         Map<String,String> idToken = new HashMap<>();
-        idToken.put("accessToken", jwtAccessToken);
-
+        try {
+            idToken.put("accessToken", Crypto.cryptService(jwtAccessToken));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         response.setContentType("application/json");
         new ObjectMapper().writeValue(response.getOutputStream(),idToken);
-
     }
 
 }

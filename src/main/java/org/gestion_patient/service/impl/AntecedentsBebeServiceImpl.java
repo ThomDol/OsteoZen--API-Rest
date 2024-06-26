@@ -107,6 +107,6 @@ public class AntecedentsBebeServiceImpl implements AntecedentsBebeService {
         if(antecedentBebe!=null){
             return AntecedentsBebeMapper.mapToAntecedentssanteBebeDto(antecedentBebe);
         }
-        else{throw new ResourceNotFoundException("AntecedentBebe doesn't exist");}
+        else{return null;}
     }
 }

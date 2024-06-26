@@ -79,16 +79,11 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
     }
 
     @Override
-    public AntecedentClassiqueDto getByIdPatientAndIdPraticien(int idPatient,int idPraticien) throws Exception {
-        Patient patient = patientRepository.findById(idPatient).orElseThrow(()->new ResourceNotFoundException("Patient doesn't exist"));
-        Praticien praticien=praticienRepository.findById(patient.getPraticien().getIdPraticien()).orElseThrow(()->new ResourceNotFoundException("Praticien doesn't exist"));
-
-        if(praticien.getIdPraticien()==idPraticien){ AntecedentClassique antecedentAdulteEnfant = antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
-        if(antecedentAdulteEnfant!=null){
-            return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentAdulteEnfant);
+    public AntecedentClassiqueDto getByIdPatient(int idPatient) throws Exception {
+        AntecedentClassique antecedentClassique=antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
+        if(antecedentClassique!=null){
+            return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentClassique);
         }
-        else{return null;}}
-        else{throw new ForbiddenAccessException("Not allowed");
-        }
+        else{return null;}
     }
 }

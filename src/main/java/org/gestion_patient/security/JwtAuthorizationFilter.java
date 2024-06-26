@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.gestion_patient.Data.DataUtil;
+import org.gestion_patient.crypto.Crypto;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,6 +31,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         if(authorizationToken!=null && authorizationToken.startsWith("Bearer")) {
             try {
                 String jwt=authorizationToken.substring(7);
+                jwt = Crypto.decryptService(jwt);
                 Algorithm algorithm = Algorithm.HMAC256(DataUtil.TokenKey);
                 JWTVerifier jwtVerifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
