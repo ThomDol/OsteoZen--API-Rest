@@ -277,3 +277,5 @@ q
 Asrc/main/java/org/gestion_patient/utils/EncryptSensitiveData.java,b\c\bcae96323fd8bd499b6519dbb3607783b1795666
 q
 Asrc/main/java/org/gestion_patient/utils/DecryptSensitiveData.java,f\f\ffe8cf4ca2eb10cc5ab901242d455464fe882778
+w
+Gsrc/test/java/org/gestion_patient/controller/PatientControllerTest.java,3\b\3b2426d4981308c867a27e95f20e09120d2aeab5
