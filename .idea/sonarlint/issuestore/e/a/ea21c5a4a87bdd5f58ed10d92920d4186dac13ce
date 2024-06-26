@@ -1,3 +1,8 @@
 
 ™
-java:S3776""QRefactor this method to reduce its Cognitive Complexity from 13 to the 2 allowed.(§¿©­ùÿÿÿÿ8ÛÊ¢…2J$79cae5f6-4080-4109-8d5c-d6bd4a3235b3
+java:S3776""QRefactor this method to reduce its Cognitive Complexity from 13 to the 2 allowed.(§¿©­ùÿÿÿÿ8§¾ñ¤…2J$ca7010ff-873b-4c0d-8576-bd6ed45308cd
+„
+java:S1128"ARemove this unused import 'org.gestion_patient.entity.Praticien'.(—Ê8êŸö¥…2J$8389fc08-db3b-4f50-9e61-e0452925e74b
+›
+java:S1128
+"SRemove this unused import 'org.gestion_patient.exception.ForbiddenAccessException'.(ì‹Ù¡ùÿÿÿÿ8êŸö¥…2J$fb3aa61e-e2c6-4cb2-a04e-8bc7a00f4f70

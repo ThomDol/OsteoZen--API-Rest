@@ -38,4 +38,10 @@ public class PostAccouchementController {
         return new ResponseEntity<>(postAccouchementDtoUpdated, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{idPostAccouchement}")
+    public ResponseEntity<String> deletePostAccouchement (@PathVariable int idPostAccouchement){
+        postAccouchementService.delete(idPostAccouchement);
+        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+    }
+
 }

@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AntecedentClassiqueRepository extends JpaRepository<AntecedentClassique,Integer> {
 
     AntecedentClassique findByPatientIdPatient (int patientId);
+    void deleteByPatientIdPatient(int id);
 }

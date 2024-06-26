@@ -10,5 +10,7 @@ import java.util.List;
 @Repository
 public interface AccouchementRepository extends JpaRepository<Accouchement,Integer> {
     List<Accouchement> findByPatientIdPatient(int idPatient);
+    void deleteAllByPatientIdPatient(int idPatient);
+    List<Accouchement> findAllByPatientIdPatient(int id);
 
 }

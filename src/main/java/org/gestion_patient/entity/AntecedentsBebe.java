@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name ="Antecedent_bébé")
+@Table(name ="Antecedent_bébé", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "id_patient")
+})
 public class AntecedentsBebe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

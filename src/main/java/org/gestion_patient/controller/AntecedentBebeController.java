@@ -32,5 +32,11 @@ public class AntecedentBebeController {
         return new ResponseEntity<>(antecedentBebeDto,HttpStatus.OK);
     }
 
+    @DeleteMapping("/{idAntecedentBebe}")
+    public ResponseEntity<String> deleteAntecedentBebe (@PathVariable int idAntecedetnBebe){
+        antecedentBebeService.deleteAntecedentBebe(idAntecedetnBebe);
+        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+    }
+
 }
 

@@ -1,5 +1,6 @@
 package org.gestion_patient.service.impl;
 
+import jakarta.validation.OverridesAttribute;
 import lombok.AllArgsConstructor;
 import org.gestion_patient.entity.Grossesse;
 import org.gestion_patient.entity.Patient;
@@ -99,6 +100,12 @@ public class GrossesseServiceImpl implements GrossesseService {
     public GrossesseDto getById(int id) {
         Grossesse grossesse = grossesseRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Grossesse doesn't exist"));
             return GrossesseMapper.mapToGrossesseDto(grossesse);
+    }
+
+    @Override
+    public void deleteGrossesse(int id){
+        Grossesse grossesseToDelete = grossesseRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Grossesse doesn't exist"));
+        grossesseRepository.delete(grossesseToDelete);
     }
 
     }

@@ -80,10 +80,19 @@ public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueServic
 
     @Override
     public AntecedentClassiqueDto getByIdPatient(int idPatient) throws Exception {
-        AntecedentClassique antecedentClassique=antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
-        if(antecedentClassique!=null){
+        AntecedentClassique antecedentClassique = antecedentClassiqueRepository.findByPatientIdPatient(idPatient);
+        if (antecedentClassique != null) {
             return AntecedentClassiqueMapper.mapToAntecedentAdulteEnfantDto(antecedentClassique);
+        } else {
+            return null;
         }
-        else{return null;}
     }
-}
+
+    @Override
+    public void deleteAntecedentClassique (int idAntecedent){
+        AntecedentClassique antecedentClassiqueToDelete = antecedentClassiqueRepository.findById(idAntecedent).orElseThrow(()->new ResourceNotFoundException("Antecedent Not Found"));
+        antecedentClassiqueRepository.delete(antecedentClassiqueToDelete);
+        }
+
+    }
+

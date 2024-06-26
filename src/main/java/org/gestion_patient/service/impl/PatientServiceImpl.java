@@ -10,12 +10,15 @@ import org.gestion_patient.mapper.PatientMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.service.PatientService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 
 @Service
 @AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
+    private final PostAccouchementRepository postAccouchementRepository;
     private PatientRepository patientRepository;
     private LieuRepository lieuRepository;
     private GenreRepository genreRepository;
@@ -24,20 +27,14 @@ public class PatientServiceImpl implements PatientService {
     private MedecintraitantRepository medecintraitantRepository;
     private PersonneRepository personneRepository;
     private PraticienRepository praticienconnecteRepository;
+    private AccouchementRepository accouchementRepository;
+    private AntecedentClassiqueRepository antecedentClassiqueRepository;
+    private AntecedentBebeRepository antecedentBebeRepository;
+    private GrossesseRepository grossesseRepository;
+    private RendezvousRepository rendezvousRepository;
 
 
 
-    @Override
-    public List<PatientDto> getAllPatient()  {
-        List<Patient> patients = patientRepository.findAll();
-        return patients.stream().map(patient->
-        {
-            try {return PatientMapper.mapToPatientDto(patient);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).toList();
-    }
 
     //Creation d'un nouveau Patient
     @Override
@@ -46,7 +43,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndIdentiteTelAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),Crypto.cryptService(patientDto.getTel()),idPraticienConnecte);
         if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date");}
         else{
-            //Verification si identité de la personne déjà enregistrée, si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
+            //Verification si identité de la personne déjà enregistrée (pourrait être un patient d'un autre praticien), si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
             Personne personneIdNewPatient = personneRepository.findByNomAndPrenomAndTel(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getTel()));
             if (personneIdNewPatient==null){
                 personneIdNewPatient = new Personne();
@@ -114,13 +111,6 @@ public class PatientServiceImpl implements PatientService {
         } else {
             throw new ResourceNotFoundException("Patient not found");
         }
-    }
-
-    @Override
-    public void deletePatientByPraticien(int id,int idPraticien) {
-        Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id,idPraticien);
-        if(patient!=null){patientRepository.delete(patient);}
-        else {throw new ResourceNotFoundException("Patient not found");}
     }
 
     @Override
@@ -193,4 +183,27 @@ public class PatientServiceImpl implements PatientService {
     }
 
 
-}
+    // L'annotation @Transactional garantit que toutes les suppressions sont exécutées dans une même transaction. Si une suppression échoue, toutes les modifications sont annulées, assurant la cohérence de la base de données.
+    @Transactional
+    @Override
+    public void deletePatientByPraticien(int id, int idPraticien) {
+        Patient patientToDelete = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
+        if (patientToDelete == null) {
+            throw new ResourceNotFoundException("Patient not Found");
+        }
+        // Supprimer les entités associées
+        postAccouchementRepository.deleteAllByAccouchementPatientIdPatient(id);
+        accouchementRepository.deleteAllByPatientIdPatient(id);
+        antecedentClassiqueRepository.deleteByPatientIdPatient(id);
+        antecedentBebeRepository.deleteByPatientIdPatient(id);
+        rendezvousRepository.deleteAllByPatientIdPatient(id);
+
+        // Supprimer le patient
+        patientRepository.delete(patientToDelete);
+    }
+
+       }
+
+
+
+

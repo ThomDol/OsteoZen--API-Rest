@@ -54,4 +54,10 @@ public class PostAccouchementServiceImpl implements PostAccouchementService {
         PostAccouchement postAccouchement = postAccouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("PostAccouchement with id"+id+" doesn't exist"));
         return   PostAccouchementMapper.mapToPostAccouchementDto(postAccouchement);
     }
+
+    @Override
+    public void delete(int id) {
+        PostAccouchement postAccouchementToDelete = postAccouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("PostAccouchement with id"+id+" doesn't exist"));
+        postAccouchementRepository.delete(postAccouchementToDelete);
+    }
 }

@@ -12,4 +12,5 @@ public interface RendezvousRepository extends JpaRepository<Rendezvous,Integer> 
     List<Rendezvous> findAllByPatientIdPatientAndPatientPraticienIdPraticien(int idPatient,int idPraticien);
     Rendezvous findByIdRendezVousAndPatientPraticienIdPraticien (int id,int idPraticien);
     Rendezvous findByIdRendezVousAndPatientIdPatient (int idRendezVous,int idPatient);
+    void deleteAllByPatientIdPatient(int id);
 }

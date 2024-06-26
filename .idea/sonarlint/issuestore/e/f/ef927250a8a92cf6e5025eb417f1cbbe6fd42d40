@@ -1,3 +1,7 @@
 
-s
-java:S3776"QRefactor this method to reduce its Cognitive Complexity from 18 to the 2 allowed.(…¯òÿÿÿÿÿ8ÿÙ°„„2
+ 
+java:S1192!"XDefine a constant instead of duplicating this literal "Grossesse doesn't exist" 3 times.(ÛÑ¯şúÿÿÿÿ8ìø¤…2J$b7e3b486-73d0-4bdf-8b59-48a092729966
+™
+java:S3776 "QRefactor this method to reduce its Cognitive Complexity from 18 to the 2 allowed.(…¯òÿÿÿÿÿ8ë‚ø¤…2J$cb8f4dda-d66d-4b61-8dbf-d4e305a22bef
+d
+java:S1128"BRemove this unused import 'jakarta.validation.OverridesAttribute'.(İÖÉòÿÿÿÿÿ8ûë÷¥…2

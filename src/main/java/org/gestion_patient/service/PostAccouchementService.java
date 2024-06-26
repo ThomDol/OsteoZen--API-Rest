@@ -7,4 +7,5 @@ public interface PostAccouchementService {
     PostAccouchementDto update(int id,PostAccouchementDto postAccouchementDtoUpdated) ;
     PostAccouchementDto getByIdAccouchement(int id) ;
     PostAccouchementDto getById (int id);
+    void delete (int id);
 }

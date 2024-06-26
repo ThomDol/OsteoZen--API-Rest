@@ -10,7 +10,7 @@ public interface GrossesseService {
     GrossesseDto create(GrossesseDto grossesseDto, int idPatient) ;
     GrossesseDto update(int id,GrossesseDto grossesseDto) ;
     List<GrossesseDto> getAllByidPatient(int id) ;
-
+    void deleteGrossesse (int id);
     GrossesseDto getById (int id);
 
 }

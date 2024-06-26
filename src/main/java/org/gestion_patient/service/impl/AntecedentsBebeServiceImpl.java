@@ -109,4 +109,10 @@ public class AntecedentsBebeServiceImpl implements AntecedentsBebeService {
         }
         else{return null;}
     }
+
+    @Override
+    public void deleteAntecedentBebe (int id){
+        AntecedentsBebe antecedentsBebeToDelete = antecedentBebeRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("AnecedentBebe not found"));
+        antecedentBebeRepository.delete(antecedentsBebeToDelete);
+    }
 }

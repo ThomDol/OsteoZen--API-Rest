@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AntecedentBebeRepository  extends JpaRepository<AntecedentsBebe,Integer> {
     AntecedentsBebe findByPatientIdPatient(int id );
+    void deleteByPatientIdPatient(int id);
 
 }

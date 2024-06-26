@@ -38,5 +38,14 @@ public class GrossesseController {
         return new ResponseEntity<>(grossesseDtoUpdated,HttpStatus.OK);
     }
 
+    @DeleteMapping("/{idGrossesse}")
+    public ResponseEntity<String> deleteGrossesse (@PathVariable int idGrossesse){
+        grossesseService.deleteGrossesse(idGrossesse);
+        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+    }
+
+
+
+
 
 }

@@ -33,4 +33,10 @@ public class AntecedentClassiqueController {
         return new ResponseEntity<>(antecedentAdulteEnfantDto,HttpStatus.OK);
     }
 
+    @DeleteMapping("/{idAntecedent}")
+    public ResponseEntity<String> deleteAntecedent (@PathVariable int idAntecedent){
+        antecedentClassiqueService.deleteAntecedentClassique(idAntecedent);
+        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+    }
+
 }
