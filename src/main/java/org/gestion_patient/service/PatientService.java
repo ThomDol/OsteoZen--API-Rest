@@ -11,11 +11,11 @@ public interface PatientService {
     List<PatientDto> getAllPatientByAppUser(int idPraticien);
 
 
-    void deletePatientByAppUser(int id,int idPraticien);
+    void delete(int id);
 
     PatientDto getById(int id) throws Exception;
 
-    PatientDto updatePatient(int id, PatientDto upadtedPatientDto,int idPraticien) throws Exception;
+    PatientDto updatePatient(int id, PatientDto upadtedPatientDto) throws Exception;
 
     PatientDto getByIdAndIdAppUser(int id,int idPraticien) throws Exception;
 

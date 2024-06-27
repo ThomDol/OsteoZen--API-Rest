@@ -44,15 +44,15 @@ public class PatientController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePatient (@PathVariable ("id") int id ,@PathVariable ("idAppUser") int idAppUser) throws Exception {
-        patientService.deletePatientByAppUser(id,idAppUser);
+    public ResponseEntity<String> deletePatient (@PathVariable ("id") int id) throws Exception {
+        patientService.delete(id);
         return  new ResponseEntity<>("patient deleted with success" , HttpStatus.OK);
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDto> updatePatient(@PathVariable ("idAppUser") int idAppUser,@PathVariable ("id") int id,@RequestBody PatientDto patientDto) throws Exception {
-       PatientDto patientDtoUpdated = patientService.updatePatient(id,patientDto,idAppUser);
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable ("id") int id,@RequestBody PatientDto patientDto) throws Exception {
+       PatientDto patientDtoUpdated = patientService.updatePatient(id,patientDto);
        return new ResponseEntity<>(patientDtoUpdated , HttpStatus.OK);
     }
 

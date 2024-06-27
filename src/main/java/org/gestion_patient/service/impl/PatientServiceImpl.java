@@ -120,9 +120,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto updatePatient(int id, PatientDto updatedPatientDto, int idAppUser) throws Exception {
-        Patient patientToUpdate = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
-        if (patientToUpdate != null) {
+    public PatientDto updatePatient(int id, PatientDto updatedPatientDto) throws Exception {
+        Patient patientToUpdate = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found"));
             //Set seulement des infos dont les données ont été remplies ds le formulaire
             if (updatedPatientDto.getDateNaissance() != null) {
                 patientToUpdate.setDateNaissance(Crypto.cryptService(updatedPatientDto.getDateNaissance()));
@@ -183,20 +182,14 @@ public class PatientServiceImpl implements PatientService {
             }
 
             return PatientMapper.mapToPatientDto(patientRepository.save(patientToUpdate));
-        } else {
-            throw new ResourceNotFoundException("Patient not found");
-        }
     }
 
 
     // L'annotation @Transactional garantit que toutes les suppressions sont exécutées dans une même transaction. Si une suppression échoue, toutes les modifications sont annulées, assurant la cohérence de la base de données.
     @Transactional
     @Override
-    public void deletePatientByAppUser(int id, int idAppUser) {
-        Patient patientToDelete = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
-        if (patientToDelete == null) {
-            throw new ResourceNotFoundException("Patient not Found");
-        }
+    public void delete(int id) {
+        Patient patientToDelete = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found"));
         // Supprimer les entités associées
         postAccouchementRepository.deleteAllByAccouchementPatientIdPatient(id);
         accouchementRepository.deleteAllByPatientIdPatient(id);
