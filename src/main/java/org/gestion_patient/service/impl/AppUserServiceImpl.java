@@ -23,7 +23,6 @@ public class AppUserServiceImpl implements AppUserService {
     private AppUserRepository appUserRepository;
     private RoleRepository roleRepository;
     private LieuRepository lieuRepository;
-    private InfosprofessionnelleRepository infosprofessionnelleRepository;
     private PersonneRepository personneRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -59,22 +58,17 @@ public class AppUserServiceImpl implements AppUserService {
         if(appUserToSave !=null) {
             throw new RessourceAlreadyexistsException ("AppUser already exist with this email");}
         else{
-            //Verification si Info societe du User existe , si oui leve une exception.(Cryptage des données Dto avant comparasion, car données cryptées dans la base)
-            Infosprofessionnelles infos = infosprofessionnelleRepository.findByNumAdeliAndNumSiret(Crypto.cryptService(appUserDto.getNumAdeli()),Crypto.cryptService(appUserDto.getNumSiret()));
-            if(infos!=null){ throw new RessourceAlreadyexistsException ("Info Pro already exist");}
+            //Verification si un autre User existe avec le numéro ADELI , si oui leve une exception.(Cryptage des données Dto avant comparasion, car données cryptées dans la base). Sinon sera crypté par Mapper avant d'être enregistré
+            appUserToSave=appUserRepository.findByNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
+            if(appUserToSave!=null){ throw new RessourceAlreadyexistsException ("Info Pro already exist with another user");}
             else{
-                //Si pas d'exception, creation des infos professionnelles et de la personne (Cryptage des données avant persistence, car pas de mapper
+                //Si pas d'exception, création de la personne (Cryptage des données avant persistence, car pas de mapper
                 Personne personneIdNewPraticien = new Personne();
                 personneIdNewPraticien.setNom(Crypto.cryptService(appUserDto.getNomAppUser().toUpperCase()));
                 personneIdNewPraticien.setPrenom(Crypto.cryptService(appUserDto.getPrenomAppUser().toUpperCase()));
                 personneIdNewPraticien.setEmail(Crypto.cryptService(appUserDto.getEmail()));
                 personneIdNewPraticien.setTel(Crypto.cryptService(appUserDto.getTel()));
-                    personneRepository.save(personneIdNewPraticien);
-
-                Infosprofessionnelles infosprofessionnelles = new Infosprofessionnelles();
-                infosprofessionnelles.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
-                infosprofessionnelles.setNumSiret(Crypto.cryptService(appUserDto.getNumSiret()));
-                Infosprofessionnelles infosprofessionnellesToSave = infosprofessionnelleRepository.save(infosprofessionnelles);
+                personneRepository.save(personneIdNewPraticien);
 
                 //Hashage du Mot de passe
                 appUserDto.setPassword(passwordEncoder.encode(appUserDto.getPassword()));
@@ -89,7 +83,7 @@ public class AppUserServiceImpl implements AppUserService {
                 //Role sera récupéré dans me front (radio box -> User ou admin)
                 Role role=roleRepository.findByNomRole(appUserDto.getNomRole());
                 //Persistence du nouveau praticien avec les infos ci dessus
-                appUserToSave = AppUserMapper.mapToAppUser(appUserDto,role,lieu,infosprofessionnellesToSave,personneIdNewPraticien);
+                appUserToSave = AppUserMapper.mapToAppUser(appUserDto,role,lieu,personneIdNewPraticien);
 
                 return AppUserMapper.mapToAppUserDto(appUserRepository.save(appUserToSave));}}
     }
@@ -122,17 +116,11 @@ public class AppUserServiceImpl implements AppUserService {
         personneRepository.save(personne);
         appUser.setIdentite(personne);
 
-        //Recuperation des informations professionnelles, et mise à jour si besoin (Verification que les données mises à jour ne sont pas déjà enregistrées en base de données
-        Infosprofessionnelles infoPraticien = appUser.getInfosProfessionnelles();
-        if(appUserDto.getNumAdeli()!=null && appUserDto.getNumSiret()!=null){
-            Infosprofessionnelles infostoUpdate=infosprofessionnelleRepository.findByNumAdeliAndNumSiret(appUserDto.getNumAdeli(), appUserDto.getNumSiret());
-            if(infostoUpdate!=null){throw new RessourceAlreadyexistsException("infos déjà existentes");}
-            else{
+        if(appUserDto.getNumAdeli()!=null){
+            AppUser appUserDouble =appUserRepository.findByNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
+            if(appUserDouble!=null){throw new RessourceAlreadyexistsException("AppUser already exists with this numero Adeli");}
+            else{appUser.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));}
 
-                infoPraticien.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
-                infoPraticien.setNumSiret(Crypto.cryptService(appUserDto.getNumSiret()));
-                infosprofessionnelleRepository.save(infoPraticien);
-                appUser.setInfosProfessionnelles(infoPraticien);}
         }
 
         //Persisitence du praticien mis à jour

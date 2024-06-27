@@ -197,18 +197,6 @@ w
 Gsrc/main/java/org/gestion_patient/service/impl/PhysiqueServiceImpl.java,d\e\de533b79079a8a60de52e2b1097593e3fc9096a9
 t
 Dsrc/main/java/org/gestion_patient/controller/PhysiqueController.java,f\a\fa3dcebdf06e57ea8fd88c757812ae492d446faa
-g
-7src/main/java/org/gestion_patient/entity/Praticien.java,b\3\b396a2c0aa32afdd9905679b998e8bba48ab544e
-u
-Esrc/main/java/org/gestion_patient/repository/PraticienRepository.java,c\c\cc0b3968b1079ddd4f038ac1e83f55e67e28f8fa
-m
-=src/main/java/org/gestion_patient/entityDto/PraticienDto.java,8\9\89c322702ba558f9853baa382f052e194f005a77
-x
-Hsrc/main/java/org/gestion_patient/service/impl/PraticienServiceImpl.java,f\3\f344c96e75e584fab0e3d6faf81a848c51695279
-o
-?src/main/java/org/gestion_patient/service/PraticienService.java,1\1\11e596b4fb507f0cfa98f69df898cd59038b7396
-u
-Esrc/main/java/org/gestion_patient/controller/PraticienController.java,e\5\e523047b73d2c635984601d4bca5cfce4982c9f9
 z
 Jsrc/main/java/org/gestion_patient/controller/AntecedentbebeController.java,b\1\b1a8195f917c49030b6a9f9e3cb59c3cad414aaf
 
@@ -237,8 +225,6 @@ q
 Asrc/main/java/org/gestion_patient/entity/AntecedentClassique.java,4\1\41be96ec724a172cf8cbf428633cddc91fe85c72
 w
 Gsrc/main/java/org/gestion_patient/mapper/AntecedentClassiqueMapper.java,8\a\8a349725f4e508532d980eb2b229f9b4b2a2178e
-m
-=src/main/java/org/gestion_patient/mapper/PraticienMapper.java,0\9\093347d8f0b8b8d49586d9fe84dd61e03f7d3d82
 s
 Csrc/main/java/org/gestion_patient/entityDto/AntecedentsBebeDto.java,2\9\297fc09b319cecdbf6a2d9392bd4f936aef2ba42
 y
@@ -257,8 +243,6 @@ w
 Gsrc/main/java/org/gestion_patient/entityDto/AntecedentClassiqueDto.java,1\6\16a6c20278c47fa3d71d4b7af1b0366252b59557
 y
 Isrc/main/java/org/gestion_patient/exception/ForbiddenAccessException.java,c\2\c21cf683c70aed49f4821b5626f76d44c6e8b278
-v
-Fsrc/main/java/org/gestion_patient/security/PraticienDetailService.java,4\4\44c0a4527afd9330561f0ba61fc8f03a70692b6a
 n
 >src/main/java/org/gestion_patient/security/SecurityConfig.java,f\6\f63217c9fc445f7876d2fc841412f795c5dbea63
 w
@@ -289,3 +273,5 @@ k
 ;src/main/java/org/gestion_patient/entityDto/AppUserDto.java,7\9\790f4b339497a693f1c8a40977770669c03f492b
 v
 Fsrc/main/java/org/gestion_patient/service/impl/AppUserServiceImpl.java,c\b\cb00f06ee76da39f5e0aa53ab5ab4dc270e815ec
+s
+Csrc/main/java/org/gestion_patient/controller/AppUserController.java,1\6\1698a33b936384b168192b728659e4d52bfab7a7

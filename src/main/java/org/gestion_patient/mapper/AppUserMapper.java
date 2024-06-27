@@ -15,8 +15,7 @@ public class AppUserMapper {
                 appUser.getRole().getNomRole(),
                 appUser.getVille().getNomVille(),
                 appUser.getVille().getCodePostal(),
-                Crypto.decryptService(appUser.getInfosProfessionnelles().getNumAdeli()),
-                Crypto.decryptService(appUser.getInfosProfessionnelles().getNumSiret()),
+                Crypto.decryptService(appUser.getNumAdeli()),
                 Crypto.decryptService(appUser.getIdentite().getNom()),
                 Crypto.decryptService(appUser.getIdentite().getPrenom()),
                 Crypto.decryptService(appUser.getIdentite().getEmail()),
@@ -25,13 +24,13 @@ public class AppUserMapper {
         );
     }
 
-    public static AppUser mapToAppUser (AppUserDto appUserDto, Role role, Lieu lieu, Infosprofessionnelles infosprofessionnelles, Personne personne) throws Exception {
+    public static AppUser mapToAppUser (AppUserDto appUserDto, Role role, Lieu lieu, Personne personne) throws Exception {
         AppUser appUser = new AppUser();
         appUser.setIdAppUser(appUserDto.getIdAppUser());
         appUser.setPassword(appUserDto.getPassword());
         appUser.setRole(role);
         appUser.setVille(lieu);
-        appUser.setInfosProfessionnelles(infosprofessionnelles);
+        appUser.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
         appUser.setIdentite(personne);
         return appUser;
     }

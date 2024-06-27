@@ -29,9 +29,8 @@ public class AppUser {
     @JoinColumn(name = "id_ville", nullable = false)
     private Lieu ville;
 
-    @ManyToOne( optional = false)
-    @JoinColumn(name = "id_infos_professionnelles", nullable = false)
-    private Infosprofessionnelles infosProfessionnelles;
+    @Column(name="ADELI")
+    private String numAdeli;
 
     @OneToOne( optional = false)
     @JoinColumn(name = "id_identite", nullable = false)

@@ -47,11 +47,12 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
     //Cryptage via le Mapper
     @Override
     public MedecintraitantDto createMedecintraitant(MedecintraitantDto medecintraitantDto) throws Exception {
+        //Verification si existe déjà par nom, prenom et ville. Si oui lève une exception
         Medecintraitant medecintraitantToSave = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()), Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()),medecintraitantDto.getVille());
         if(medecintraitantToSave!=null){
-            throw new RessourceAlreadyexistsException("This Medecintraitant alredy exists");
+            throw new RessourceAlreadyexistsException("This Medecintraitant already exists");
         }
-        //Verification si homonyme existe ds une autre ville, si non crée l'identité, si oui reutilise la même
+        //Verification si homonyme existe ds une autre ville. si non crée l'identité, si oui reutilise le même ref de personne (tel et email non demandé pour medecin traitant)
         Personne personne = personneRepository.findByNomAndPrenom(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()),Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()));
         if(personne==null){
             personne = new Personne();

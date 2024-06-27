@@ -17,7 +17,6 @@ public class AppUserDto {
     private String nomVille;
     private String codePostal;
     private String numAdeli;
-    private String numSiret;
     private String nomAppUser;
     private String prenomAppUser;
     private String email;
