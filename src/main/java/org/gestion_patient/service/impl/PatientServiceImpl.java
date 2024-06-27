@@ -43,7 +43,7 @@ public class PatientServiceImpl implements PatientService {
         Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndIdentiteTelAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),Crypto.cryptService(patientDto.getTel()),idPraticienConnecte);
         if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date");}
         else{
-            //Verification si identité de la personne déjà enregistrée (pourrait être un patient d'un autre praticien), si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
+            //Verification si identité de la personne déjà enregistrée (pourrait être un patient d'un autre praticien), si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base) - Recherche par nom-prenom-date de naissance
             Personne personneIdNewPatient = personneRepository.findByNomAndPrenomAndTel(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getTel()));
             if (personneIdNewPatient==null){
                 personneIdNewPatient = new Personne();
