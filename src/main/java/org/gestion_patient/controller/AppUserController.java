@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RequestMapping("/api")
-public class PraticienController {
+public class AppUserController {
     private AppUserService appUserService;
 
     @GetMapping(path="/profile")
