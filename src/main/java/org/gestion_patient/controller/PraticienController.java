@@ -1,8 +1,8 @@
 package org.gestion_patient.controller;
 
 import lombok.AllArgsConstructor;
-import org.gestion_patient.entityDto.PraticienDto;
-import org.gestion_patient.service.PraticienService;
+import org.gestion_patient.entityDto.AppUserDto;
+import org.gestion_patient.service.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,35 +15,35 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api")
 public class PraticienController {
-    private PraticienService praticienService;
+    private AppUserService appUserService;
 
     @GetMapping(path="/profile")
-    public ResponseEntity<PraticienDto> profile(Principal principal) throws Exception {
-        PraticienDto praticienDto =  praticienService.loadByEmail(principal.getName());
-        return new ResponseEntity<>(praticienDto,HttpStatus.CREATED);
+    public ResponseEntity<AppUserDto> profile(Principal principal) throws Exception {
+        AppUserDto appUserDto =  appUserService.loadByEmail(principal.getName());
+        return new ResponseEntity<>(appUserDto,HttpStatus.CREATED);
     }
 
     @PostMapping("/praticien")
-    public ResponseEntity<PraticienDto> createNewPraticien(@RequestBody PraticienDto praticienconnecteDto) throws Exception {
-        PraticienDto praticienDtoSaved = praticienService.create(praticienconnecteDto);
-        return new ResponseEntity<>(praticienDtoSaved, HttpStatus.CREATED);
+    public ResponseEntity<AppUserDto> createNewAppUser(@RequestBody AppUserDto appUserDto) throws Exception {
+        AppUserDto appUserDtoSaved = appUserService.create(appUserDto);
+        return new ResponseEntity<>(appUserDtoSaved, HttpStatus.CREATED);
     }
 
     @GetMapping("/praticien/all")
-    public ResponseEntity<List<PraticienDto>> getAllPraticien(){
-        List<PraticienDto> praticiens = praticienService.findAll();
-        return new ResponseEntity<>(praticiens,HttpStatus.OK);
+    public ResponseEntity<List<AppUserDto>> getAlAppUser(){
+        List<AppUserDto> appUsers = appUserService.findAll();
+        return new ResponseEntity<>(appUsers,HttpStatus.OK);
     }
 
     @GetMapping("/praticien/{id}")
-    public ResponseEntity<PraticienDto> getPraticienById(@PathVariable int id) throws Exception {
-        PraticienDto praticienconnecteDto = praticienService.findById(id);
-        return new ResponseEntity<>(praticienconnecteDto,HttpStatus.OK);
+    public ResponseEntity<AppUserDto> getAppUserById(@PathVariable int id) throws Exception {
+        AppUserDto appUserDto = appUserService.findById(id);
+        return new ResponseEntity<>(appUserDto,HttpStatus.OK);
     }
 
     @PutMapping("/praticien/{id}")
-    public ResponseEntity<PraticienDto> updatePraticien(@PathVariable ("id") int id, @RequestBody PraticienDto praticienconnecteDto) throws Exception {
-        PraticienDto updatedPraticien = praticienService.update(id,praticienconnecteDto);
+    public ResponseEntity<AppUserDto> updateAppUser(@PathVariable ("id") int id, @RequestBody AppUserDto appUserDto) throws Exception {
+        AppUserDto updatedPraticien = appUserService.update(id,appUserDto);
         return new ResponseEntity<>(updatedPraticien,HttpStatus.OK);
     }
 

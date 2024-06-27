@@ -1,3 +1,5 @@
 
-i
-java:S1612-"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(Í¸‚‰8®˜Éª…2
+†
+java:S5344#">Don't use the default "PasswordEncoder" relying on plain-text.(Ø—Ê¹ûÿÿÿÿ8€†×Î…2J$5980e6cc-4f1a-4eb2-9c84-e87ad4c3955a
+
+java:S1612-"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(Í¸‚‰8õãê÷„2J$64933e08-787e-4ab2-890e-9b784b3100b2

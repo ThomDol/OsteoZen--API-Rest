@@ -1,6 +1,6 @@
 
-	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¡ªÕ¦…2J$57687cb5-5aa3-4841-ab33-8da705a0487f
-™
-java:S3776)"QRefactor this method to reduce its Cognitive Complexity from 24 to the 2 allowed.(§ˆùøÿÿÿÿ8Ş«Õ¦…2J$0399a707-2a74-4025-9d7b-39636a5bcc46
+	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8é•…Ï…2J$5831195a-6dd9-4626-b566-16aa4e6e3fc5
 ”
-java:S3776u"QRefactor this method to reduce its Cognitive Complexity from 30 to the 2 allowed.(Š½Àï8ê«Õ¦…2J$990060b1-d670-459b-9875-a509e24cdf8e
+java:S3776)"QRefactor this method to reduce its Cognitive Complexity from 24 to the 2 allowed.(•âå8„—…Ï…2J$0d0d2533-d3ae-4be5-a484-9e79436fba52
+”
+java:S3776{"QRefactor this method to reduce its Cognitive Complexity from 30 to the 2 allowed.(€¼İ†8—…Ï…2J$a68d1c5e-feaf-4310-be0c-a00d6102e066

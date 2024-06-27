@@ -10,7 +10,7 @@ import org.gestion_patient.entityDto.PatientDto;
 import org.gestion_patient.repository.LieuRepository;
 import org.gestion_patient.repository.MedecintraitantRepository;
 import org.gestion_patient.repository.ProfessionRepository;
-import org.gestion_patient.security.PraticienDetailService;
+import org.gestion_patient.security.AppUserDetailService;
 import org.gestion_patient.security.SecurityConfig;
 import org.gestion_patient.service.PatientService;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ public class PatientControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private PraticienDetailService praticienDetailService;
+    private AppUserDetailService appUserDetailService;
 
     @Test
     public void createPatient () throws Exception {

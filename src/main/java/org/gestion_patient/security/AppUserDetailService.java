@@ -1,11 +1,10 @@
 package org.gestion_patient.security;
 import lombok.AllArgsConstructor;
-import org.gestion_patient.entityDto.PraticienDto;
+import org.gestion_patient.entityDto.AppUserDto;
 import org.gestion_patient.exception.ResourceNotFoundException;
-import org.gestion_patient.service.PraticienService;
+import org.gestion_patient.service.AppUserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,9 +15,9 @@ import java.util.Collection;
 
 @Service
 @AllArgsConstructor
-public class PraticienDetailService implements UserDetailsService {
+public class AppUserDetailService implements UserDetailsService {
 
-    private PraticienService praticienService;
+    private AppUserService appUserService;
 
 
     @Override
@@ -26,16 +25,16 @@ public class PraticienDetailService implements UserDetailsService {
 
         try {
             //Charger l'utilisateur lié à cet email
-            PraticienDto praticienDto = praticienService.loadByEmail(email);
-            if (praticienDto == null) {
-                throw new ResourceNotFoundException("no praticien found with "+email);
+            AppUserDto appUserDto = appUserService.loadByEmail(email);
+            if (appUserDto == null) {
+                throw new ResourceNotFoundException("no appUser found with "+email);
             }
-            String decryptedEmail = praticienDto.getEmail();
-            String password = praticienDto.getPassword();
-            int id = praticienDto.getIdPraticien();
+            String decryptedEmail = appUserDto.getEmail();
+            String password = appUserDto.getPassword();
+            int id = appUserDto.getIdAppUser();
 
             Collection<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(praticienDto.getNomRole()));
+            authorities.add(new SimpleGrantedAuthority(appUserDto.getNomRole()));
             return new PraticienDetails(
                     id,
                     decryptedEmail,

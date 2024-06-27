@@ -26,7 +26,7 @@ public class PatientServiceImpl implements PatientService {
     private TypePatientRepository typePatientRepository;
     private MedecintraitantRepository medecintraitantRepository;
     private PersonneRepository personneRepository;
-    private PraticienRepository praticienconnecteRepository;
+    private AppUserRepository praticienconnecteRepository;
     private AccouchementRepository accouchementRepository;
     private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private AntecedentBebeRepository antecedentBebeRepository;
@@ -38,12 +38,12 @@ public class PatientServiceImpl implements PatientService {
 
     //Creation d'un nouveau Patient
     @Override
-    public PatientDto createPatient(PatientDto patientDto,int idPraticienConnecte) throws Exception {
+    public PatientDto createPatient(PatientDto patientDto,int idAppUser) throws Exception {
         //Verification si Patient existe déjà avec ce praticien (Cryptage des données Dto avant comparasion, car données cryptées dans la base)
-        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndIdentiteTelAndPraticienIdPraticien(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),Crypto.cryptService(patientDto.getTel()),idPraticienConnecte);
-        if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this praticien with nom and birth date");}
+        Patient patientToCreate = patientRepository.findByIdentiteNomAndIdentitePrenomAndDateNaissanceAndIdentiteTelAndAppUserIdAppUser(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getDateNaissance()),Crypto.cryptService(patientDto.getTel()),idAppUser);
+        if(patientToCreate!=null){throw new RessourceAlreadyexistsException("Patient already exists fot this AppUser");}
         else{
-            //Verification si identité de la personne déjà enregistrée (pourrait être un patient d'un autre praticien), si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base) - Recherche par nom-prenom-date de naissance
+            //Verification si identité de la personne déjà enregistrée (pourrait être un patient d'un autre praticien), si oui l'utilise. Sinon creation (Cryptage des données Dto avant comparasion, car données cryptées dans la base) - Recherche par nom-prenom-tel
             Personne personneIdNewPatient = personneRepository.findByNomAndPrenomAndTel(Crypto.cryptService(patientDto.getNomPatient().toUpperCase()),Crypto.cryptService(patientDto.getPrenomPatient().toUpperCase()),Crypto.cryptService(patientDto.getTel()));
             if (personneIdNewPatient==null){
                 personneIdNewPatient = new Personne();
@@ -82,16 +82,16 @@ public class PatientServiceImpl implements PatientService {
             if(patientDto.getNomMedecinTraitant()!=null && patientDto.getPrenomMedecinTraitant()!=null){medecintraitant = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(patientDto.getNomMedecinTraitant()), Crypto.cryptService(patientDto.getPrenomMedecinTraitant()),patientDto.getVilleMedecinTraitant());}
             else{medecintraitant=null;}
             //Persisitence du patient ds la base de données
-            Praticien praticienconnecte = praticienconnecteRepository.findById(idPraticienConnecte).orElseThrow(() -> new ResourceNotFoundException("Praticien not found with given Id" + idPraticienConnecte));
-            Patient patientTSave = PatientMapper.mapToPatient(patientDto, lieu, genre, profession, typePatient, medecintraitant, personneIdNewPatient, praticienconnecte);
+            AppUser appUser = praticienconnecteRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
+            Patient patientTSave = PatientMapper.mapToPatient(patientDto, lieu, genre, profession, typePatient, medecintraitant, personneIdNewPatient, appUser);
             return PatientMapper.mapToPatientDto(patientRepository.save(patientTSave));}
     }
 
 
     @Override
-    public List<PatientDto> getAllPatientByPraticien(int idPraticien) {
-        Praticien praticien= praticienconnecteRepository.findById(idPraticien).orElseThrow(()->new ResourceNotFoundException("Praticien not found with given Id"+idPraticien));
-        List<Patient> patients = patientRepository.findAllByPraticien(praticien);
+    public List<PatientDto> getAllPatientByAppUser(int idAppUser) {
+        AppUser appUser = praticienconnecteRepository.findById(idAppUser).orElseThrow(()->new ResourceNotFoundException("AppUser not found with given Id"+idAppUser));
+        List<Patient> patients = patientRepository.findAllByAppUser(appUser);
 
         return patients.stream().map(patient-> {
             try {
@@ -102,10 +102,16 @@ public class PatientServiceImpl implements PatientService {
         }).toList();
     }
 
+    @Override
+    public PatientDto getById(int id) throws Exception {
+        Patient patient = patientRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Patient not found with given Id"+id));
+        return PatientMapper.mapToPatientDto(patient);
+    }
+
 
     @Override
-    public PatientDto getByIdAndIdPraticien(int id,int idPraticien) throws Exception {
-        Patient patient = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
+    public PatientDto getByIdAndIdAppUser(int id,int idAppUser) throws Exception {
+        Patient patient = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
         if (patient != null) {
             return PatientMapper.mapToPatientDto(patient);
         } else {
@@ -114,8 +120,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto updatePatient(int id, PatientDto updatedPatientDto, int idPraticien) throws Exception {
-        Patient patientToUpdate = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
+    public PatientDto updatePatient(int id, PatientDto updatedPatientDto, int idAppUser) throws Exception {
+        Patient patientToUpdate = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
         if (patientToUpdate != null) {
             //Set seulement des infos dont les données ont été remplies ds le formulaire
             if (updatedPatientDto.getDateNaissance() != null) {
@@ -186,8 +192,8 @@ public class PatientServiceImpl implements PatientService {
     // L'annotation @Transactional garantit que toutes les suppressions sont exécutées dans une même transaction. Si une suppression échoue, toutes les modifications sont annulées, assurant la cohérence de la base de données.
     @Transactional
     @Override
-    public void deletePatientByPraticien(int id, int idPraticien) {
-        Patient patientToDelete = patientRepository.findByIdPatientAndPraticienIdPraticien(id, idPraticien);
+    public void deletePatientByAppUser(int id, int idAppUser) {
+        Patient patientToDelete = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
         if (patientToDelete == null) {
             throw new ResourceNotFoundException("Patient not Found");
         }

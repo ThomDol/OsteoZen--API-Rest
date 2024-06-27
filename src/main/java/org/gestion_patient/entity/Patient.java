@@ -50,7 +50,7 @@ public class Patient {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_praticien", nullable = false)
-    private Praticien praticien;
+    private AppUser appUser;
 
 
 

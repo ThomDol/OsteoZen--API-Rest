@@ -1,4 +1,8 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÓÄªµƒ2J$ff61d77e-3bf3-43cb-bc19-24b5242d322a
-˜
-java:S1192*"UDefine a constant instead of duplicating this literal "Rendezvous not found" 3 times.(§åÓÃ8ÓÄªµƒ2J$f7e5d0eb-4973-4de9-9e9b-cc475f4e4f2b
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8æˆÎÏ…2J$c06915ba-6831-4538-92ce-a2536d4160a6
+—
+java:S1192&"UDefine a constant instead of duplicating this literal "RendezVous not found" 3 times.(øú³&8èˆÎÏ…2J$710aad33-f9e2-40ec-a000-3dfeb88ac8b7
+€
+java:S18544">Remove this useless assignment to local variable "rendezvous".(øú³&8øˆÎÏ…2J$ae0583f7-12ff-463f-9e33-3157a33ac813
+q
+java:S14814"/Remove this unused "rendezvous" local variable.(øú³&8úˆÎÏ…2J$41bceb0b-5593-4d85-be75-b600d32e16b8

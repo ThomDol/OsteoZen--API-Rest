@@ -24,27 +24,27 @@ public class RendezvousController {
    return new ResponseEntity<>(rendezVousDtoCreated , HttpStatus.CREATED );
  }
 
-    @GetMapping("/{idPraticien}/{id}")
-    public ResponseEntity <RendezvousDto> getRendezVousById ( @PathVariable int id,@PathVariable int idPraticien) throws Exception {
-    RendezvousDto getRendezVous = rendezvousService.findByIdAndIdPraticien(id,idPraticien);
+    @GetMapping("/{id}")
+    public ResponseEntity <RendezvousDto> getRendezVousById ( @PathVariable int id) throws Exception {
+    RendezvousDto getRendezVous = rendezvousService.findById(id);
     return new ResponseEntity<>( getRendezVous, HttpStatus.OK );
     }
 
 
-    @GetMapping("/all/{idPatient}/{idPraticien}")
-    public ResponseEntity<List<RendezvousDto>> getAllRendezVousByPatientAndPraticien(@PathVariable int idPatient,@PathVariable int idPraticien){
-    List<RendezvousDto> listRendezVous = rendezvousService.findAllByPatientAndPraticien(idPatient,idPraticien);
+    @GetMapping("/all/{idPatient}")
+    public ResponseEntity<List<RendezvousDto>> getAllRendezVousByPatient(@PathVariable int idPatient ){
+    List<RendezvousDto> listRendezVous = rendezvousService.findAllByPatient(idPatient);
     return new ResponseEntity<>(listRendezVous, HttpStatus.OK );
     }
 
-    @PutMapping ("/{idPraticien}/{id}")
-     public  ResponseEntity<String> updateRendezVous (@PathVariable int id ,@PathVariable int idPraticien, @RequestBody RendezvousDto rendezvousDto) throws Exception {
-    rendezvousService.update(id,idPraticien, rendezvousDto);
+    @PutMapping ("/{id}")
+     public  ResponseEntity<String> updateRendezVous (@PathVariable int id , @RequestBody RendezvousDto rendezvousDto) throws Exception {
+    rendezvousService.update(id,rendezvousDto);
     return new ResponseEntity<>("Rendez-vous updated with success !", HttpStatus.OK );
     }
-    @DeleteMapping("/{idPraticien}/{id}")
-    public ResponseEntity<String> deleteRendezVous (@PathVariable int id,@PathVariable int idPraticien){
-    rendezvousService.deleteRendezvous(id,idPraticien);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteRendezVous (@PathVariable int id){
+    rendezvousService.deleteRendezvous(id);
     return new ResponseEntity<>("Rendez-vous deleted with success !", HttpStatus.OK );
     }
  }

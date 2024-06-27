@@ -26,12 +26,12 @@ public class PatientMapper {
                 Crypto.decryptService(patient.getIdentite().getPrenom()),
                 patient.getIdentite().getEmail()==null?null:Crypto.decryptService(patient.getIdentite().getEmail()),
                 DataUtil.displayStringDecrypt(patient.getIdentite().getTel()),
-                patient.getPraticien().getIdPraticien()
+                patient.getAppUser().getIdAppUser()
 
         );
     }
 
-    public static Patient mapToPatient(PatientDto patientDto, Lieu lieu, Genre genre , Profession profession , TypePatient typePatient , Medecintraitant medecintraitant , Personne personne, Praticien praticienconnecte) throws Exception {
+    public static Patient mapToPatient(PatientDto patientDto, Lieu lieu, Genre genre , Profession profession , TypePatient typePatient , Medecintraitant medecintraitant , Personne personne, AppUser praticienconnecte) throws Exception {
         Patient patient=new Patient();
         patient.setIdPatient(patientDto.getIdPatient());
         patient.setDateNaissance(Crypto.cryptService(patientDto.getDateNaissance()));
@@ -41,7 +41,7 @@ public class PatientMapper {
         patient.setTypePatient(typePatient);
         if(medecintraitant!=null){patient.setMedecinTraitant(medecintraitant);}
         patient.setIdentite(personne);
-        patient.setPraticien(praticienconnecte);
+        patient.setAppUser(praticienconnecte);
 
 
         return patient;}

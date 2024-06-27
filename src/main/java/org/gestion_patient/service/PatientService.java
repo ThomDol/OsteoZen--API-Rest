@@ -8,14 +8,16 @@ import java.util.List;
 public interface PatientService {
     PatientDto createPatient(PatientDto patientDto, int idPraticienConnecte) throws Exception;
 
-    List<PatientDto> getAllPatientByPraticien(int idPraticien);
+    List<PatientDto> getAllPatientByAppUser(int idPraticien);
 
 
-    void deletePatientByPraticien(int id,int idPraticien);
+    void deletePatientByAppUser(int id,int idPraticien);
+
+    PatientDto getById(int id) throws Exception;
 
     PatientDto updatePatient(int id, PatientDto upadtedPatientDto,int idPraticien) throws Exception;
 
-    PatientDto getByIdAndIdPraticien(int id,int idPraticien) throws Exception;
+    PatientDto getByIdAndIdAppUser(int id,int idPraticien) throws Exception;
 
 
 

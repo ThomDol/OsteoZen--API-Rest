@@ -21,8 +21,8 @@ public class RendezvousServiceImpl implements RendezvousService {
     private PatientRepository patientRepository;
 
     @Override
-    public List<RendezvousDto> findAllByPatientAndPraticien(int idPatient,int idPraticien) {
-        List<Rendezvous> rendezvousList = rendezvousRepository.findAllByPatientIdPatientAndPatientPraticienIdPraticien(idPatient,idPraticien);
+    public List<RendezvousDto> findAllByPatient(int idPatient) {
+        List<Rendezvous> rendezvousList = rendezvousRepository.findAllByPatientIdPatient(idPatient);
         return rendezvousList.stream().map(rendezvous-> {
             try {
                 return RendezvousMapper.mapToRendezvousDto(rendezvous);
@@ -34,13 +34,9 @@ public class RendezvousServiceImpl implements RendezvousService {
     }
 
     @Override
-    public RendezvousDto findByIdAndIdPraticien(int id,int idPraticien) throws Exception {
-        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id, idPraticien);
-        if (rendezvous != null) {
-            return RendezvousMapper.mapToRendezvousDto(rendezvous);
-        } else {
-            throw new ResourceNotFoundException("Rendezvous not found");
-        }
+    public RendezvousDto findById(int id) throws Exception {
+        Rendezvous rendezvous = rendezvousRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("RendezVous not found" ));
+        return RendezvousMapper.mapToRendezvousDto(rendezvous);
     }
 
     @Override
@@ -52,25 +48,16 @@ public class RendezvousServiceImpl implements RendezvousService {
     }
 
     @Override
-    public void deleteRendezvous(int id,int idPraticien) {
-        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id, idPraticien);
-        if (rendezvous != null) {
-            rendezvousRepository.deleteById(id);}
-        else{
-            throw new ResourceNotFoundException("Rendezvous not found");
-        }
+    public void deleteRendezvous(int id) {
+        Rendezvous rendezvous = rendezvousRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("RendezVous not found" ));
+        rendezvousRepository.deleteById(id);}
 
-    }
 
     @Override
-    public RendezvousDto update(int id,int idPraticien, RendezvousDto rendezvousDto) throws Exception {
-        Rendezvous rendezvous = rendezvousRepository.findByIdRendezVousAndPatientPraticienIdPraticien(id,idPraticien);
-        if (rendezvous != null) {
+    public RendezvousDto update(int id, RendezvousDto rendezvousDto) throws Exception {
+        Rendezvous rendezvous = rendezvousRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("RendezVous not found" ));
         rendezvous.setSyntheseRendezVous(Crypto.cryptService(rendezvousDto.getSyntheseRendezVous()));
-        return RendezvousMapper.mapToRendezvousDto(rendezvousRepository.save(rendezvous));}
-        else{ throw new ResourceNotFoundException("Rendezvous not found");}
-
-
+        return RendezvousMapper.mapToRendezvousDto(rendezvousRepository.save(rendezvous));
     }
 
 }

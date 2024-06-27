@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.AntecedentClassique;
 import org.gestion_patient.entity.Patient;
-import org.gestion_patient.entity.Praticien;
 import org.gestion_patient.entityDto.AntecedentClassiqueDto;
-import org.gestion_patient.exception.ForbiddenAccessException;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.mapper.AntecedentClassiqueMapper;
 import org.gestion_patient.repository.AntecedentClassiqueRepository;
 import org.gestion_patient.repository.PatientRepository;
-import org.gestion_patient.repository.PraticienRepository;
+import org.gestion_patient.repository.AppUserRepository;
 import org.gestion_patient.service.AntecedentClassiqueService;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class AntecedentClassiqueServiceImpl implements AntecedentClassiqueService {
     private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private PatientRepository patientRepository;
-    private PraticienRepository praticienRepository;
+    private AppUserRepository appUserRepository;
 
     @Override
     public AntecedentClassiqueDto create(AntecedentClassiqueDto antecedentClassiqueDto, int idPatient) throws Exception {

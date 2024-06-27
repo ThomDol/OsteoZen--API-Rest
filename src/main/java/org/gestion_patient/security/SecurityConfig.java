@@ -25,14 +25,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
 
-    private PraticienDetailService praticienDetailService;
+    private AppUserDetailService appUserDetailService;
     private AuthenticationConfiguration authConfiguration;
 
 
 
     public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(praticienDetailService).passwordEncoder(passwordEncoder);
+        authenticationManagerBuilder.userDetailsService(appUserDetailService).passwordEncoder(passwordEncoder);
         return authenticationManagerBuilder.build();
 
     }

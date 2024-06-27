@@ -1,6 +1,3 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(æ©÷äıÿÿÿÿ8íÍñ…2J$4d461f1a-9501-440b-ad62-66f7daa1bfd7
 ‚
-java:S1118":Add a private constructor to hide the implicit public one.(Œ¥İìıÿÿÿÿ8»Ó¬±€2J$4564072a-98e3-4981-b72c-21213ba35dfe
-´
-java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(æ©÷äıÿÿÿÿ8ùÍñ…2J$3a3b32c6-532c-4747-b485-959f08494e65
+java:S1118":Add a private constructor to hide the implicit public one.(Œ¥İìıÿÿÿÿ8»Ó¬±€2J$5362157c-3648-47e7-879f-3aa4e9a65325

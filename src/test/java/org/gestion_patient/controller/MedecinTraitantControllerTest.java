@@ -2,7 +2,7 @@ package org.gestion_patient.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gestion_patient.entityDto.MedecintraitantDto;
-import org.gestion_patient.security.PraticienDetailService;
+import org.gestion_patient.security.AppUserDetailService;
 import org.gestion_patient.security.SecurityConfig;
 import org.gestion_patient.service.MedecinTraitantService;
 import org.junit.jupiter.api.Test;
@@ -42,7 +42,7 @@ public class MedecinTraitantControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private PraticienDetailService praticienDetailService;
+    private AppUserDetailService appUserDetailService;
 
 
     @Test

@@ -1,9 +1,9 @@
 
-W	java:S107""<Method has 8 parameters, which is greater than 7 authorized.(¯Å>8óüÄ¯‚2
-W
-java:S1118	":Add a private constructor to hide the implicit public one.(ê”¸ä8õüÄ¯‚2
-m
+~	java:S107""<Method has 8 parameters, which is greater than 7 authorized.(¶‘İß8óüÄ¯‚2J$ee1eeb32-5c5d-451d-a170-3550731800f5
+}
+java:S1118	":Add a private constructor to hide the implicit public one.(ê”¸ä8õüÄ¯‚2J$4a573056-7845-489e-94f1-417d948f8a28
+“
 java:S3776
-"PRefactor this method to reduce its Cognitive Complexity from 7 to the 2 allowed.(›ıÁ—8öüÄ¯‚2
-l
-java:S3776""PRefactor this method to reduce its Cognitive Complexity from 3 to the 2 allowed.(¯Å>8ıüÄ¯‚2
+"PRefactor this method to reduce its Cognitive Complexity from 7 to the 2 allowed.(›ıÁ—8öüÄ¯‚2J$0482b225-8ac6-4b83-a031-824d74c0d65d
+“
+java:S3776""PRefactor this method to reduce its Cognitive Complexity from 3 to the 2 allowed.(¶‘İß8ıüÄ¯‚2J$e3aeac30-b383-400d-b7ae-220fd50fa776

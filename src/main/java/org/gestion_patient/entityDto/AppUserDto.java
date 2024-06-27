@@ -9,17 +9,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PraticienDto {
+public class AppUserDto {
 
-    private int idPraticien;
+    private int idAppUser;
     private String password;
     private String nomRole;
     private String nomVille;
     private String codePostal;
     private String numAdeli;
     private String numSiret;
-    private String nomPraticienConnecte;
-    private String prenomPraticienConnecte;
+    private String nomAppUser;
+    private String prenomAppUser;
     private String email;
     private String tel;
 
