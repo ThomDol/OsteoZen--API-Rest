@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.*;
 import org.gestion_patient.entityDto.AppUserDto;
+import org.gestion_patient.entityDto.ChangePassword;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.exception.RessourceAlreadyexistsException;
 import org.gestion_patient.mapper.AppUserMapper;
@@ -96,7 +97,7 @@ public class AppUserServiceImpl implements AppUserService {
             appUser.setPassword(passwordEncoder.encode(appUserDto.getPassword()));}
         //Nouvelle ville mise à jour si besoin. Si pas ds base, sera créee
         Lieu lieu;
-        if(appUserDto.getCodePostal()!=null && appUserDto.getNomVille()!=null){
+        if(appUserDto.getCodePostal()!=null && appUserDto.getNomVille()!=null && !appUserDto.getNomVille().equals(appUser.getVille().getNomVille())){
             lieu = lieuRepository.findByNomVilleAndCodePostal(appUserDto.getNomVille().toUpperCase(), appUserDto.getCodePostal());
             if(lieu==null){
                 lieu = new Lieu();
@@ -116,7 +117,7 @@ public class AppUserServiceImpl implements AppUserService {
         personneRepository.save(personne);
         appUser.setIdentite(personne);
 
-        if(appUserDto.getNumAdeli()!=null){
+        if(appUserDto.getNumAdeli()!=null && !Crypto.cryptService(appUserDto.getNumAdeli()).equals(appUser.getNumAdeli())){
             AppUser appUserDouble =appUserRepository.findByNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
             if(appUserDouble!=null){throw new RessourceAlreadyexistsException("AppUser already exists with this numero Adeli");}
             else{appUser.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));}
@@ -136,10 +137,21 @@ public class AppUserServiceImpl implements AppUserService {
         else {throw new ResourceNotFoundException("not found with this email "+email);}
     }
 
+    @Override
+    public void updatePassword(ChangePassword changePassword, int id) {
+        AppUser appUser = appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given id: " + id));
+        if (!passwordEncoder.matches(changePassword.getOldPassword(), appUser.getPassword())) {
+            throw new ResourceNotFoundException("Mauvais mot de passe");
+        } else {
+            appUser.setPassword(passwordEncoder.encode(changePassword.getNewPassword()));
+            appUserRepository.save(appUser);
+        }
+    }
+    }
 
 
 
 
 
 
-}
+

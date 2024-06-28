@@ -2,6 +2,7 @@ package org.gestion_patient.controller;
 
 import lombok.AllArgsConstructor;
 import org.gestion_patient.entityDto.AppUserDto;
+import org.gestion_patient.entityDto.ChangePassword;
 import org.gestion_patient.service.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,12 @@ public class AppUserController {
     public ResponseEntity<AppUserDto> updateAppUser(@PathVariable ("id") int id, @RequestBody AppUserDto appUserDto) throws Exception {
         AppUserDto updatedPraticien = appUserService.update(id,appUserDto);
         return new ResponseEntity<>(updatedPraticien,HttpStatus.OK);
+    }
+
+    @PostMapping("/praticien/updateMdp/{id}")
+    public ResponseEntity<String> upadtePassword(@PathVariable int id, @RequestBody ChangePassword changePassword){
+        appUserService.updatePassword(changePassword,id);
+        return new ResponseEntity<>("updated with success",HttpStatus.OK);
     }
 
 

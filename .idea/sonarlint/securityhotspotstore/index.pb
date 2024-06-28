@@ -277,3 +277,7 @@ s
 Csrc/main/java/org/gestion_patient/controller/AppUserController.java,1\6\1698a33b936384b168192b728659e4d52bfab7a7
 t
 Dsrc/main/java/org/gestion_patient/security/AppUserDetailService.java,2\1\21c91a31df99964a91164f8d49e4fb0389b2d63a
+m
+=src/main/java/org/gestion_patient/service/AppUserService.java,4\4\442105d99c34390e600e08c582d450f483efa7db
+o
+?src/main/java/org/gestion_patient/entityDto/ChangePassword.java,8\8\8814dcb7d26eed3e9131d15359dfcd276fde9fa7
