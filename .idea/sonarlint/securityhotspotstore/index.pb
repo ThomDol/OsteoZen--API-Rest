@@ -275,3 +275,5 @@ v
 Fsrc/main/java/org/gestion_patient/service/impl/AppUserServiceImpl.java,c\b\cb00f06ee76da39f5e0aa53ab5ab4dc270e815ec
 s
 Csrc/main/java/org/gestion_patient/controller/AppUserController.java,1\6\1698a33b936384b168192b728659e4d52bfab7a7
+t
+Dsrc/main/java/org/gestion_patient/security/AppUserDetailService.java,2\1\21c91a31df99964a91164f8d49e4fb0389b2d63a
