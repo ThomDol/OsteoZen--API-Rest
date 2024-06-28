@@ -58,9 +58,11 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
             personne = new Personne();
             personne.setNom(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()));
             personne.setPrenom(Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()));
-            personne=personneRepository.save(personne);}
+            personne=personneRepository.save(personne);
+            }
         //Lieu récupéré dans le front et crée avant si n'existe pas ds la bdd
-        Lieu lieu = lieuRepository.findByNomVille(medecintraitantDto.getVille());
+        Lieu lieu = lieuRepository.findByNomVille(medecintraitantDto.getVille().toUpperCase());
+        if(lieu==null){throw new ResourceNotFoundException("lieu not found");}
         Medecintraitant medecintraitant = MedecinTraitantMapper.mapToMedecinTraitant(medecintraitantDto,personne,lieu);
         Medecintraitant medecintraitantSaved = medecintraitantRepository.save(medecintraitant);
         return MedecinTraitantMapper.mapToMedecinTraitantDto(medecintraitantSaved);

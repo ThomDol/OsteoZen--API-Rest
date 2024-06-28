@@ -31,8 +31,6 @@ i
 9src/main/java/org/gestion_patient/entity/TypePatient.java,b\5\b5f97d96014e2760282a029a379e939afd6e8c8a
 q
 Asrc/main/java/org/gestion_patient/repository/GenreRepository.java,e\a\ea03439d1fd7ee32ede47c77b8db92375801e397
-€
-Psrc/main/java/org/gestion_patient/repository/InfosprofessionnelleRepository.java,5\d\5d4b5bb35320bdded0307db70dd2bd178ec14492
 p
 @src/main/java/org/gestion_patient/repository/LieuRepository.java,8\2\8217ada4e589cc06f9f116c6bea9092fdc2348ff
 {
@@ -57,8 +55,6 @@ w
 Gsrc/main/java/org/gestion_patient/repository/TypePatientRepository.java,5\d\5db417b1de4207c363735eb3b0d1f8aa452243da
 p
 @src/main/java/org/gestion_patient/entityDto/AccouchementDto.java,2\1\2100c9898beb01a1090a3335150fa76273b0b6ab
-s
-Csrc/main/java/org/gestion_patient/entity/Infosprofessionnelles.java,a\1\a1d24ad2a168be26af00fe518a98f6e914580ff7
 h
 8src/main/java/org/gestion_patient/entityDto/LieuDto.java,6\b\6b6a9895899f001a6583b5aafbb60885ea0341e4
 s
