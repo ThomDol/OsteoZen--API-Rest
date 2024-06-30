@@ -176,7 +176,6 @@ public class PatientServiceImpl implements PatientService {
                 professionRepository.save(profession);}
                 patientToUpdate.setProfession(profession);
                 }
-
             if (updatedPatientDto.getNomMedecinTraitant() != null && updatedPatientDto.getPrenomMedecinTraitant() != null && updatedPatientDto.getVilleMedecinTraitant() != null) {
                 patientToUpdate.setMedecinTraitant(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(updatedPatientDto.getNomMedecinTraitant()), Crypto.cryptService(updatedPatientDto.getPrenomMedecinTraitant()), updatedPatientDto.getVilleMedecinTraitant()));
             }

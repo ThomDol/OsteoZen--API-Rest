@@ -53,15 +53,19 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
             throw new RessourceAlreadyexistsException("This Medecintraitant already exists");
         }
         //Verification si homonyme existe ds une autre ville. si non crée l'identité, si oui reutilise le même ref de personne (tel et email non demandé pour medecin traitant)
+        System.out.println("check");
         Personne personne = personneRepository.findByNomAndPrenom(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()),Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()));
         if(personne==null){
+
             personne = new Personne();
-            personne.setNom(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()));
-            personne.setPrenom(Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()));
+            personne.setNom(Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant().toUpperCase()));
+            personne.setPrenom(Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant().toUpperCase()));
             personne=personneRepository.save(personne);
             }
+
         //Lieu récupéré dans le front et crée avant si n'existe pas ds la bdd
         Lieu lieu = lieuRepository.findByNomVille(medecintraitantDto.getVille().toUpperCase());
+
         if(lieu==null){throw new ResourceNotFoundException("lieu not found");}
         Medecintraitant medecintraitant = MedecinTraitantMapper.mapToMedecinTraitant(medecintraitantDto,personne,lieu);
         Medecintraitant medecintraitantSaved = medecintraitantRepository.save(medecintraitant);
