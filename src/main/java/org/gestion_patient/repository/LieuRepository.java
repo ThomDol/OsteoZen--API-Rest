@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LieuRepository extends JpaRepository<Lieu,Integer> {
-    Lieu findByNomVilleAndCodePostal(String nomVille,String codePotal);
-    Lieu findByNomVille(String nomVille);
+    Lieu findByNomVilleAndCodePostal(String nomVille,String codePostal);
+
 }

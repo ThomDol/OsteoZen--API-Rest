@@ -1,13 +1,11 @@
 
 f
-java:S57861"Remove this 'public' modifier.(ĞÌ®¾øÿÿÿÿ8Í¡³‰…2J$d53ae400-8634-46f8-8aee-00705fdf1e8d
+java:S57861"Remove this 'public' modifier.(ĞÌ®¾øÿÿÿÿ8ß•øí†2J$9bb37336-c3df-4d5c-be5b-25376a95e69e
+a
+java:S5786S"Remove this 'public' modifier.(Ÿ Ó8ß•øí†2J$a3beb53c-37ae-4dbc-8927-617eef43e643
 f
-java:S5786O"Remove this 'public' modifier.(Û—óÃıÿÿÿÿ8Í¡³‰…2J$1113fde4-0542-4db0-ad87-e24db9745b22
+java:S5786t"Remove this 'public' modifier.(¶ÏÚõûÿÿÿÿ8ß•øí†2J$326f4e91-385a-40e0-ad0f-c42354dfe23a
 a
-java:S5786q"Remove this 'public' modifier.(Ÿ Ó8Í¡³‰…2J$a5bff50d-1433-4830-b57a-a85bd466494a
-b
-java:S5786"Remove this 'public' modifier.(ƒãÍ8Í¡³‰…2J$b21f6e2e-7246-4874-89ff-4c0e520231ea
-a
-java:S5786""Remove this 'public' modifier.(æŠĞÕ8Í¡³‰…2J$e8cd5a06-d136-4c1e-8197-5d4313db530c
-Œ
-java:S6068"CRemove this useless "eq(...)" invocation; pass the values directly.(ÿú¿Äıÿÿÿÿ8×¡³‰…2J$34f7697c-c9d8-431b-a33b-9510e1fef0c7
+java:S5786""Remove this 'public' modifier.(æŠĞÕ8ß•øí†2J$52e8c93c-fb31-49a3-a65c-49d5ba352548
+‹
+java:S6068e"CRemove this useless "eq(...)" invocation; pass the values directly.(ÿú¿Äıÿÿÿÿ8á•øí†2J$4c6ab9cf-729e-4d87-8ba5-b692c5cc099a

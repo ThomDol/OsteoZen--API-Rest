@@ -12,7 +12,8 @@ public class MedecinTraitantMapper {
                 medecintraitant.getIdMedecinTraitant(),
                 Crypto.decryptService(medecintraitant.getIdentiteDoc().getNom()),
                 Crypto.decryptService(medecintraitant.getIdentiteDoc().getPrenom()),
-                medecintraitant.getLieu().getNomVille()
+                medecintraitant.getLieu().getNomVille(),
+                medecintraitant.getLieu().getCodePostal()
         );
     }
     //Personne associée sera cryptée avant utilisation du Mapper

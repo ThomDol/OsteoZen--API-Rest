@@ -30,12 +30,14 @@ public class MedecinTraitantController {
 
     @PostMapping
     public ResponseEntity <MedecintraitantDto> createMedecinTraitant (@RequestBody MedecintraitantDto medecintraitantDto) throws Exception {
-       MedecintraitantDto medecintraitant = medecinTraitantService.createMedecintraitant(medecintraitantDto);
-       return new ResponseEntity<>(medecintraitant, HttpStatus.CREATED);
+       MedecintraitantDto medecintraitantToCeateDto = medecinTraitantService.createMedecintraitant(medecintraitantDto);
+       return new ResponseEntity<>(medecintraitantToCeateDto, HttpStatus.CREATED);
       }
-    @PutMapping("/{id}")
-    public ResponseEntity<MedecintraitantDto > updateMedecinTraitant (@RequestBody MedecintraitantDto medecintraitantDto , @PathVariable ("id") int id) throws Exception {
-       MedecintraitantDto medecinTraitantDtoUpdated = medecinTraitantService.updateMedecinTraintant(medecintraitantDto, id);
-       return new ResponseEntity<>(medecinTraitantDtoUpdated , HttpStatus.OK);
-      }
+
+      @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteMedecinTraitant (@PathVariable int id) {
+        medecinTraitantService.delete(id);
+        return new ResponseEntity<>("Deletion complete",HttpStatus.OK);
+    }
+
 }

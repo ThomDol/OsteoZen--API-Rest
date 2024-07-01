@@ -30,7 +30,6 @@ public class PatientServiceImpl implements PatientService {
     private AccouchementRepository accouchementRepository;
     private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private AntecedentBebeRepository antecedentBebeRepository;
-    private GrossesseRepository grossesseRepository;
     private RendezvousRepository rendezvousRepository;
 
 
@@ -79,7 +78,9 @@ public class PatientServiceImpl implements PatientService {
             else{profession =null;}
             //Medecin traitant récupéré ds le front si saisi, et enregistré en bdd si pas déjà dedans, avant soumission de cette requete
             Medecintraitant medecintraitant;
-            if(patientDto.getNomMedecinTraitant()!=null && patientDto.getPrenomMedecinTraitant()!=null){medecintraitant = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(patientDto.getNomMedecinTraitant()), Crypto.cryptService(patientDto.getPrenomMedecinTraitant()),patientDto.getVilleMedecinTraitant());}
+            if(patientDto.getNomMedecinTraitant() != null && patientDto.getPrenomMedecinTraitant() != null && patientDto.getVilleMedecinTraitant() != null && patientDto.getCodePostalMedecinTraitant()!=null){
+                System.out.println("medecin existe en base");
+                medecintraitant = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVilleAndLieuCodePostal(Crypto.cryptService(patientDto.getNomMedecinTraitant()), Crypto.cryptService(patientDto.getPrenomMedecinTraitant()),patientDto.getVilleMedecinTraitant(),patientDto.getCodePostalMedecinTraitant());}
             else{medecintraitant=null;}
             //Persisitence du patient ds la base de données
             AppUser appUser = praticienconnecteRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
@@ -176,8 +177,8 @@ public class PatientServiceImpl implements PatientService {
                 professionRepository.save(profession);}
                 patientToUpdate.setProfession(profession);
                 }
-            if (updatedPatientDto.getNomMedecinTraitant() != null && updatedPatientDto.getPrenomMedecinTraitant() != null && updatedPatientDto.getVilleMedecinTraitant() != null) {
-                patientToUpdate.setMedecinTraitant(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille(Crypto.cryptService(updatedPatientDto.getNomMedecinTraitant()), Crypto.cryptService(updatedPatientDto.getPrenomMedecinTraitant()), updatedPatientDto.getVilleMedecinTraitant()));
+            if (updatedPatientDto.getNomMedecinTraitant() != null && updatedPatientDto.getPrenomMedecinTraitant() != null && updatedPatientDto.getVilleMedecinTraitant() != null && updatedPatientDto.getCodePostalMedecinTraitant()!=null) {
+                patientToUpdate.setMedecinTraitant(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVilleAndLieuCodePostal(Crypto.cryptService(updatedPatientDto.getNomMedecinTraitant()), Crypto.cryptService(updatedPatientDto.getPrenomMedecinTraitant()), updatedPatientDto.getVilleMedecinTraitant(),updatedPatientDto.getCodePostalMedecinTraitant()));
             }
 
             return PatientMapper.mapToPatientDto(patientRepository.save(patientToUpdate));
@@ -195,9 +196,17 @@ public class PatientServiceImpl implements PatientService {
         antecedentClassiqueRepository.deleteByPatientIdPatient(id);
         antecedentBebeRepository.deleteByPatientIdPatient(id);
         rendezvousRepository.deleteAllByPatientIdPatient(id);
+        Personne personneToDelete = patientToDelete.getIdentite();
 
         // Supprimer le patient
         patientRepository.delete(patientToDelete);
+        System.out.println("patient supprimé");
+
+        //Verification si Personne associé est aussi un autre patient d'un autre praticien. si non, suppression de la personne:
+        List<Patient> patientList = patientRepository.findAllByIdentite(personneToDelete);
+        System.out.println(patientList);
+        if(patientList.size()==0){personneRepository.delete(personneToDelete);}
+
     }
 
        }

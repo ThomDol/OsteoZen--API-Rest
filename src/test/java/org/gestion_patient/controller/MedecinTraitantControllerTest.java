@@ -51,14 +51,16 @@ public class MedecinTraitantControllerTest {
         MedecintraitantDto medecin = new MedecintraitantDto();
         medecin.setPrenomMedecinTraitant("Laurent");
         medecin.setNomMedecinTraitant("Lamotte");
-        medecin.setVille("Roubaix");
+        medecin.setVilleMedecinTraitant("Roubaix");
+        medecin.setCodePostalMedecinTraitant("59123");
 
         // Simuler la réponse de la méthode create du service
         MedecintraitantDto savedMedecinDto = new MedecintraitantDto();
         savedMedecinDto.setIdMedecinTraitant(1);
         savedMedecinDto.setPrenomMedecinTraitant("Laurent");
         savedMedecinDto.setNomMedecinTraitant("Lamotte");
-        savedMedecinDto.setVille("Roubaix");
+        savedMedecinDto.setVilleMedecinTraitant("Roubaix");
+        savedMedecinDto.setCodePostalMedecinTraitant("59123");
 
         when(medecinService.createMedecintraitant(any(MedecintraitantDto.class))).thenReturn(savedMedecinDto);
 
@@ -69,45 +71,13 @@ public class MedecinTraitantControllerTest {
                 .andExpect((jsonPath("$.idMedecinTraitant", is(1))))
                 .andExpect((jsonPath("$.nomMedecinTraitant", is("Lamotte"))))
                 .andExpect((jsonPath("$.prenomMedecinTraitant", is("Laurent"))))
-                .andExpect((jsonPath("$.ville", is("Roubaix"))));
+                .andExpect((jsonPath("$.villeMedecinTraitant", is("Roubaix"))))
+                .andExpect((jsonPath("$.codePostalMedecinTraitant", is("59123"))));
 
 
 
     }
 
-    @Test
-    public void updateMedecinTraitant() throws Exception {
-        // Arrange
-        int id = 1;
-
-        MedecintraitantDto medecinDto = new MedecintraitantDto();
-        medecinDto.setIdMedecinTraitant(id);
-        medecinDto.setPrenomMedecinTraitant("Samuel");
-        medecinDto.setNomMedecinTraitant("Vercot");
-        medecinDto.setVille("Lille");
-
-        // Simuler la réponse de la méthode update du service
-        MedecintraitantDto updatedMedecinDto = new MedecintraitantDto();
-        updatedMedecinDto.setIdMedecinTraitant(1);
-        updatedMedecinDto.setPrenomMedecinTraitant("Laurent");
-        updatedMedecinDto.setNomMedecinTraitant("Lamotte");
-        updatedMedecinDto.setVille("Roubaix");
-
-        when(medecinService.updateMedecinTraintant(any(MedecintraitantDto.class),eq(id))).thenReturn(updatedMedecinDto);
-
-
-        mockMvc.perform(put("/api/medecintraitant/{id}",id)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(medecinDto)))
-                .andExpect(status().isOk())
-                .andExpect((jsonPath("$.idMedecinTraitant", is(1))))
-                .andExpect((jsonPath("$.nomMedecinTraitant", is("Lamotte"))))
-                .andExpect((jsonPath("$.prenomMedecinTraitant", is("Laurent"))))
-                .andExpect((jsonPath("$.ville", is("Roubaix"))));
-
-
-
-    }
 
     @Test
     public void getMedecintraitantById() throws Exception {
@@ -117,14 +87,16 @@ public class MedecinTraitantControllerTest {
         medecinDto.setIdMedecinTraitant(id);
         medecinDto.setPrenomMedecinTraitant("Laurent");
         medecinDto.setNomMedecinTraitant("Lamotte");
-        medecinDto.setVille("Roubaix");
+        medecinDto.setVilleMedecinTraitant("Roubaix");
+        medecinDto.setCodePostalMedecinTraitant("59123");
 
         // Simuler la réponse de la méthode create du service
         MedecintraitantDto targetedMedecinDto = new MedecintraitantDto();
         targetedMedecinDto.setIdMedecinTraitant(1);
         targetedMedecinDto.setPrenomMedecinTraitant("Laurent");
         targetedMedecinDto.setNomMedecinTraitant("Lamotte");
-        targetedMedecinDto.setVille("Roubaix");
+        targetedMedecinDto.setVilleMedecinTraitant("Roubaix");
+        targetedMedecinDto.setCodePostalMedecinTraitant("59123");
 
         when(medecinService.findMedecintraitantById(eq(id))).thenReturn(targetedMedecinDto);
 
@@ -134,25 +106,28 @@ public class MedecinTraitantControllerTest {
                 .andExpect((jsonPath("$.idMedecinTraitant", is(1))))
                 .andExpect((jsonPath("$.nomMedecinTraitant", is("Lamotte"))))
                 .andExpect((jsonPath("$.prenomMedecinTraitant", is("Laurent"))))
-                .andExpect((jsonPath("$.ville", is("Roubaix"))));
+                .andExpect((jsonPath("$.villeMedecinTraitant", is("Roubaix"))))
+                .andExpect((jsonPath("$.codePostalMedecinTraitant", is("59123"))));
 
 
     }
 
     @Test
-    public void getAllLieu() throws Exception {
+    public void getAllMedecinTRaitant() throws Exception {
         // Arrange
         MedecintraitantDto medecinDto1 = new MedecintraitantDto();
         medecinDto1.setIdMedecinTraitant(1);
         medecinDto1.setPrenomMedecinTraitant("Laurent");
         medecinDto1.setNomMedecinTraitant("Lamotte");
-        medecinDto1.setVille("Roubaix");
+        medecinDto1.setVilleMedecinTraitant("Roubaix");
+        medecinDto1.setCodePostalMedecinTraitant("59123");
 
         MedecintraitantDto medecinDto2 = new MedecintraitantDto();
         medecinDto2.setIdMedecinTraitant(2);
         medecinDto2.setPrenomMedecinTraitant("Bernard");
         medecinDto2.setNomMedecinTraitant("Pavot");
-        medecinDto2.setVille("Tourcoing");
+        medecinDto2.setVilleMedecinTraitant("Tourcoing");
+        medecinDto2.setCodePostalMedecinTraitant("59100");
 
         List<MedecintraitantDto> allMedecins = Arrays.asList(medecinDto1, medecinDto2);
 
@@ -166,11 +141,13 @@ public class MedecinTraitantControllerTest {
                 .andExpect(jsonPath("$[0].idMedecinTraitant", is(1)))
                 .andExpect(jsonPath("$[0].nomMedecinTraitant", is("Lamotte")))
                 .andExpect(jsonPath("$[0].prenomMedecinTraitant", is("Laurent")))
-                .andExpect(jsonPath("$[0].ville", is("Roubaix")))
+                .andExpect((jsonPath("$[0].villeMedecinTraitant", is("Roubaix"))))
+                .andExpect((jsonPath("$[0].codePostalMedecinTraitant", is("59123"))))
                 .andExpect(jsonPath("$[1].idMedecinTraitant", is(2)))
                 .andExpect(jsonPath("$[1].nomMedecinTraitant", is("Pavot")))
                 .andExpect(jsonPath("$[1].prenomMedecinTraitant", is("Bernard")))
-                .andExpect(jsonPath("$[1].ville", is("Tourcoing")));
+                .andExpect(jsonPath("$[1].villeMedecinTraitant", is("Tourcoing")))
+                .andExpect((jsonPath("$[1].codePostalMedecinTraitant", is("59100"))));
     }
 
 

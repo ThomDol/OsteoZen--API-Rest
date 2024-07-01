@@ -8,5 +8,5 @@ public interface MedecinTraitantService {
   List<MedecintraitantDto> getAll ();
   MedecintraitantDto findMedecintraitantById(int id) throws Exception;
   MedecintraitantDto createMedecintraitant(MedecintraitantDto medecintraitantDto) throws Exception;
-  MedecintraitantDto updateMedecinTraintant(MedecintraitantDto medecintraitantDto , int id) throws Exception;
+  void delete (int id);
 }

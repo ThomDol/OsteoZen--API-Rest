@@ -102,7 +102,7 @@ public class PatientControllerTest {
         // Mocking the repositories and service calls
         when(lieuRepository.findByNomVilleAndCodePostal("Marseille", "13100")).thenReturn(marseille);
         when(professionRepository.findByLibelleProfession("Ingénieur")).thenReturn(new Profession(1, "Ingénieur"));
-        when(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVille("Dupont", "Jean", "Marseille")).thenReturn(med);
+        when(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVilleAndLieuCodePostal("Dupont", "Jean", "Marseille","13100")).thenReturn(med);
         when(patientService.createPatient(any(PatientDto.class),eq(idPraticien))).thenReturn(savedPatient);
 
         mockMvc.perform(post("/api/patient/{idPraticien}",idPraticien)

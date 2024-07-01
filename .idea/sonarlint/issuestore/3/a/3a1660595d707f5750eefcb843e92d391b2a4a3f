@@ -1,11 +1,11 @@
 
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8Šè—úû1J$8f0c4970-4d00-4b89-9435-697d7af1f115
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8Šè—úû1J$4c2f2620-3cd7-433f-8e4b-d2a9fdf138d3
 x
-java:S1128"0Remove this unused import 'jakarta.persistence'.(Î«Ô§úÿÿÿÿ8çÓ¨‚2J$30b93a9f-5f15-48da-bc5f-5d1a9bbffe30
+java:S1128"0Remove this unused import 'jakarta.persistence'.(Î«Ô§úÿÿÿÿ8çÓ¨‚2J$80436f4b-ac8d-4172-ad0e-861bcfcfb1ce
 
-java:S1128"7Remove this unused import 'org.gestion_patient.entity'.(…¥Îúÿÿÿÿ8èÓ¨‚2J$56a07c62-d146-48b3-8913-ccba183372a2
+java:S1128"7Remove this unused import 'org.gestion_patient.entity'.(…¥Îúÿÿÿÿ8èÓ¨‚2J$87a76c88-ed72-457e-8ded-1320c5a157c8
 x
 java:S1128
-"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8èÓ¨‚2J$aa764449-3355-4f43-ab38-c22120e54d71
+"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8èÓ¨‚2J$b527a807-16a7-4d84-93c2-a863a4cbbd62
 s
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8èÓ¨‚2J$a3628356-1933-419e-91c7-0fdab82710f9
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8èÓ¨‚2J$37bf3d74-f626-421e-8074-7c12926e262c
