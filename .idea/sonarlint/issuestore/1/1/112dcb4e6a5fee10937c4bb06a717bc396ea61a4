@@ -1,13 +1,9 @@
 
-	java:S112e"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8ΰ–²ξ†2J$5579fc52-304c-4596-a734-678b2e8872ce
-•
-java:S1192w"RDefine a constant instead of duplicating this literal "Patient not found" 3 times.(Όÿ‡Χ8α–²ξ†2J$9ec27498-9944-44b6-b403-1cd5cddc79e3
+	java:S112|"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8Δγ›π†2J$17da94e0-cf44-4030-a7dd-b183d02ff3ec
+–
+java:S1192"RDefine a constant instead of duplicating this literal "Patient not found" 3 times.(Όÿ‡Χ8Τγ›π†2J$08e70d8b-0ab8-4d66-8859-e0ebf0fc16ec
 ”
-java:S3776("QRefactor this method to reduce its Cognitive Complexity from 24 to the 2 allowed.(•βε8Β²ξ†2J$a519fff8-ab6e-42a0-9e03-2fc6eb0c9df1
-r	java:S106R"+Replace this use of System.out by a logger.(¬½Θ°ύÿÿÿÿ8Λ²ξ†2J$b3676e57-0ec4-4f4d-8018-3f56041d8c56
-™
-java:S3776|"QRefactor this method to reduce its Cognitive Complexity from 16 to the 2 allowed.(§Ϊήÿόÿÿÿÿ8Ò²ξ†2J$acafd07f-f44e-4365-ba8c-6b741a303fa9
-s	java:S106Λ"+Replace this use of System.out by a logger.(—¥‘ωÿÿÿÿ8Ω²ξ†2J$787b0cc2-f9ba-4dfe-942d-1a27ebe98778
-n	java:S106Ο"+Replace this use of System.out by a logger.(ίπδ•8Ω²ξ†2J$f634d8e9-1241-4b23-935c-cff89a38a93b
-‚
-java:S1155Π">Use isEmpty() to check whether the collection is empty or not.(€πϋ8Ϋ²ξ†2J$febcf076-338d-4b95-ac39-878917b9bed1
+java:S3776%"QRefactor this method to reduce its Cognitive Complexity from 24 to the 2 allowed.(•βε8Ϊε›π†2J$9499f79d-4565-4708-a770-bbe1114642ce
+
+java:S3776•"QRefactor this method to reduce its Cognitive Complexity from 16 to the 2 allowed.(§Ϊήÿόÿÿÿÿ8ξε›π†2J$7a8e9260-429f-4054-9de2-23f9b4508fcd
+s	java:S106ξ"+Replace this use of System.out by a logger.(—¥‘ωÿÿÿÿ8ϋε›π†2J$a6f0c3a1-d70d-4e10-b6c0-3e9d2786676c
