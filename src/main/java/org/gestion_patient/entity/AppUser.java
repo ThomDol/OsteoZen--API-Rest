@@ -36,6 +36,9 @@ public class AppUser {
     @JoinColumn(name = "id_identite", nullable = false)
     private Personne identite;
 
+    @Column(name="isActive", nullable = false)
+    private boolean isActive = true;
+
 
 
 

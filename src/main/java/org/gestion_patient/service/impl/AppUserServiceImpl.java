@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
 
+    private final PatientRepository patientRepository;
     // Déclarations des repositories et du password encoder
     private AppUserRepository appUserRepository;
     private RoleRepository roleRepository;
@@ -83,6 +84,8 @@ public class AppUserServiceImpl implements AppUserService {
 
                 // Récupère le rôle
                 Role role = roleRepository.findByNomRole(appUserDto.getNomRole());
+
+                appUserDto.setActive(true);
 
                 // Map les informations et sauvegarde l'utilisateur
                 appUserToSave = AppUserMapper.mapToAppUser(appUserDto, role, lieu, personneIdNewPraticien);
@@ -165,5 +168,13 @@ public class AppUserServiceImpl implements AppUserService {
             appUser.setPassword(passwordEncoder.encode(changePassword.getNewPassword()));
             appUserRepository.save(appUser);
         }
+    }
+
+    @Override
+    public void delete(int id) {
+        AppUser appUserToDelete = appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given id: " + id));
+        //Suppression si aucun patient associé :
+        List<Patient> patientList = patientRepository.findAllByAppUser(appUserToDelete);
+        if(patientList.isEmpty()){appUserRepository.delete(appUserToDelete);}
     }
 }

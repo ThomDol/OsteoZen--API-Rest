@@ -21,6 +21,7 @@ public class AppUserDto {
     private String prenomAppUser;
     private String email;
     private String tel;
+    private boolean isActive;
 
 
 }

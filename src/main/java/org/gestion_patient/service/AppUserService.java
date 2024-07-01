@@ -13,5 +13,6 @@ public interface AppUserService {
     AppUserDto update(int id, AppUserDto appUserDto) throws Exception;
     AppUserDto loadByEmail(String email) throws Exception;
     void updatePassword(ChangePassword changePassword, int id);
+    void delete (int id);
 
 }

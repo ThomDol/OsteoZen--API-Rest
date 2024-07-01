@@ -48,6 +48,12 @@ public class AppUserController {
         return new ResponseEntity<>(updatedPraticien,HttpStatus.OK);
     }
 
+    @DeleteMapping("/praticien/{id}")
+    public ResponseEntity<String> deleteAppUser (@PathVariable ("id") int id){
+        appUserService.delete(id);
+        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+    }
+
     @PostMapping("/praticien/updateMdp/{id}")
     public ResponseEntity<String> upadtePassword(@PathVariable int id, @RequestBody ChangePassword changePassword){
         appUserService.updatePassword(changePassword,id);

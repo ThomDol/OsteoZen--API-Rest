@@ -19,7 +19,8 @@ public class AppUserMapper {
                 Crypto.decryptService(appUser.getIdentite().getNom()),
                 Crypto.decryptService(appUser.getIdentite().getPrenom()),
                 Crypto.decryptService(appUser.getIdentite().getEmail()),
-                DataUtil.displayStringDecrypt(appUser.getIdentite().getTel())
+                DataUtil.displayStringDecrypt(appUser.getIdentite().getTel()),
+                appUser.isActive()
 
         );
     }

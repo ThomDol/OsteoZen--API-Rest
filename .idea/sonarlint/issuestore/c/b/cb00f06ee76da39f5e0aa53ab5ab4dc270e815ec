@@ -1,6 +1,8 @@
 
-	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8É£Ìğ†2J$84224383-bb61-4a05-8e25-1e9e86582941
+g	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ºÇ¢÷†2
+ª
+java:S11920"bDefine a constant instead of duplicating this literal "AppUser not found with given id: " 3 times.(­ø¦øÿÿÿÿ8èã™÷†2J$aa109757-a2cd-47ac-a86a-1b3f5ac53fbe
 “
-java:S37765"PRefactor this method to reduce its Cognitive Complexity from 8 to the 2 allowed.(¦ç…’8°¤Ìğ†2J$7b28b5c2-32b3-4515-a0ea-6818ff6b4300
+java:S37766"PRefactor this method to reduce its Cognitive Complexity from 8 to the 2 allowed.(¦ç…’8¨ä™÷†2J$22068363-f846-4263-a079-70708d9729f6
 ™
-java:S3776`"QRefactor this method to reduce its Cognitive Complexity from 12 to the 2 allowed.(»Ãïøùÿÿÿÿ8·¤Ìğ†2J$60710679-dc30-4e4d-8aa1-bf54950ab9c9
+java:S3776c"QRefactor this method to reduce its Cognitive Complexity from 12 to the 2 allowed.(»Ãïøùÿÿÿÿ8®ä™÷†2J$0aeee4cd-f131-46dc-90a2-fe36347ad184
