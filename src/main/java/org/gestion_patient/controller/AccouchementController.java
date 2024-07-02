@@ -36,9 +36,9 @@ public class AccouchementController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateAccouchement (@PathVariable int id,@RequestBody AccouchementDto accouchementDto){
-        accouchementService.update(id,accouchementDto);
-        return new ResponseEntity<>("Accouchement updated with success",HttpStatus.OK);
+    public ResponseEntity<AccouchementDto> updateAccouchement (@PathVariable int id,@RequestBody AccouchementDto accouchementDto){
+        AccouchementDto accouchementUpdated = accouchementService.update(id,accouchementDto);
+        return new ResponseEntity<>(accouchementUpdated,HttpStatus.OK);
     }
 
     public ResponseEntity<String> delete (@PathVariable int id){
