@@ -74,37 +74,6 @@ public class LieuControllerTest {
 
     }
 
-    @Test
-    public void updateLieu() throws Exception {
-        // Arrange
-        int id = 1;
-
-        LieuDto lieuDto = new LieuDto();
-        lieuDto.setIdVille(id);
-        lieuDto.setNomville("Beauvais");
-        lieuDto.setCodePostal("60000");
-
-
-        // Simuler la réponse de la méthode create du service
-        LieuDto updatedLieuDto = new LieuDto();
-        updatedLieuDto.setIdVille(1);
-        updatedLieuDto.setNomville("Arras");
-        updatedLieuDto.setCodePostal("62000");
-
-        when(lieuService.updateLieu(eq(id),any(LieuDto.class))).thenReturn(updatedLieuDto);
-
-
-        mockMvc.perform(put("/api/lieu/{id}",id)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(lieuDto)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.idVille", is(1)))
-                .andExpect(jsonPath("$.nomville", is("Arras")))
-                .andExpect(jsonPath("$.codePostal", is("62000")));
-
-
-
-    }
 
     @Test
     public void getLieuById() throws Exception {

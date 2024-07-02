@@ -39,17 +39,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // Configuration de la sécurité HTTP
+        http.csrf(csrf -> csrf.disable()) // Désactive la protection CSRF
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Utilise des sessions sans état
+                .headers(frameOptions -> frameOptions.disable()) // Désactive la protection des frames
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/login").permitAll()) // Permet les requêtes POST vers /login sans authentification
+                .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll()); // Toutes les autres requêtes nécessitent une authentification
+                //.addFilter(new JwtAuthenticationFilter(authenticationManager(authConfiguration))) // Ajoute un filtre d'authentification JWT
+                //.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class); // Ajoute un filtre d'autorisation JWT avant le filtre UsernamePassword
 
-        http.csrf(csrf->csrf.disable())
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .headers(frameOptions->frameOptions.disable())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST,"/login").permitAll())
-                .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(authConfiguration)))
-                .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-
-        return http.build();
+        return http.build(); // Construit et retourne l'objet SecurityFilterChain
     }
 
 

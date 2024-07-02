@@ -69,7 +69,7 @@ public class PatientServiceImpl implements PatientService {
             // Lieu récupéré du front et enregistré dans la bdd si pas encore dedans
             Lieu lieu;
             if (patientDto.getNomVille() != null && patientDto.getCodePostal() != null) {
-                lieu = lieuRepository.findByNomVilleAndCodePostal(patientDto.getNomVille(), patientDto.getCodePostal());
+                lieu = lieuRepository.findByNomVilleAndCodePostal(patientDto.getNomVille().toUpperCase(), patientDto.getCodePostal());
                 if (lieu == null) {
                     lieu = new Lieu();
                     lieu.setNomVille(patientDto.getNomVille().toUpperCase());
@@ -83,7 +83,7 @@ public class PatientServiceImpl implements PatientService {
             // Profession récupérée et enregistrée dans la bdd si pas encore dedans
             Profession profession;
             if (patientDto.getNomProfession() != null) {
-                profession = professionRepository.findByLibelleProfession(patientDto.getNomProfession());
+                profession = professionRepository.findByLibelleProfession(patientDto.getNomProfession().toUpperCase());
                 if (profession == null) {
                     profession = new Profession();
                     profession.setLibelleProfession(patientDto.getNomProfession().toUpperCase());

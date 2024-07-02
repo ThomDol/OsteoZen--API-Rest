@@ -1,10 +1,8 @@
 
-	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8þßüï†2J$05312d43-2518-46ff-91ff-7cade26254c4
+	java:S112("FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8þßüï†2J$d1425d1f-4438-46e2-92f4-36e8d5f043fd
 “
-java:S37765"PRefactor this method to reduce its Cognitive Complexity from 6 to the 2 allowed.(ÎÂó‚8”àüï†2J$d09e068b-d328-4cb7-ba37-4c4cbe6fcb9d
+java:S37765"PRefactor this method to reduce its Cognitive Complexity from 6 to the 2 allowed.(ÎÂó‚8”àüï†2J$8b21dc6b-2b85-489b-8b08-fc27127a2066
 “
-java:S3776l"PRefactor this method to reduce its Cognitive Complexity from 3 to the 2 allowed.(ï³Ìê8˜àüï†2J$6730490b-890c-4630-a17e-8d5dffcc70ec
+java:S3776l"PRefactor this method to reduce its Cognitive Complexity from 3 to the 2 allowed.(ï³Ìê8˜àüï†2J$08d67d8e-ec76-4f96-87bf-01de21b3703d
 
-java:S1155p">Use isEmpty() to check whether the collection is empty or not.(ÇÄ”Ã8šàüï†2J$83434bb3-fc29-4cdb-8be2-de3aa92e9ec5
-
-java:S1155s">Use isEmpty() to check whether the collection is empty or not.(Ù¤÷8›àüï†2J$fb653c0c-4ea0-424a-a9df-6b2cf4c2883f
+java:S1155p">Use isEmpty() to check whether the collection is empty or not.(ÇÄ”Ã8šàüï†2J$d61c7579-b60e-4272-9c91-937ed15c56c6

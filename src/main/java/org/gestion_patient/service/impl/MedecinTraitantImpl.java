@@ -53,9 +53,9 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
     public MedecintraitantDto createMedecintraitant(MedecintraitantDto medecintraitantDto) throws Exception {
         // Vérification si le médecin existe déjà par nom, prénom, ville et code postal
         Medecintraitant medecintraitantToSave = medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVilleAndLieuCodePostal(
-                Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()),
-                Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant()),
-                medecintraitantDto.getVilleMedecinTraitant(),
+                Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant().toUpperCase()),
+                Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant().toUpperCase()),
+                medecintraitantDto.getVilleMedecinTraitant().toUpperCase(),
                 medecintraitantDto.getCodePostalMedecinTraitant()
         );
 
@@ -65,8 +65,8 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
 
         // Vérification de l'homonyme dans une autre ville
         Personne personne = personneRepository.findByNomAndPrenom(
-                Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant()),
-                Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant())
+                Crypto.cryptService(medecintraitantDto.getNomMedecinTraitant().toUpperCase()),
+                Crypto.cryptService(medecintraitantDto.getPrenomMedecinTraitant().toUpperCase())
         );
 
         // Si une personne est trouvée et qu'elle a un email ou un téléphone, elle ne peut pas être réutilisée
@@ -112,7 +112,7 @@ public class MedecinTraitantImpl implements MedecinTraitantService {
         if(patientList.size()==0){
         //Verification si les nom et prenom ne sont pas utilisés pour un homonyme. Si oui, suppression impossible
         List<Medecintraitant> medecintraitantList=medecintraitantRepository.findAllByIdentiteDoc(docToDelete.getIdentiteDoc());
-        if(medecintraitantList.size()==0){medecintraitantRepository.delete(docToDelete);}
+        if(medecintraitantList.size()>1){medecintraitantRepository.delete(docToDelete);}
         }
     }
 

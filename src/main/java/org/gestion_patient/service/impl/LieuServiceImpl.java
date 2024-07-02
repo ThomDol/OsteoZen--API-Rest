@@ -31,14 +31,6 @@ public class LieuServiceImpl implements LieuService {
         return LieuMapper.mapToLieuDto(lieux);
     }
 
-    @Override
-    public LieuDto updateLieu(int id, LieuDto lieuDto) {
-        Lieu lieu = lieuRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("This localisation not found with given id " + id ));
-        if(lieuDto.getNomville()!=null){lieu.setNomVille(lieuDto.getNomville().toUpperCase());}
-        if(lieuDto.getCodePostal()!=null){lieu.setCodePostal(lieuDto.getCodePostal());}
-        lieuRepository.save(lieu);
-        return LieuMapper.mapToLieuDto(lieuRepository.save(lieu));
-    }
 
     @Override
     public List<LieuDto> findAll() {

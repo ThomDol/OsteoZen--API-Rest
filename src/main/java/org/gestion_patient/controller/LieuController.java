@@ -28,11 +28,6 @@ public class LieuController {
         return new ResponseEntity<>(lieux,HttpStatus.OK);
     }
 
-    @PutMapping (("/{id}"))
-    public ResponseEntity<LieuDto> updateLieu(@RequestBody LieuDto lieuDto ,@PathVariable("id") int id ) {
-        LieuDto lieuDto1 = lieuService.updateLieu(id, lieuDto);
-        return new ResponseEntity<>(lieuDto1, HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<LieuDto> getLieuById(@PathVariable int id) {
