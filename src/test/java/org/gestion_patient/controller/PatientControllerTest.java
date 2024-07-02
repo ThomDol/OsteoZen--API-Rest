@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.*;
 import org.gestion_patient.entityDto.PatientDto;
-import org.gestion_patient.mapper.PatientMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.security.AppUserDetailService;
 import org.gestion_patient.security.SecurityConfig;
@@ -49,8 +48,6 @@ public class PatientControllerTest {
 
     @MockBean
     private MedecintraitantRepository medecintraitantRepository;
-
-    private AppUserRepository appUserRepository;
 
     @MockBean
     private PatientRepository patientRepository;

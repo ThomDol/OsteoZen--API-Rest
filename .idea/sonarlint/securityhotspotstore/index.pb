@@ -277,3 +277,5 @@ m
 =src/main/java/org/gestion_patient/service/AppUserService.java,4\4\442105d99c34390e600e08c582d450f483efa7db
 o
 ?src/main/java/org/gestion_patient/entityDto/ChangePassword.java,8\8\8814dcb7d26eed3e9131d15359dfcd276fde9fa7
+w
+Gsrc/test/java/org/gestion_patient/controller/AppUserControllerTest.java,c\d\cd6039da4c6c5f83dff8878546777bc586664210

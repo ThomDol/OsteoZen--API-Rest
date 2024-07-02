@@ -33,6 +33,7 @@ public class AppUserMapper {
         appUser.setVille(lieu);
         appUser.setNumAdeli(Crypto.cryptService(appUserDto.getNumAdeli()));
         appUser.setIdentite(personne);
+        appUser.setActive(appUserDto.isActive());
         return appUser;
     }
 

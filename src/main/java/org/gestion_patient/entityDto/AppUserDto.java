@@ -1,5 +1,6 @@
 package org.gestion_patient.entityDto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class AppUserDto {
     private String prenomAppUser;
     private String email;
     private String tel;
+
+    @JsonProperty("isActive")
     private boolean isActive;
 
 
