@@ -6,7 +6,6 @@ import org.gestion_patient.entity.Lieu;
 import org.gestion_patient.entity.Personne;
 import org.gestion_patient.entity.Role;
 import org.gestion_patient.entityDto.AppUserDto;
-import org.gestion_patient.entityDto.PatientDto;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.security.AppUserDetailService;
 import org.gestion_patient.security.SecurityConfig;
@@ -64,7 +63,9 @@ public class AppUserControllerTest {
     public void createNewAppUser() throws Exception {
         // Arrange common data
         Personne personne = new Personne(1, "DUPONT", "JEAN", "jean@gmail.com", "0656878987");
+        Personne personne2 = new Personne(1, "DUPOND", "REMI", "remi@gmail.com", "0656878988");
         Lieu marseille = new Lieu(1, "MARSEILLE", "13100");
+        Lieu caen = new Lieu(2, "Caen", "14000");
         Role praticien = new Role(1,"PRATICIEN");
 
 
@@ -74,6 +75,7 @@ public class AppUserControllerTest {
         appuserDto.setEmail("jean@gmail.com");
         appuserDto.setTel("0656878987");
         appuserDto.setNomVille("Marseille");
+        appuserDto.setCodePostal("13100");
         appuserDto.setNumAdeli("111111111");
         appuserDto.setNomRole("PRATICIEN");
         appuserDto.setPassword(passwordEncoder.encode("test"));
@@ -122,7 +124,65 @@ public class AppUserControllerTest {
                 .andExpect(jsonPath("$.idAppUser", is(1)));
 
 
+        // Test Case 3: Creer nouvel utilisateur qd ville n'est pas dans la base de données
+        AppUserDto appuserDtoNewCity = new AppUserDto();
+        appuserDtoNewCity.setNomAppUser("Dupont");
+        appuserDtoNewCity.setPrenomAppUser("Jean");
+        appuserDtoNewCity.setEmail("jean@gmail.com");
+        appuserDtoNewCity.setTel("0656878988");
+        appuserDtoNewCity.setNomVille("Caen");
+        appuserDtoNewCity.setCodePostal("14000");
+        appuserDtoNewCity.setNumAdeli("111111112");
+        appuserDtoNewCity.setNomRole("PRATICIEN");
+        appuserDtoNewCity.setPassword(passwordEncoder.encode("test"));
+        appuserDtoNewCity.setActive(true);
+
+
+
+        AppUserDto appuserNewCityCreatedDto = new AppUserDto();
+        appuserNewCityCreatedDto.setIdAppUser(2);
+        appuserNewCityCreatedDto.setNomAppUser("DUPOND");
+        appuserNewCityCreatedDto.setPrenomAppUser("REMI");
+        appuserNewCityCreatedDto.setEmail("remi@gmail.com");
+        appuserNewCityCreatedDto.setTel("0656878988");
+        appuserNewCityCreatedDto.setNomVille("CAEN");
+        appuserNewCityCreatedDto.setCodePostal("14000");
+        appuserNewCityCreatedDto.setNumAdeli("111111112");
+        appuserNewCityCreatedDto.setNomRole("PRATICIEN");
+        appuserNewCityCreatedDto.setActive(true);
+        appuserNewCityCreatedDto.setPassword(passwordEncoder.encode("test"));
+        appuserNewCityCreatedDto.setActive(true);
+
+
+        // Common mocks
+        when(lieuRepository.findByNomVilleAndCodePostal("CAEN", "14000")).thenReturn(null);
+        when(lieuRepository.save(any(Lieu.class))).thenReturn(caen);
+        when(appUserRepository.findByIdentiteEmail("remi@gmail.com")).thenReturn(null);
+        when(personneRepository.save(any(Personne.class))).thenReturn(personne2);
+        when(roleRepository.findByNomRole("PRATICIEN")).thenReturn(praticien);
+
+        when(appUserService.create(any(AppUserDto.class))).thenReturn(appuserNewCityCreatedDto);
+
+        mockMvc.perform(post("/api/praticien" )
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(appuserDtoNewCity)))
+                .andExpect(status().isCreated())
+
+                .andExpect(jsonPath("$.nomVille", is("CAEN")))
+                .andExpect(jsonPath("$.codePostal", is("14000")))
+                .andExpect(jsonPath("$.nomRole", is("PRATICIEN")))
+                .andExpect(jsonPath("$.nomAppUser", is("DUPOND")))
+                .andExpect(jsonPath("$.prenomAppUser", is("REMI")))
+                .andExpect(jsonPath("$.numAdeli", is("111111112")))
+                .andExpect(jsonPath("$.email", is("remi@gmail.com")))
+                .andExpect(jsonPath("$.tel", is("0656878988")))
+                .andExpect(jsonPath("$.isActive", is(true)))
+                .andExpect(jsonPath("$.password",is( passwordEncoder.encode("test"))))
+                .andExpect(jsonPath("$.idAppUser", is(2)));
+
     }
+
+
 
 
 

@@ -81,7 +81,7 @@ public class PatientControllerTest {
         when(professionRepository.findByLibelleProfession("Ingénieur")).thenReturn(new Profession(1, "Ingénieur"));
         when(medecintraitantRepository.findByIdentiteDocNomAndIdentiteDocPrenomAndLieuNomVilleAndLieuCodePostal("Dupont", "Jean", "Marseille", "13100")).thenReturn(med);
 
-        // Test Case 1: All fields provided
+        // Test Case 1: Tous les champs remplis
         PatientDto patientFull = new PatientDto();
         patientFull.setDateNaissance("01/01/1980");
         patientFull.setNomVille("Marseille");
@@ -137,7 +137,7 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("$.tel", is("0601020304")))
                 .andExpect(jsonPath("$.idPraticien", is(1)));
 
-        // Test Case 2: Missing optional fields
+        // Test Case 2: Avec champs optionnels manquants
         PatientDto patientPartial = new PatientDto();
         patientPartial.setDateNaissance("01/01/1980");
         patientPartial.setNomGenre("Homme");
@@ -177,7 +177,7 @@ public class PatientControllerTest {
                 .andExpect(jsonPath("$.idPraticien", is(1)));
 
 
-        // Test Case 3: Creating a new patient with a new city
+        // Test Case 3: Creer nouveau patient qd ville n'est pas dans la base de données
         PatientDto patientWithNewCity = new PatientDto();
         patientWithNewCity.setDateNaissance("01/01/1980");
         patientWithNewCity.setNomVille("Caen");
