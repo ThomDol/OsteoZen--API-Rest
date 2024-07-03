@@ -279,3 +279,5 @@ o
 ?src/main/java/org/gestion_patient/entityDto/ChangePassword.java,8\8\8814dcb7d26eed3e9131d15359dfcd276fde9fa7
 w
 Gsrc/test/java/org/gestion_patient/controller/AppUserControllerTest.java,c\d\cd6039da4c6c5f83dff8878546777bc586664210
+y
+Isrc/main/java/org/gestion_patient/exception/UserHasPatientsException.java,4\3\4315aa93d278663f61dd9cf047a27b45cdb8c1fb

@@ -7,6 +7,7 @@ import org.gestion_patient.entityDto.AppUserDto;
 import org.gestion_patient.entityDto.ChangePassword;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.exception.RessourceAlreadyexistsException;
+import org.gestion_patient.exception.UserHasPatientsException;
 import org.gestion_patient.mapper.AppUserMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.service.AppUserService;
@@ -175,6 +176,10 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser appUserToDelete = appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given id: " + id));
         //Suppression si aucun patient associé :
         List<Patient> patientList = patientRepository.findAllByAppUser(appUserToDelete);
-        if(patientList.isEmpty()){appUserRepository.delete(appUserToDelete);}
+        if (!patientList.isEmpty()) {
+            throw new UserHasPatientsException("Cannot delete user with id: " + id + " as they have associated patients.");
+        }
+        // Supprimer l'utilisateur si aucun patient n'est associé
+        appUserRepository.delete(appUserToDelete);
     }
 }
