@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/grossesse")
 public class GrossesseController {
@@ -33,7 +34,7 @@ public class GrossesseController {
     }
 
     @PutMapping("/{idGrossesse}")
-    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable int idGrossesse,@PathVariable int idPatient, @RequestBody GrossesseDto grossesseDto){
+    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable int idGrossesse, @RequestBody GrossesseDto grossesseDto){
         GrossesseDto grossesseDtoUpdated = grossesseService.update(idGrossesse,grossesseDto);
         return new ResponseEntity<>(grossesseDtoUpdated,HttpStatus.OK);
     }

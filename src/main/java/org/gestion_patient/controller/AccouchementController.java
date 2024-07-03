@@ -41,6 +41,7 @@ public class AccouchementController {
         return new ResponseEntity<>(accouchementUpdated,HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete (@PathVariable int id){
         accouchementService.deleteAccouchement(id);
         return new ResponseEntity<>("Deletion successfull",HttpStatus.OK);
