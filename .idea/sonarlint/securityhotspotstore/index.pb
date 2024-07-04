@@ -237,8 +237,6 @@ u
 Esrc/main/java/org/gestion_patient/service/AntecedentsBebeService.java,5\4\54ca405a7b056fe72fcb1dfbdbe37d6932dc46ab
 w
 Gsrc/main/java/org/gestion_patient/entityDto/AntecedentClassiqueDto.java,1\6\16a6c20278c47fa3d71d4b7af1b0366252b59557
-y
-Isrc/main/java/org/gestion_patient/exception/ForbiddenAccessException.java,c\2\c21cf683c70aed49f4821b5626f76d44c6e8b278
 n
 >src/main/java/org/gestion_patient/security/SecurityConfig.java,f\6\f63217c9fc445f7876d2fc841412f795c5dbea63
 w

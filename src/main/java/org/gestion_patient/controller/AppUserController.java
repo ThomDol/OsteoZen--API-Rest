@@ -25,7 +25,7 @@ public class AppUserController {
         AppUserDto appUserDto =  appUserService.loadByEmail(principal.getName());
         return new ResponseEntity<>(appUserDto,HttpStatus.CREATED);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/praticien")
     public ResponseEntity<AppUserDto> createNewAppUser(@RequestBody AppUserDto appUserDto) throws Exception {
         AppUserDto appUserDtoSaved = appUserService.create(appUserDto);
@@ -50,7 +50,7 @@ public class AppUserController {
         AppUserDto updatedPraticien = appUserService.update(id,appUserDto);
         return new ResponseEntity<>(updatedPraticien,HttpStatus.OK);
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/praticien/{id}")
     public ResponseEntity<String> deleteAppUser (@PathVariable ("id") int id){
         appUserService.delete(id);
