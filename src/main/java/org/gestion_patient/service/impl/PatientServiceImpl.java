@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.gestion_patient.crypto.Crypto;
 import org.gestion_patient.entity.*;
 import org.gestion_patient.entityDto.PatientDto;
+import org.gestion_patient.exception.AccountBlockedException;
 import org.gestion_patient.exception.ResourceNotFoundException;
 import org.gestion_patient.exception.RessourceAlreadyexistsException;
 import org.gestion_patient.mapper.PatientMapper;
@@ -26,11 +27,12 @@ public class PatientServiceImpl implements PatientService {
     private TypePatientRepository typePatientRepository;
     private MedecintraitantRepository medecintraitantRepository;
     private PersonneRepository personneRepository;
-    private AppUserRepository praticienconnecteRepository;
+    private AppUserRepository appUserRepository;
     private AccouchementRepository accouchementRepository;
     private AntecedentClassiqueRepository antecedentClassiqueRepository;
     private AntecedentBebeRepository antecedentBebeRepository;
     private RendezvousRepository rendezvousRepository;
+
 
     // Création d'un nouveau Patient
     @Override
@@ -106,7 +108,7 @@ public class PatientServiceImpl implements PatientService {
             }
 
             // Persistance du patient dans la base de données
-            AppUser appUser = praticienconnecteRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
+            AppUser appUser = appUserRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
             Patient patientTSave = PatientMapper.mapToPatient(patientDto, lieu, genre, profession, typePatient, medecintraitant, personneIdNewPatient, appUser);
             return PatientMapper.mapToPatientDto(patientRepository.save(patientTSave));
         }
@@ -115,7 +117,8 @@ public class PatientServiceImpl implements PatientService {
     // Récupération de tous les patients d'un praticien
     @Override
     public List<PatientDto> getAllPatientByAppUser(int idAppUser) {
-        AppUser appUser = praticienconnecteRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
+        AppUser appUser = appUserRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found with given Id" + idAppUser));
+        if (appUser.isActive()) {
         List<Patient> patients = patientRepository.findAllByAppUser(appUser);
         return patients.stream().map(patient -> {
             try {
@@ -123,7 +126,10 @@ public class PatientServiceImpl implements PatientService {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }).toList();
+        }).toList();}
+        else{
+            throw new AccountBlockedException("Account temporary blocked");
+        }
     }
 
     // Récupération d'un patient par son ID
@@ -136,11 +142,16 @@ public class PatientServiceImpl implements PatientService {
     // Récupération d'un patient par son ID et celui du praticien
     @Override
     public PatientDto getByIdAndIdAppUser(int id, int idAppUser) throws Exception {
-        Patient patient = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
-        if (patient != null) {
-            return PatientMapper.mapToPatientDto(patient);
+        AppUser appUser = appUserRepository.findById(idAppUser).orElseThrow(() -> new ResourceNotFoundException("AppUser not found"));
+        if (appUser.isActive()) {
+            Patient patient = patientRepository.findByIdPatientAndAppUserIdAppUser(id, idAppUser);
+            if (patient != null) {
+                return PatientMapper.mapToPatientDto(patient);
+            } else {
+                throw new ResourceNotFoundException("Patient not found");
+            }
         } else {
-            throw new ResourceNotFoundException("Patient not found");
+            throw new AccountBlockedException("Account temporary blocked");
         }
     }
 

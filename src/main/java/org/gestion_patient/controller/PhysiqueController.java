@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/physique")
+@RequestMapping("/api/physique")
 public class PhysiqueController {
 
     private PhysiqueService physiqueService;
@@ -35,9 +36,9 @@ public class PhysiqueController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatePhysique (@PathVariable int id,@RequestBody PhysiqueDto physiqueDto){
-        physiqueService.update(id,physiqueDto);
-        return new ResponseEntity<>("Physique updated with success",HttpStatus.OK);
+    public ResponseEntity<PhysiqueDto> updatePhysique (@PathVariable int id,@RequestBody PhysiqueDto physiqueDto){
+        PhysiqueDto physiqueUpdated = physiqueService.update(id,physiqueDto);
+        return new ResponseEntity<>(physiqueUpdated,HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,11 +1,13 @@
 package org.gestion_patient.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import org.gestion_patient.entityDto.AppUserDto;
 import org.gestion_patient.entityDto.ChangePassword;
 import org.gestion_patient.service.AppUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -30,6 +32,7 @@ public class AppUserController {
         return new ResponseEntity<>(appUserDtoSaved, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/praticien/all")
     public ResponseEntity<List<AppUserDto>> getAlAppUser(){
         List<AppUserDto> appUsers = appUserService.findAll();

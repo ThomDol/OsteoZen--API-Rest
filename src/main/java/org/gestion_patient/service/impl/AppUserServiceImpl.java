@@ -139,6 +139,8 @@ public class AppUserServiceImpl implements AppUserService {
             }
         }
 
+        appUser.setActive(appUserDto.isActive());
+
         // Sauvegarde les modifications et retourne l'utilisateur mis à jour sous forme de DTO
         return AppUserMapper.mapToAppUserDto(appUserRepository.save(appUser));
     }
