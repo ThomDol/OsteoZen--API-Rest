@@ -27,7 +27,7 @@ public class SportController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SportDto> getSportById (@PathVariable int id){
+    public ResponseEntity<SportDto> getSportById (@PathVariable ("id") int id){
         SportDto sportDto = sportService.findById(id);
         return new ResponseEntity<>(sportDto,HttpStatus.CREATED);
     }

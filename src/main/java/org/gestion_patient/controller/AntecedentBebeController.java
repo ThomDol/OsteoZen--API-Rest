@@ -16,25 +16,25 @@ public class AntecedentBebeController {
     private AntecedentsBebeService antecedentBebeService;
 
     @PostMapping("/{idPatient}")
-    public ResponseEntity<AntecedentsBebeDto> createAntecedentBebe (@RequestBody AntecedentsBebeDto antecedentBebeDto, @PathVariable int idPatient) throws Exception {
+    public ResponseEntity<AntecedentsBebeDto> createAntecedentBebe (@RequestBody AntecedentsBebeDto antecedentBebeDto, @PathVariable ("idPatient") int idPatient) throws Exception {
         AntecedentsBebeDto antecedentBebeDtoSaved = antecedentBebeService.create(antecedentBebeDto,idPatient);
         return new ResponseEntity<>(antecedentBebeDtoSaved, HttpStatus.CREATED);
     }
 
     @PutMapping("/{idAntecedetnBebe}")
-    public ResponseEntity<AntecedentsBebeDto> updateAntecedentBebe (@PathVariable int idAntecedetnBebe, @RequestBody AntecedentsBebeDto antecedentBebeDto ) throws Exception {
+    public ResponseEntity<AntecedentsBebeDto> updateAntecedentBebe (@PathVariable ("idAntecedetnBebe") int idAntecedetnBebe, @RequestBody AntecedentsBebeDto antecedentBebeDto ) throws Exception {
         AntecedentsBebeDto antecedentBebeDtoUpdated = antecedentBebeService.update(idAntecedetnBebe,antecedentBebeDto);
         return new ResponseEntity<>(antecedentBebeDtoUpdated,HttpStatus.OK);
     }
 
     @GetMapping("/{idPatient}")
-    public ResponseEntity<AntecedentsBebeDto> getAntecedentBebeByIdPatient (@PathVariable int idPatient) throws Exception {
+    public ResponseEntity<AntecedentsBebeDto> getAntecedentBebeByIdPatient (@PathVariable ("idPatient") int idPatient) throws Exception {
         AntecedentsBebeDto antecedentBebeDto = antecedentBebeService.getByIdPatient(idPatient);
         return new ResponseEntity<>(antecedentBebeDto,HttpStatus.OK);
     }
 
     @DeleteMapping("/{idAntecedentBebe}")
-    public ResponseEntity<String> deleteAntecedentBebe (@PathVariable int idAntecedentBebe){
+    public ResponseEntity<String> deleteAntecedentBebe (@PathVariable ("idAntecedentBebe") int idAntecedentBebe){
         antecedentBebeService.deleteAntecedentBebe(idAntecedentBebe);
         return new ResponseEntity<>("deleted with success",HttpStatus.OK);
     }

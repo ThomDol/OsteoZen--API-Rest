@@ -16,18 +16,18 @@ public class PostAccouchementController {
 
 
     @PostMapping("/{idAccouchement}")
-    public ResponseEntity<PostAccouchementDto> createPostAccouchement(@RequestBody PostAccouchementDto postAccouchementDto, @PathVariable int idAccouchement ) {
+    public ResponseEntity<PostAccouchementDto> createPostAccouchement(@RequestBody PostAccouchementDto postAccouchementDto, @PathVariable ("idAccouchement") int idAccouchement ) {
         PostAccouchementDto postAccouchementDtoCreated = postAccouchementService.create(postAccouchementDto,idAccouchement);
         return new ResponseEntity<>(postAccouchementDtoCreated, HttpStatus.CREATED);
     }
     @GetMapping("{idPostAccouchement}")
-    public ResponseEntity<PostAccouchementDto> getPostAccouchementById(@PathVariable int idPostAccouchement) {
+    public ResponseEntity<PostAccouchementDto> getPostAccouchementById(@PathVariable ("idPostAccouchement") int idPostAccouchement) {
         PostAccouchementDto postAccouchementDto  = postAccouchementService.getById(idPostAccouchement);
         return new ResponseEntity<>(postAccouchementDto, HttpStatus.OK);
     }
 
     @GetMapping("/accouchement/{idAccouchement}")
-    public ResponseEntity<PostAccouchementDto> getPostAccouchementByIdAccouchement(@PathVariable int idAccouchement) {
+    public ResponseEntity<PostAccouchementDto> getPostAccouchementByIdAccouchement(@PathVariable ("idAccouchement") int idAccouchement) {
         PostAccouchementDto postAccouchementDto  = postAccouchementService.getByIdAccouchement(idAccouchement);
         return new ResponseEntity<>(postAccouchementDto, HttpStatus.OK);
     }
@@ -39,7 +39,7 @@ public class PostAccouchementController {
     }
 
     @DeleteMapping("/{idPostAccouchement}")
-    public ResponseEntity<String> deletePostAccouchement (@PathVariable int idPostAccouchement){
+    public ResponseEntity<String> deletePostAccouchement (@PathVariable ("idPostAccouchement") int idPostAccouchement){
         postAccouchementService.delete(idPostAccouchement);
         return new ResponseEntity<>("deleted with success",HttpStatus.OK);
     }

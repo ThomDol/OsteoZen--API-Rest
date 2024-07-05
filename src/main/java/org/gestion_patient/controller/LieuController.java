@@ -30,12 +30,12 @@ public class LieuController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<LieuDto> getLieuById(@PathVariable int id) {
+    public ResponseEntity<LieuDto> getLieuById(@PathVariable ("id") int id) {
         LieuDto Lieu = lieuService.getLieuById(id);
         return new ResponseEntity<>(Lieu , HttpStatus.OK);
     }
     @DeleteMapping ("{id}")
-    public ResponseEntity<String> deleteLieu(@PathVariable int id) {
+    public ResponseEntity<String> deleteLieu(@PathVariable ("id") int id) {
         lieuService.deleteLieu(id);
         return new ResponseEntity<>("localisation deleted successfully", HttpStatus.OK);
     }
