@@ -20,12 +20,12 @@ public class AccouchementController {
 
 
     @PostMapping("/{idPatient}")
-    public ResponseEntity<AccouchementDto> createAccouchement(@RequestBody AccouchementDto accouchementDto,@PathVariable ("idPatient")int idPatient ) {
+    public ResponseEntity<AccouchementDto> createAccouchement(@RequestBody AccouchementDto accouchementDto,@PathVariable ("idPatient") int idPatient ) {
         AccouchementDto createAccouchement = accouchementService.create(accouchementDto,idPatient);
         return new ResponseEntity<>(createAccouchement, HttpStatus.CREATED);
     }
     @GetMapping("/{idAccouchement}")
-    public ResponseEntity<AccouchementDto> getAccouchementById(@PathVariable ("idAccouchement")int idAccouchement) {
+    public ResponseEntity<AccouchementDto> getAccouchementById(@PathVariable ("idAccouchement") int idAccouchement) {
         AccouchementDto accouchements = accouchementService.getByIdAccouchement(idAccouchement);
         return new ResponseEntity<>(accouchements, HttpStatus.OK);
     }

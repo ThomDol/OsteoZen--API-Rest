@@ -28,21 +28,21 @@ public class GrossesseController {
         return new ResponseEntity<>(grossesseDto, HttpStatus.OK);
     }
     @GetMapping("all/{idPatient}")
-    public ResponseEntity<List<GrossesseDto>> getAllGrossesseByPatientId(@PathVariable ("idPatient")int idPatient)  {
+    public ResponseEntity<List<GrossesseDto>> getAllGrossesseByPatientId(@PathVariable ("idPatient") int idPatient)  {
         List<GrossesseDto> grossesseDtoList = grossesseService.getAllByidPatient(idPatient);
         return new ResponseEntity<>(grossesseDtoList, HttpStatus.OK);
     }
 
     @PutMapping("/{idGrossesse}")
-    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable ("idGrossesse")int idGrossesse, @RequestBody GrossesseDto grossesseDto){
+    public ResponseEntity<GrossesseDto> updateGrossesse (@PathVariable ("idGrossesse") int idGrossesse, @RequestBody GrossesseDto grossesseDto){
         GrossesseDto grossesseDtoUpdated = grossesseService.update(idGrossesse,grossesseDto);
         return new ResponseEntity<>(grossesseDtoUpdated,HttpStatus.OK);
     }
 
     @DeleteMapping("/{idGrossesse}")
-    public ResponseEntity<String> deleteGrossesse (@PathVariable ("idGrossesse")int idGrossesse){
+    public ResponseEntity<String> deleteGrossesse (@PathVariable ("idGrossesse") int idGrossesse){
         grossesseService.deleteGrossesse(idGrossesse);
-        return new ResponseEntity<>("deleted with success",HttpStatus.OK);
+        return new ResponseEntity<>("information about pregnancy are deleted with success",HttpStatus.OK);
     }
 
 

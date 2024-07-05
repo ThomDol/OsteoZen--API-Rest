@@ -1,14 +1,14 @@
 
-g	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¿ÀÅ…2
+	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¿ÀÅ…2J$934dfef0-28f5-474c-a558-7ecacfcf18c8
 i
-java:S1659%"&Declare "password" on a separate line.(û‚¼õ8»ÔÁ…2J$03933290-0149-431d-97b7-e6a68e94853f
-l	java:S106$"+Replace this use of System.out by a logger.(ª‡¹}8½ÔÁ…2J$c94a7621-c59a-49da-bc26-081225a17216
-r	java:S106*"+Replace this use of System.out by a logger.(î¸ıÿÿÿÿ8ÏÔÁ…2J$70ea5eea-8543-429c-a314-a8bcbb1dc595
-m	java:S106+"+Replace this use of System.out by a logger.(Éáğè8ĞÔÁ…2J$eb24618d-b76c-45d8-ab3e-6d10b8c2eabc
-m	java:S1066"+Replace this use of System.out by a logger.(÷çÆê8ÒÔÁ…2J$3ec9ca03-0519-434c-8148-1881d927dd92
+java:S1659%"&Declare "password" on a separate line.(û‚¼õ8»ÔÁ…2J$cf3b38e6-bd0f-4617-ad7b-8423d78fb4f5
+l	java:S106$"+Replace this use of System.out by a logger.(ª‡¹}8½ÔÁ…2J$37e7753a-e089-4182-a7f5-8dcaefea84be
+r	java:S106*"+Replace this use of System.out by a logger.(î¸ıÿÿÿÿ8ÏÔÁ…2J$0d252937-0c5b-4bfa-96f1-c35c8ec5bbf3
+m	java:S106+"+Replace this use of System.out by a logger.(Éáğè8ĞÔÁ…2J$0128bcce-6edc-42cb-8d22-5d0b16eac2fb
+m	java:S1066"+Replace this use of System.out by a logger.(÷çÆê8ÒÔÁ…2J$9167f3e8-ab00-462e-95d7-6deb7598af13
 ~
-java:S64378"6Revoke and change this password, as it is compromised.(ìâ¦ûÿÿÿÿ8ÓÔÁ…2J$63021e36-572a-44a2-82f6-53e3da3f05aa
+java:S64378"6Revoke and change this password, as it is compromised.(ìâ¦ûÿÿÿÿ8ÓÔÁ…2J$ca88d903-e876-4d93-acde-b55e977e8c63
 Â
-java:S6204@"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(šê€Çûÿÿÿÿ8ÖÔÁ…2J$c5d908eb-0dc8-4637-8d94-89e21cf73f91
+java:S6204@"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(šê€Çûÿÿÿÿ8ÖÔÁ…2J$c1919aef-ef76-4663-a2f3-5ec95d85bfe3
 ’
-java:S1128"ORemove this unused import 'org.springframework.security.core.userdetails.User'.(–Ä€8ÚÔÁ…2J$7b812d8a-c54e-46b5-b649-cf9b45bcc5db
+java:S1128"ORemove this unused import 'org.springframework.security.core.userdetails.User'.(–Ä€8ÚÔÁ…2J$9c927cf9-9bb6-4ae1-8320-042311cc7d72

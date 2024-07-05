@@ -25,7 +25,7 @@ public class PhysiqueController {
     }
 
     @GetMapping("{idPhysique}")
-    public ResponseEntity<PhysiqueDto> getPhysiqueById(@PathVariable ("idPhysique")int idPhysique) {
+    public ResponseEntity<PhysiqueDto> getPhysiqueById(@PathVariable ("idPhysique") int idPhysique) {
         PhysiqueDto physiqueDto = physiqueService.getByIdPhysyque(idPhysique);
         return new ResponseEntity<>(physiqueDto, HttpStatus.OK);
     }
