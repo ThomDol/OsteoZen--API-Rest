@@ -19,30 +19,30 @@ public class PhysiqueController {
     private PhysiqueService physiqueService;
 
     @PostMapping("/{idPatient}")
-    public ResponseEntity<PhysiqueDto> createPhysique(@RequestBody PhysiqueDto physiqueDto, @PathVariable int idPatient ) {
+    public ResponseEntity<PhysiqueDto> createPhysique(@RequestBody PhysiqueDto physiqueDto, @PathVariable("idPatient") int idPatient ) {
         PhysiqueDto physiqueCreated = physiqueService.create(physiqueDto,idPatient);
         return new ResponseEntity<>(physiqueCreated, HttpStatus.CREATED);
     }
 
     @GetMapping("{idPhysique}")
-    public ResponseEntity<PhysiqueDto> getPhysiqueById(@PathVariable int idPhysique) {
+    public ResponseEntity<PhysiqueDto> getPhysiqueById(@PathVariable ("idPhysique")int idPhysique) {
         PhysiqueDto physiqueDto = physiqueService.getByIdPhysyque(idPhysique);
         return new ResponseEntity<>(physiqueDto, HttpStatus.OK);
     }
     @GetMapping("all/{idPatient}")
-    public ResponseEntity<List<PhysiqueDto>> getAllPhysiqueByPatientId(@PathVariable int idPatient)  {
+    public ResponseEntity<List<PhysiqueDto>> getAllPhysiqueByPatientId(@PathVariable("idPatient") int idPatient)  {
         List<PhysiqueDto> listPhysique = physiqueService.getAllByIdPatient(idPatient);
         return new ResponseEntity<>(listPhysique, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PhysiqueDto> updatePhysique (@PathVariable int id,@RequestBody PhysiqueDto physiqueDto){
+    public ResponseEntity<PhysiqueDto> updatePhysique (@PathVariable ("id") int id,@RequestBody PhysiqueDto physiqueDto){
         PhysiqueDto physiqueUpdated = physiqueService.update(id,physiqueDto);
         return new ResponseEntity<>(physiqueUpdated,HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete (@PathVariable int id){
+    public ResponseEntity<String> delete (@PathVariable ("id") int id){
         physiqueService.deletePhysique(id);
         return new ResponseEntity<>("Deletion successfull",HttpStatus.OK);
     }
