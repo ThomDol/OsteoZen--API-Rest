@@ -1,12 +1,2 @@
 
-œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8ûŒ–öû1J$3f41d493-53e5-47b9-aaa4-5e1d7cfcd1c6
-R
-java:S1128"0Remove this unused import 'jakarta.persistence'.(Î«Ô§úÿÿÿÿ8ÿ±òùû1
-\
-java:S1128"?Remove this unused import 'org.gestion_patient.entity.Patient'.(ÕÜû8ÿ±òùû1
-d
-java:S1128	"BRemove this unused import 'org.gestion_patient.entity.Rendezvous'.(·ß¾×üÿÿÿÿ8€²òùû1
-R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8€²òùû1
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8€²òùû1
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(€¨ÁŸ8ûŒ–öû1J$37e5c781-7024-44f4-9eb0-ca4ce9e2d844

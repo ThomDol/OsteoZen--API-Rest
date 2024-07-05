@@ -281,3 +281,7 @@ y
 Isrc/main/java/org/gestion_patient/exception/UserHasPatientsException.java,4\3\4315aa93d278663f61dd9cf047a27b45cdb8c1fb
 x
 Hsrc/main/java/org/gestion_patient/exception/AccountBlockedException.java,b\a\bab8bc3ddd5104cc253e5005cdcf43b45038cca7
+}
+Msrc/test/java/org/gestion_patient/service/MedecinTraitantServiceImplTest.java,a\2\a274798fa475fdc5d9a4f7aef214a5b750dad1af
+~
+Nsrc/main/java/org/gestion_patient/service/impl/MedecinTraitantServiceImpl.java,7\5\75b31a0fde612a2c5e4eb52f34a9d7373c848eef
