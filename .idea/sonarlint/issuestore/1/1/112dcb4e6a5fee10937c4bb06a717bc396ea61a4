@@ -1,9 +1,13 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8¨΄¶2J$cd3f0a86-6a7d-4aa4-a9fc-65f60ba8b211
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ8¦§ρ2J$c45d7963-09ad-42bf-8d29-aa9f4f42236b
 –
-java:S1192—"RDefine a constant instead of duplicating this literal "Patient not found" 3 times.(Όÿ‡Χ8ª΄¶2J$503479f4-9125-4644-9e66-a5a28e607c49
+java:S1192™"RDefine a constant instead of duplicating this literal "Patient not found" 3 times.(Όÿ‡Χ8©§ρ2J$3794309b-3076-43a9-82a4-6dfd7626d777
 ”
-java:S3776'"QRefactor this method to reduce its Cognitive Complexity from 24 to the 8 allowed.(•βε8‡Έ¶2J$a4e05751-e83b-44ae-ae0c-8757cda335c4
+java:S3776)"QRefactor this method to reduce its Cognitive Complexity from 24 to the 2 allowed.(•βε8‰§ρ2J$a3ed1494-f246-4343-b851-b9ea5ba5e154
+
+java:S3776y"PRefactor this method to reduce its Cognitive Complexity from 5 to the 2 allowed.(¬δ½Ήϊÿÿÿÿ8§ρ2J$fc88120d-61fb-4fe1-979d-8c62d4dde3df
+™
+java:S3776’"PRefactor this method to reduce its Cognitive Complexity from 5 to the 2 allowed.(ψ™όÿÿÿÿ8”§ρ2J$c5ab5575-9771-4822-b269-eff6b703a168
 
-java:S3776 "QRefactor this method to reduce its Cognitive Complexity from 16 to the 8 allowed.(§Ϊήÿόÿÿÿÿ8Ι‡σο‡2J$ee96129c-0198-4b86-a784-7cb7ae4d0b4f
-s	java:S106ω"+Replace this use of System.out by a logger.(—¥‘ωÿÿÿÿ8Ρ‡σο‡2J$6080f812-4823-4ca9-89a7-fffe953580f7
+java:S3776Ά"QRefactor this method to reduce its Cognitive Complexity from 16 to the 2 allowed.(§Ϊήÿόÿÿÿÿ8–§ρ2J$205bcc90-1772-46a1-85fb-9f88c342903b
+s	java:S106€"+Replace this use of System.out by a logger.(—¥‘ωÿÿÿÿ8§ρ2J$c9e0f3ed-d7f9-4c40-ad9e-036be978375f

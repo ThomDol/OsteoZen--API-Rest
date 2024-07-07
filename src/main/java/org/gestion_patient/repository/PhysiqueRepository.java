@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PhysiqueRepository extends JpaRepository<Physique,Integer> {
     List<Physique> findAllByPatientIdPatient(int idPatient);
+    void deleteAllByPatientIdPatient(int idPatient);
 }
