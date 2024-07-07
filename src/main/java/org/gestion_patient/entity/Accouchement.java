@@ -68,6 +68,10 @@ public class Accouchement {
     @Column(name = "age_date_accouchement", nullable = true)
     private Integer ageDateAccouchement;
 
+    @OneToOne
+    @JoinColumn(name="id_grossesse_postpartum",nullable = true)
+    private PostAccouchement postAccouchement;
+
     @ManyToOne( optional = false)
     @JoinColumn(name = "id_patient", nullable = false)
     private Patient patient;

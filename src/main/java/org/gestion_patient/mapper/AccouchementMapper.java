@@ -25,10 +25,11 @@ public class AccouchementMapper {
                 displayBoolean(accouchement.getReeducationPerinee()),
                 displayString(accouchement.getPresentationAAccouchement()),
                 displayInt(accouchement.getAgeDateAccouchement()),
+                accouchement.getPostAccouchement()!=null ? accouchement.getPostAccouchement().getIdPostAccouchement():null,
                 accouchement.getPatient().getIdPatient()
         );
     }
-    public static Accouchement mapToAccouchement (AccouchementDto accouchementDto , Patient patient){
+    public static Accouchement mapToAccouchement (AccouchementDto accouchementDto ,PostAccouchement postAcouchement, Patient patient){
         return new Accouchement(
                 accouchementDto.getIdAccouchement(),
                 accouchementDto.getDateAccouchement(),
@@ -47,6 +48,7 @@ public class AccouchementMapper {
                 displayBoolean(accouchementDto.getReeducationPerinee()),
                 displayString(accouchementDto.getPresentationAAccouchement()),
                 displayInt(accouchementDto.getAgeDateAccouchement()),
+                postAcouchement,
                 patient
         );
     }

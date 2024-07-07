@@ -1,7 +1,5 @@
 
 i
-java:S1612/"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(¹ âˆ8ù†È‘ˆ2
-Ž
-java:S1128"qRemove this unused import 'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter'.(÷ìïŠ8ý†È‘ˆ2
+java:S1612/"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(¹ âˆ8¤ùÒ˜ˆ2
 ”
-java:S1128"wRemove this unused import 'org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated'.(Ç—ÇŠ8ý†È‘ˆ2
+java:S1128"wRemove this unused import 'org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated'.(Ç—ÇŠ8®ùÒ˜ˆ2

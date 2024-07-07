@@ -113,8 +113,6 @@ p
 @src/main/java/org/gestion_patient/service/RendezvousService.java,8\e\8eb35da4f29987ab07e817d9fefffa6f3bc0f051
 y
 Isrc/main/java/org/gestion_patient/service/impl/RendezvousServiceImpl.java,5\4\54074eea0071d4c2e42f04938548b0b994e57b01
-w
-Gsrc/main/java/org/gestion_patient/service/impl/MedecinTraitantImpl.java,7\1\710bb9790e6eeabc5613863fdcc3ab1f9f0d6650
 s
 Csrc/main/java/org/gestion_patient/service/impl/LieuServiceImpl.java,d\4\d45373f71697a60777a86c94986a4c47c3d9a7fb
 p

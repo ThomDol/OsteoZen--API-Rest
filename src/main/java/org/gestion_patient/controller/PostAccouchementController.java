@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/postaccouchement")
 public class PostAccouchementController {
@@ -17,7 +18,7 @@ public class PostAccouchementController {
 
     @PostMapping("/{idAccouchement}")
     public ResponseEntity<PostAccouchementDto> createPostAccouchement(@RequestBody PostAccouchementDto postAccouchementDto, @PathVariable ("idAccouchement") int idAccouchement ) {
-        PostAccouchementDto postAccouchementDtoCreated = postAccouchementService.create(postAccouchementDto,idAccouchement);
+        PostAccouchementDto postAccouchementDtoCreated = postAccouchementService.createByAccouchement(postAccouchementDto,idAccouchement);
         return new ResponseEntity<>(postAccouchementDtoCreated, HttpStatus.CREATED);
     }
     @GetMapping("{idPostAccouchement}")

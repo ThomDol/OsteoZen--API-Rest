@@ -32,6 +32,7 @@ public class AccouchementDto {
     private Boolean reeducationPerinee ;
     private String presentationAAccouchement;
     private Integer ageDateAccouchement;
+    private Integer idPostAccouchement;
     private int idPatient;
 
 

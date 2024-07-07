@@ -16,7 +16,6 @@ public class PostAccouchementDto {
     private String dateCreation;
     private String dateUpdate;
     private String qualiteSommeil;
-    private Boolean reeducationPerinee;
     private String instabiliteVesicale;
     private String ecoulementsVaginaux;
     private Boolean retourDeCouche;

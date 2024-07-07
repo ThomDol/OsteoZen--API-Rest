@@ -27,8 +27,6 @@ public class PostAccouchement {
     @Column(name = "qualite_someil", nullable = true, length = 100)
     private String qualiteSommeil;
 
-    @Column(name = "reeducation_perinee", nullable = true)
-    private Boolean reeducationPerinee;
 
     @Column(name = "instabilite_vesicale", nullable = true, length = 100)
     private String instabiliteVesicale;

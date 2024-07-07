@@ -18,17 +18,19 @@ public class PostAccouchementServiceImpl implements PostAccouchementService {
     private AccouchementRepository accouchementRepository;
 
     @Override
-    public PostAccouchementDto create(PostAccouchementDto postAccouchementDto, int idAccouchement) {
+    public PostAccouchementDto createByAccouchement(PostAccouchementDto postAccouchementDto, int idAccouchement) {
         Accouchement accouchement = accouchementRepository.findById(idAccouchement).orElseThrow(()->new ResourceNotFoundException("Accouchement with id"+idAccouchement+" doesn't exist"));
         PostAccouchement postAccouchement = PostAccouchementMapper.mapToPostAccouchement(postAccouchementDto,accouchement);
-        return PostAccouchementMapper.mapToPostAccouchementDto(postAccouchementRepository.save(postAccouchement));
+        PostAccouchement postAccouchementSaved = postAccouchementRepository.save(postAccouchement);
+        accouchement.setPostAccouchement(postAccouchementSaved);
+        accouchementRepository.save(accouchement);
+        return PostAccouchementMapper.mapToPostAccouchementDto(postAccouchementSaved);
     }
 
     @Override
     public PostAccouchementDto update(int idToUpdate, PostAccouchementDto postAccouchementDtoUpdated) {
         PostAccouchement postAccouchementToUpdate = postAccouchementRepository.findById(idToUpdate).orElseThrow(()->new ResourceNotFoundException("PostAccouchement with id"+idToUpdate+" doesn't exist"));
         if(postAccouchementDtoUpdated.getQualiteSommeil()!=null){postAccouchementToUpdate.setQualiteSommeil(postAccouchementDtoUpdated.getQualiteSommeil());}
-        if(postAccouchementDtoUpdated.getReeducationPerinee()!=null){postAccouchementToUpdate.setReeducationPerinee(postAccouchementDtoUpdated.getReeducationPerinee());}
         if(postAccouchementDtoUpdated.getInstabiliteVesicale()!=null){postAccouchementToUpdate.setInstabiliteVesicale(postAccouchementDtoUpdated.getInstabiliteVesicale());}
         if(postAccouchementDtoUpdated.getEcoulementsVaginaux()!=null){postAccouchementToUpdate.setEcoulementsVaginaux(postAccouchementDtoUpdated.getEcoulementsVaginaux());}
         if(postAccouchementDtoUpdated.getRetourDeCouche()!=null){postAccouchementToUpdate.setRetourDeCouche(postAccouchementDtoUpdated.getRetourDeCouche());}
@@ -37,6 +39,7 @@ public class PostAccouchementServiceImpl implements PostAccouchementService {
         if(postAccouchementDtoUpdated.getInfosComplementaires()!=null){postAccouchementToUpdate.setInfosComplementaires(postAccouchementDtoUpdated.getInfosComplementaires());}
 
         PostAccouchement postAccouchementUpdated = postAccouchementRepository.save(postAccouchementToUpdate);
+
         return PostAccouchementMapper.mapToPostAccouchementDto(postAccouchementUpdated);
     }
 
@@ -58,6 +61,16 @@ public class PostAccouchementServiceImpl implements PostAccouchementService {
     @Override
     public void delete(int id) {
         PostAccouchement postAccouchementToDelete = postAccouchementRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("PostAccouchement with id"+id+" doesn't exist"));
+        // Récupérer l'Accouchement associé
+        Accouchement associatedAccouchement = postAccouchementToDelete.getAccouchement();
+        if (associatedAccouchement != null) {
+            // Dissocier le PostAccouchement de l'Accouchement
+            associatedAccouchement.setPostAccouchement(null);
+            // Sauvegarder l'Accouchement mis à jour
+            accouchementRepository.save(associatedAccouchement);
+        }
+
+        // Supprimer l'entrée PostAccouchement
         postAccouchementRepository.delete(postAccouchementToDelete);
     }
 }

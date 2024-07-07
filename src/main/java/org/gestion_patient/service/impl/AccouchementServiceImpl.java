@@ -25,7 +25,7 @@ public class AccouchementServiceImpl implements AccouchementService {
     @Override
     public AccouchementDto create(AccouchementDto accouchementDto, int idPatient) {
         Patient patient = patientRepository.findById(idPatient).orElseThrow(() -> new ResourceNotFoundException("Patient not found with given id " + idPatient));
-        Accouchement accouchementToSave = AccouchementMapper.mapToAccouchement(accouchementDto, patient);
+        Accouchement accouchementToSave = AccouchementMapper.mapToAccouchement(accouchementDto,null, patient);
         return AccouchementMapper.mapToAccouchementDto(accouchementRepository.save(accouchementToSave));
     }
 
