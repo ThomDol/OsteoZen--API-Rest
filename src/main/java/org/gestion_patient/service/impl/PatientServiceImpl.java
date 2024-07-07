@@ -250,6 +250,7 @@ public class PatientServiceImpl implements PatientService {
 
         // Dissocier le patient du praticien
         patientToDelete.setAppUser(null);
+        patientRepository.save(patientToDelete); // Sauvegarder la dissociation
 
         // Suppression du patient
         patientRepository.delete(patientToDelete);
