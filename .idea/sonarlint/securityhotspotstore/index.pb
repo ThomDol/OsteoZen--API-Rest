@@ -283,3 +283,13 @@ Hsrc/main/java/org/gestion_patient/exception/AccountBlockedException.java,b\a\b
 Msrc/test/java/org/gestion_patient/service/MedecinTraitantServiceImplTest.java,a\2\a274798fa475fdc5d9a4f7aef214a5b750dad1af
 ~
 Nsrc/main/java/org/gestion_patient/service/impl/MedecinTraitantServiceImpl.java,7\5\75b31a0fde612a2c5e4eb52f34a9d7373c848eef
+e
+5src/main/java/org/gestion_patient/Data/EmailUtil.java,7\3\73876c3cfcba8ead98cbcf41ba3529c454841794
+p
+@src/main/java/org/gestion_patient/entity/PasswordResetToken.java,1\7\1730dcdf87971fb7f2a5f09dce380176e5a70b76
+~
+Nsrc/main/java/org/gestion_patient/repository/PasswordResetTokenRepository.java,9\5\95cacd038b6fe8723b0194852c6bb66dbad81a98
+k
+;src/main/java/org/gestion_patient/service/EmailService.java,3\7\375c29a671dbfa6fa99d685737b2d5512cdf36d4
+y
+Isrc/main/java/org/gestion_patient/controller/PasswordResetController.java,7\6\76122242637d117c0261fa389d0203f16d56ce01

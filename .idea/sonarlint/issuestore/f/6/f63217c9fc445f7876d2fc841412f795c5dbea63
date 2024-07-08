@@ -1,5 +1,5 @@
 
-i
-java:S1612/"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(¹ âˆ8¤ùÒ˜ˆ2
-”
-java:S1128"wRemove this unused import 'org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated'.(Ç—ÇŠ8®ùÒ˜ˆ2
+
+java:S1612/"LReplace this lambda with method reference 'AbstractHttpConfigurer::disable'.(¹ âˆ8¤ùÒ˜ˆ2J$c2a686c4-b270-4239-a143-4522669a2065
+º
+java:S1128"wRemove this unused import 'org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated'.(Ç—ÇŠ8®ùÒ˜ˆ2J$3c9e8e11-13d0-4d12-b547-ce7901b467ea
