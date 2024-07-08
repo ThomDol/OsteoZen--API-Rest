@@ -6,7 +6,6 @@ import org.gestion_patient.entity.AppUser;
 import org.gestion_patient.entity.PasswordResetToken;
 import org.gestion_patient.repository.AppUserRepository;
 import org.gestion_patient.repository.PasswordResetTokenRepository;
-import org.gestion_patient.service.AppUserService;
 import org.gestion_patient.service.EmailService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
+
 import java.util.UUID;
 
 @RestController
@@ -31,27 +30,25 @@ public class PasswordResetController {
 
     @PostMapping("/forgot")
     public ResponseEntity<String> processForgotPassword(@RequestParam("email") String email) throws Exception {
-        System.out.println(email);
         AppUser appUser = appUserRepository.findByIdentiteEmail(Crypto.cryptService(email));
         if (appUser == null) {
-            System.out.println("check not found");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email not found");
         }
-
-        // Optionally clean up expired tokens
+        //Efface token si déjà un
         PasswordResetToken passwordResetToken = tokenRepository.findByAppUser(appUser);
         if (passwordResetToken!=null){tokenRepository.delete(passwordResetToken);}
 
-        System.out.println("check");
+        //Generation nouveau Token
         String token = UUID.randomUUID().toString();
         PasswordResetToken resetToken = new PasswordResetToken();
         resetToken.setToken(token);
         resetToken.setAppUser(appUser);
         resetToken.setExpiryDate(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000)); // 24 hours expiration
         tokenRepository.save(resetToken);
-        System.out.println("check2");
+
+        //Envoi du token par lien par email
         String resetUrl = "http://localhost:5173/reset-password?token=" + token;
-        emailService.sendEmail(appUser.getIdentite().getEmail(), "Password Reset Request", "To reset your password, click the link below:\n" + resetUrl);
+        emailService.sendEmail(Crypto.decryptService(appUser.getIdentite().getEmail()), "Password Reset Request", "To reset your password, click the link below:\n" + resetUrl);
 
         return ResponseEntity.ok("Password reset link sent to your email");
     }
