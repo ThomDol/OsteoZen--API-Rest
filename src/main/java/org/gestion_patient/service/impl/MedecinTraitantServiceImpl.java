@@ -22,7 +22,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class MedecinTraitantImpl implements MedecinTraitantService {
+public class MedecinTraitantServiceImpl implements MedecinTraitantService {
     private final MedecintraitantRepository medecintraitantRepository;
     private final PersonneRepository personneRepository;
     private final LieuRepository lieuRepository;

@@ -2,8 +2,3 @@
 ~	java:S107#"<Method has 8 parameters, which is greater than 7 authorized.(¶‘İß8óüÄ¯‚2J$7ed1fa7b-9704-4634-bfcd-8290957c9914
 }
 java:S1118	":Add a private constructor to hide the implicit public one.(ê”¸ä8õüÄ¯‚2J$305618b4-9b24-4dc9-9ba2-4d57a5d05969
-“
-java:S3776
-"PRefactor this method to reduce its Cognitive Complexity from 8 to the 2 allowed.(›ıÁ—8öüÄ¯‚2J$0e04309d-0298-4d0c-9fd1-f1991aad1a1d
-“
-java:S3776#"PRefactor this method to reduce its Cognitive Complexity from 3 to the 2 allowed.(¶‘İß8ıüÄ¯‚2J$fda46dea-990a-4967-b5cc-768f4471d22b

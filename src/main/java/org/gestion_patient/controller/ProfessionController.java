@@ -23,7 +23,7 @@ public class ProfessionController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProfessionDto> getProfessionById (@PathVariable int id){
+    public ResponseEntity<ProfessionDto> getProfessionById (@PathVariable ("id") int id){
         ProfessionDto professionDto = professionService.getById(id);
         return new ResponseEntity<>(professionDto,HttpStatus.OK);
     }

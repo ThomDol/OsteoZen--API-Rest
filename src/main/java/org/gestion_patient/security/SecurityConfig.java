@@ -46,7 +46,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Utilise des sessions sans état
                 .headers(frameOptions -> frameOptions.disable()) // Désactive la protection des frames
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/login").permitAll()) // Permet les requêtes POST vers /login sans authentification
-                .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated()) // Toutes les autres requêtes nécessitent une authentification
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "api/password/forgot").permitAll())
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.POST, "/api/password/reset").permitAll())
+                .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())// Toutes les autres requêtes nécessitent une authentification
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(authConfiguration))) // Ajoute un filtre d'authentification JWT
                 .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class); // Ajoute un filtre d'autorisation JWT avant le filtre UsernamePassword
 

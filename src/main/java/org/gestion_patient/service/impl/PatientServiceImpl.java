@@ -20,6 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class PatientServiceImpl implements PatientService {
     private final PostAccouchementRepository postAccouchementRepository;
+    private final GrossesseRepository grossesseRepository;
+    private final PhysiqueRepository physiqueRepository;
     private PatientRepository patientRepository;
     private LieuRepository lieuRepository;
     private GenreRepository genreRepository;
@@ -241,8 +243,14 @@ public class PatientServiceImpl implements PatientService {
         antecedentClassiqueRepository.deleteByPatientIdPatient(id);
         antecedentBebeRepository.deleteByPatientIdPatient(id);
         rendezvousRepository.deleteAllByPatientIdPatient(id);
+        physiqueRepository.deleteAllByPatientIdPatient(id);
+        grossesseRepository.deleteAllByPatientIdPatient(id);
 
         Personne personneToDelete = patientToDelete.getIdentite();
+
+        // Dissocier le patient du praticien
+        patientToDelete.setAppUser(null);
+        patientRepository.save(patientToDelete); // Sauvegarder la dissociation
 
         // Suppression du patient
         patientRepository.delete(patientToDelete);

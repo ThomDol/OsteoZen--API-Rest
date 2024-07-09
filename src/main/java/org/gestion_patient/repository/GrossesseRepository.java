@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface GrossesseRepository extends JpaRepository<Grossesse,Integer> {
     List<Grossesse> findByPatientIdPatient (int id);
-    void deleteByPatientIdPatient(int id);
+    void deleteAllByPatientIdPatient(int id);
 
 }

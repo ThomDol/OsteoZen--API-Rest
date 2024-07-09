@@ -1,11 +1,10 @@
+
 package org.gestion_patient.controller;
 
 import lombok.AllArgsConstructor;
-import org.gestion_patient.entity.Accouchement;
 import org.gestion_patient.entityDto.AccouchementDto;
 import org.gestion_patient.service.AccouchementService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
