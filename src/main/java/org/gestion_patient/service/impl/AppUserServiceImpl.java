@@ -11,11 +11,13 @@ import org.gestion_patient.exception.UserHasPatientsException;
 import org.gestion_patient.mapper.AppUserMapper;
 import org.gestion_patient.repository.*;
 import org.gestion_patient.service.AppUserService;
+import org.gestion_patient.service.EmailService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +30,7 @@ public class AppUserServiceImpl implements AppUserService {
     private LieuRepository lieuRepository;
     private PersonneRepository personneRepository;
     private PasswordEncoder passwordEncoder;
+    private EmailService emailService;
 
     // Récupère tous les utilisateurs et les retourne sous forme de DTO
     @Override
@@ -71,8 +74,22 @@ public class AppUserServiceImpl implements AppUserService {
                 personneIdNewPraticien.setTel(Crypto.cryptService(appUserDto.getTel()));
                 personneRepository.save(personneIdNewPraticien);
 
-                // Hash le mot de passe
-                appUserDto.setPassword(passwordEncoder.encode(appUserDto.getPassword()));
+                // Generation aléatoire du mot de passe
+                char [] randomCharacters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','!','?','-','_','$','^','%','+'};
+                Random rand = new Random();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < 8; i++) {
+                    sb.append(randomCharacters[rand.nextInt(randomCharacters.length)]);
+                }
+                String password = sb.toString();
+
+                // Envoi de l'e-mail de bienvenue
+                String emailBody = String.format("Votre compte a été créé sur PatientManager.\nVotre mot de passe est: %s\nPensez à le changer lors de votre première connexion.", password);
+                emailService.sendEmail(appUserDto.getEmail(), "Bienvenue sur PatientManager", emailBody);
+
+                //Hashage du mot de passe
+                appUserDto.setPassword(passwordEncoder.encode(password));
+
 
                 // Récupère ou crée un lieu
                 Lieu lieu = lieuRepository.findByNomVilleAndCodePostal(appUserDto.getNomVille().toUpperCase(), appUserDto.getCodePostal());
