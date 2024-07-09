@@ -1,12 +1,12 @@
 
-	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8›ì±‰2J$2f75bc6d-377c-498d-847d-5f42100778b1
+	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÈíİÄ‰2J$ac9ccf08-5f3d-4413-92f5-fec4e6eb3957
 ª
-java:S11924"bDefine a constant instead of duplicating this literal "AppUser not found with given id: " 3 times.(­ø¦øÿÿÿÿ8ì±‰2J$b73911ee-c786-4d7d-8c1d-08879a1dfa8b
+java:S11924"bDefine a constant instead of duplicating this literal "AppUser not found with given id: " 3 times.(­ø¦øÿÿÿÿ8ÌíİÄ‰2J$91536138-167e-4f8d-b75e-7f52ef04b3af
 ”
-java:S3776:"QRefactor this method to reduce its Cognitive Complexity from 11 to the 8 allowed.(¦ç…’8÷ì±‰2J$6abc7dda-47ce-44c0-9520-afd9e74546bc
+java:S3776:"QRefactor this method to reduce its Cognitive Complexity from 11 to the 2 allowed.(¦ç…’8ãîİÄ‰2J$bfb5c51c-4145-4d63-a38e-4ea881f8f4db
 f
-java:S2119O"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8şì±‰2J$7f196007-0c9c-4375-b851-2d328a45cfc8
+java:S2119O"Save and re-use this "Random".(šŸ«íøÿÿÿÿ8ùîİÄ‰2J$ac400cdb-609d-42d8-aa43-1902d06b59a3
+“
+java:S3457W"Q%n should be used in place of \n to produce the platform-specific line separator.(šÄç?8„ïİÄ‰2J$45cd32fa-98df-40f0-a3f3-b204a8756ffd
 ™
-java:S3457W"Q%n should be used in place of \n to produce the platform-specific line separator.(÷øá·úÿÿÿÿ8‚Ÿì±‰2J$601324be-3032-40a0-9fab-a28e2641e68d
-™
-java:S3776u"QRefactor this method to reduce its Cognitive Complexity from 12 to the 8 allowed.(»Ãïøùÿÿÿÿ8†Ÿì±‰2J$22279988-0f99-473f-997c-d1cd68994b4c
+java:S3776u"QRefactor this method to reduce its Cognitive Complexity from 12 to the 2 allowed.(»Ãïøùÿÿÿÿ8„Äï‡2J$ab350117-fa1e-49b5-a76f-c4b69a8821a5

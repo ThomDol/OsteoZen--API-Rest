@@ -5,10 +5,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 @AllArgsConstructor
 public class EmailService {
     private JavaMailSender mailSender;
+
+    private static final String CERTIFICATE_PATH = "./accounts.google";
 
     public void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -16,6 +20,13 @@ public class EmailService {
         message.setSubject(subject);
         message.setText(text);
         mailSender.send(message);
-    }
 
+
+
+
+    }
 }
+
+
+
+
