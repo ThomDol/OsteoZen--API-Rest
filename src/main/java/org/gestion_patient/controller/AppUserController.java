@@ -40,7 +40,7 @@ public class AppUserController {
     }
 
     @GetMapping("/praticien/{id}")
-    public ResponseEntity<AppUserDto> getAppUserById(@PathVariable int id) throws Exception {
+    public ResponseEntity<AppUserDto> getAppUserById(@PathVariable ("id") int id) throws Exception {
         AppUserDto appUserDto = appUserService.findById(id);
         return new ResponseEntity<>(appUserDto,HttpStatus.OK);
     }
@@ -58,7 +58,7 @@ public class AppUserController {
     }
 
     @PostMapping("/praticien/updateMdp/{id}")
-    public ResponseEntity<String> upadtePassword(@PathVariable int id, @RequestBody ChangePassword changePassword){
+    public ResponseEntity<String> upadtePassword(@PathVariable ("id") int id, @RequestBody ChangePassword changePassword){
         appUserService.updatePassword(changePassword,id);
         return new ResponseEntity<>("updated with success",HttpStatus.OK);
     }
