@@ -84,7 +84,7 @@ public class AppUserServiceImpl implements AppUserService {
                 String password = sb.toString();
 
                 // Envoi de l'e-mail de bienvenue
-                String emailBody = String.format("Votre compte a été créé sur PatientManager.\nVotre mot de passe est: %s\nPensez à le changer lors de votre première connexion.", password);
+                String emailBody = String.format("Votre compte a été créé sur PatientManager.\nVotre mot de passe est: %s\nPensez à le changer lors de votre première connexion. Lien de l'applicaion : http://localhost:5173/login", password);
                 emailService.sendEmail(appUserDto.getEmail(), "Bienvenue sur PatientManager", emailBody);
 
                 //Hashage du mot de passe

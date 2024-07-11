@@ -14,6 +14,8 @@ public class CorsConfig {
         config.addAllowedOrigin("*"); // Autoriser les requêtes depuis n'importe quelle origine
         config.addAllowedHeader("*"); // Autoriser les en-têtes dans les requêtes
         config.addAllowedMethod("*"); // Autoriser les méthodes HTTP (GET, POST, PUT, DELETE, etc.)
+        config.addExposedHeader("ETag"); // Exposer l'en-tête ETag
+        config.addExposedHeader("error-message"); // Exposer l'en-tête error-message
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
