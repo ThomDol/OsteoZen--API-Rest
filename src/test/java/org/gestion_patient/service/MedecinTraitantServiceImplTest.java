@@ -17,22 +17,24 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class MedecinTraitantServiceImplTest {
 
-    @Mock
+    @MockBean
     private MedecintraitantRepository medecintraitantRepository;
 
-    @Mock
+    @MockBean
     private PersonneRepository personneRepository;
 
-    @Mock
+    @MockBean
     private LieuRepository lieuRepository;
 
     @InjectMocks

@@ -81,7 +81,9 @@ public class AccouchementServiceImpl implements AccouchementService {
             if (accouchementDto.getAgeDateAccouchement() != null) {
                 accouchementToUpdate.setAgeDateAccouchement(accouchementDto.getAgeDateAccouchement());
             }
-            return AccouchementMapper.mapToAccouchementDto(accouchementRepository.save(accouchementToUpdate));
+        Accouchement acc = accouchementRepository.save(accouchementToUpdate);
+        System.out.println(acc.getPeridurale());
+            return AccouchementMapper.mapToAccouchementDto(acc);
 
     }
 
