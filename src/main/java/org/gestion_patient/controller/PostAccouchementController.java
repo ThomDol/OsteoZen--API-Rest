@@ -34,7 +34,7 @@ public class PostAccouchementController {
     }
 
     @PutMapping("/{idPostAccouchement}")
-    public ResponseEntity<PostAccouchementDto> updatePostAccouchement (@PathVariable int idPostAccouchement,@RequestBody PostAccouchementDto postAccouchementDto){
+    public ResponseEntity<PostAccouchementDto> updatePostAccouchement (@PathVariable ("idPostAccouchement") int idPostAccouchement,@RequestBody PostAccouchementDto postAccouchementDto){
         PostAccouchementDto postAccouchementDtoUpdated = postAccouchementService.update(idPostAccouchement,postAccouchementDto);
         return new ResponseEntity<>(postAccouchementDtoUpdated, HttpStatus.OK);
     }
