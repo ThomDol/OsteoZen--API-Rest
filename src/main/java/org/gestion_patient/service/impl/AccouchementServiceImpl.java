@@ -42,6 +42,9 @@ public class AccouchementServiceImpl implements AccouchementService {
             if (accouchementDto.getDifficulteTravail() != null) {
                 accouchementToUpdate.setDifficulteTravail(accouchementDto.getDifficulteTravail());
             }
+            if(accouchementDto.getAccouchementProvoque()!=null){
+                accouchementToUpdate.setAccouchementProvoque(accouchementDto.getAccouchementProvoque());
+            }
             if (accouchementDto.getCesarienne() != null) {
                 accouchementToUpdate.setCesarienne(accouchementDto.getCesarienne());
             }

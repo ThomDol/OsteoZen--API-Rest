@@ -1,10 +1,10 @@
 
 Ÿ
-java:S1192#"WDefine a constant instead of duplicating this literal "Accouchement not found" 3 times.(üÈÔøÿÿÿÿ8˜ØÙ©Œ2J$44eec952-2470-458b-9d08-d04175692d99
+java:S1192#"WDefine a constant instead of duplicating this literal "Accouchement not found" 3 times.(üÈÔøÿÿÿÿ8ˆ†³®Œ2J$e330d839-2726-45dd-8462-3a10eb659100
 ™
-java:S3776""QRefactor this method to reduce its Cognitive Complexity from 16 to the 8 allowed.(±Ê£Áşÿÿÿÿ8©ÙÙ©Œ2J$cc0fc37a-89a2-4218-aa1c-fb3259d30232
-l	java:S106U"+Replace this use of System.out by a logger.(Ç»İ!8³ÙÙ©Œ2J$5d4fe0e4-ee0c-4b90-bc21-8d9fb39ba756
-
-java:S1128"HRemove this unused import 'org.gestion_patient.entity.PostAccouchement'.(£”ô’øÿÿÿÿ8¹ÙÙ©Œ2J$e9b93f99-efd8-49ed-99fe-907f90ba2d00
-€
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8¹ÙÙ©Œ2J$e120b4b8-6203-4642-8dbb-893a872ea4ce
+java:S3776""QRefactor this method to reduce its Cognitive Complexity from 17 to the 8 allowed.(±Ê£Áşÿÿÿÿ8Ó‡³®Œ2J$47da6551-580b-4fcc-921d-c4fed5391336
+l	java:S106X"+Replace this use of System.out by a logger.(Ç»İ!8Ü‡³®Œ2J$e0f56fb9-67aa-4df9-8a4c-0dc785910874
+j
+java:S1128"HRemove this unused import 'org.gestion_patient.entity.PostAccouchement'.(£”ô’øÿÿÿÿ8Ã­´®Œ2
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8Ä­´®Œ2
