@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.gestion_patient.entity.Patient;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter @Setter @AllArgsConstructor
 @NoArgsConstructor
-public class AccouchementDto {
+public class AccouchementDto implements Serializable {
     private int idAccouchement;
     private String dateAccouchement;
     private Integer dureeTravail;
@@ -34,6 +35,7 @@ public class AccouchementDto {
     private Integer ageDateAccouchement;
     private Integer idPostAccouchement;
     private int idPatient;
+
 
 
 }
